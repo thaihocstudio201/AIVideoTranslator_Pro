@@ -1,0 +1,11 @@
+# --- Core UI ---
+PyQt6==6.6.1
+
+# --- AI Models ---
+faster-whisper
+google-generativeai==0.4.0
+edge-tts==6.1.9
+
+# --- Utilities ---
+tenacity==8.2.3       # Dùng để tự động thử lại (Retry) khi rớt mạng API
+wmi==1.5.1            # Dùng để lấy thông số phần cứng (HWID) trên Windows

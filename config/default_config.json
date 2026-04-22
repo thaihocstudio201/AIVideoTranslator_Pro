@@ -1,0 +1,23 @@
+{
+    "system": {
+        "hardware_mode": "GPU",
+        "max_threads": 4,
+        "auto_resume": true
+    },
+    "api_keys": {
+        "gemini_key": "",
+        "elevenlabs_key": ""
+    },
+    "processing": {
+        "segment_duration_seconds": 1800,
+        "whisper_model_size": "large-v3",
+        "target_language": "Vietnamese",
+        "voice_model": "vi-VN-HoaiMyNeural"
+    },
+    "visuals": {
+        "blur_box_enabled": false,
+        "blur_coordinates": {"x": 0, "y": 800, "width": 1920, "height": 280},
+        "subtitle_font": "Arial",
+        "subtitle_color": "#FFFFFF"
+    }
+}

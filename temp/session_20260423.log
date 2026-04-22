@@ -1,0 +1,1064 @@
+[01:51:48] [INFO] ==================================================
+[01:51:48] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[01:51:48] [ERROR] Không thể xác minh phần cứng. Vui lòng chạy bằng quyền Admin.
+[01:52:17] [INFO] ==================================================
+[01:52:17] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[01:52:17] [ERROR] Không thể xác minh phần cứng. Vui lòng chạy bằng quyền Admin.
+[01:57:12] [INFO] ==================================================
+[01:57:12] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[01:57:12] [ERROR] Không thể xác minh phần cứng. Vui lòng chạy bằng quyền Admin.
+[02:05:10] [INFO] Đã chọn chế độ 1 File: E:/animal có sub/《动物界的佛系交际花》.mp4
+[02:06:12] [INFO] ==================================================
+[02:06:12] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:06:12] [ERROR] Không thể xác minh phần cứng. Vui lòng chạy bằng quyền Admin.
+[02:08:36] [INFO] ==================================================
+[02:08:36] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:08:36] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:11:43] [INFO] ==================================================
+[02:11:43] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:11:43] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:15:03] [INFO] ==================================================
+[02:15:03] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:15:03] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:15:25] [INFO] Đã nạp file Single: E:/animal có sub/《 蹦 迪 鸟 》.mp4
+[02:15:25] [INFO] Đã nạp hình ảnh lên Màn hình Preview.
+[02:15:48] [INFO] Đã nạp Folder Batch: E:/animal có sub
+[02:15:48] [INFO] Đang hiển thị Preview video đại diện: “ 与其精神内耗，不如直接发疯 ”.mp4
+[02:20:25] [INFO] ==================================================
+[02:20:25] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:20:25] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:20:35] [INFO] Đã nạp Folder Batch chứa 66 Video: E:/animal có sub
+[02:20:38] [INFO] Đang xem trước Video: 河马：《无鳄不坐的千斤小萌妹》.mp4
+[02:20:41] [INFO] Đang xem trước Video: 肺鱼：一种容易被淹死的鱼.mp4
+[02:20:43] [INFO] Đang xem trước Video: “ 与其精神内耗，不如直接发疯 ”.mp4
+[02:21:02] [INFO] Thư mục Output: E:/Test
+[02:30:06] [INFO] ==================================================
+[02:30:06] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:30:06] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:30:17] [INFO] Đã nạp Folder Batch chứa 66 Video: E:/animal có sub
+[02:30:18] [INFO] Đang xem trước Video: “ 亚马逊雨林究竟有多恐怖 ”.mp4
+[02:30:37] [INFO] Thư mục Output: E:/Test
+[02:44:23] [INFO] ==================================================
+[02:44:23] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:44:23] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:44:35] [INFO] Đã nạp file Single: 《 蹦 迪 鸟 》.mp4
+[02:44:40] [INFO] Thư mục Output: E:/Test
+[02:44:55] [INFO] ==================================================
+[02:44:55] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:44:55] [INFO] ----------------------------------------
+[02:44:55] [INFO] ▶️ TIẾN TRÌNH [1/1]: 《 蹦 迪 鸟 》.mp4
+[02:44:55] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:44:55] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:44:55] [INFO] ==================================================
+[02:44:55] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:44:55] [INFO] ----------------------------------------
+[02:44:55] [INFO] ▶️ TIẾN TRÌNH [1/1]: 《 蹦 迪 鸟 》.mp4
+[02:44:55] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:44:56] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:45:18] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới (Syncing)...
+[02:45:18] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới (Syncing)...
+[02:45:19] [ERROR] Lỗi lệnh hệ thống | Báo lỗi: , s16, 1411 kb/s
+[in#2 @ 000001bd327e85c0] Error opening input: No such file or directory
+Error opening input file E:/Test/temp_《 蹦 迪 鸟 》/dub.wav.
+Error opening input files: No such file or directory
+
+[02:45:19] [INFO] ==================================================
+[02:45:19] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[02:45:19] [ERROR] Lỗi lệnh hệ thống | Báo lỗi:   : [0][0][0][0]
+[in#1 @ 0000026cdf880080] Error opening input: No such file or directory
+Error opening input file E:/Test/temp_《 蹦 迪 鸟 》/goc.wav.
+Error opening input files: No such file or directory
+
+[02:45:19] [ERROR] LỖI PIPELINE: [WinError 3] The system cannot find the path specified: 'E:/Test\\temp_《 蹦 迪 鸟 》'
+[02:47:26] [INFO] ==================================================
+[02:47:26] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:47:27] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:47:36] [INFO] Đã nạp file Single: chim cook.mp4
+[02:47:38] [INFO] Thư mục Output: E:/Test
+[02:47:41] [INFO] ==================================================
+[02:47:41] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:47:41] [INFO] ----------------------------------------
+[02:47:41] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[02:47:41] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:47:42] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:47:42] [INFO] ==================================================
+[02:47:42] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:47:42] [INFO] ----------------------------------------
+[02:47:42] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[02:47:42] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:47:42] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:48:04] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới (Syncing)...
+[02:48:04] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới (Syncing)...
+[02:48:05] [ERROR] Lỗi lệnh hệ thống | Báo lỗi: , s16, 1411 kb/s
+[in#2 @ 00000290eaebee80] Error opening input: No such file or directory
+Error opening input file E:/Test/temp_chim cook/dub.wav.
+Error opening input files: No such file or directory
+
+[02:48:05] [INFO] ==================================================
+[02:48:05] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[02:48:05] [ERROR] Lỗi lệnh hệ thống | Báo lỗi:   : [0][0][0][0]
+[in#1 @ 000001d9ecb2b880] Error opening input: No such file or directory
+Error opening input file E:/Test/temp_chim cook/goc.wav.
+Error opening input files: No such file or directory
+
+[02:48:05] [ERROR] LỖI PIPELINE: [WinError 3] The system cannot find the path specified: 'E:/Test\\temp_chim cook'
+[02:51:08] [INFO] ==================================================
+[02:51:08] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:51:09] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:51:17] [INFO] Đã nạp file Single: chim cook.mp4
+[02:51:20] [INFO] Thư mục Output: E:/Test
+[02:51:22] [INFO] ==================================================
+[02:51:22] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:51:22] [INFO] ----------------------------------------
+[02:51:22] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[02:51:22] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:51:23] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:51:23] [INFO] ==================================================
+[02:51:23] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:51:23] [INFO] ----------------------------------------
+[02:51:23] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[02:51:23] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:51:23] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:51:45] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới...
+[02:51:45] [INFO] ✅ THÀNH CÔNG: chim cook.mp4
+[02:51:45] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới...
+[02:51:46] [INFO] ✅ THÀNH CÔNG: chim cook.mp4
+[02:51:46] [INFO] ==================================================
+[02:51:46] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[02:51:47] [WARNING] Không thể xóa thư mục tạm: [WinError 3] The system cannot find the path specified: 'E:\\Test\\temp_1_chim cook'
+[02:51:47] [INFO] ==================================================
+[02:51:47] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[02:54:04] [INFO] ==================================================
+[02:54:04] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:54:04] [INFO] ----------------------------------------
+[02:54:04] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[02:54:04] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:54:04] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:54:05] [INFO] ==================================================
+[02:54:05] [INFO] 🚀 ĐỘNG CƠ ĐÃ SẴN SÀNG: Xử lý 1 Video
+[02:54:05] [INFO] ----------------------------------------
+[02:54:05] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[02:54:05] [INFO]   ↳ [1] Đang tách âm thanh gốc...
+[02:54:05] [INFO]   ↳ [AI] Đang bắt đầu Whisper Transcription...
+[02:54:28] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới...
+[02:54:28] [INFO]   ↳ [4] Đang tạo âm thanh lồng tiếng mới...
+[02:54:31] [INFO] ✅ THÀNH CÔNG: chim cook.mp4
+[02:54:32] [INFO] ✅ THÀNH CÔNG: chim cook.mp4
+[02:54:32] [INFO] ==================================================
+[02:54:32] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[02:54:33] [WARNING] Không thể xóa thư mục tạm: [WinError 3] The system cannot find the path specified: 'E:\\Test\\temp_1_chim cook'
+[02:54:33] [INFO] ==================================================
+[02:54:33] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[02:57:09] [INFO] ==================================================
+[02:57:09] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[02:57:10] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[02:57:22] [INFO] Đã nạp file Single: chim cook.mp4
+[02:57:24] [INFO] Thư mục Output: E:/Test
+[02:57:36] [INFO] ==================================================
+[02:57:36] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[02:57:36] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[02:57:37] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[02:57:37] [INFO] ==================================================
+[02:57:37] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[02:57:37] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[02:57:38] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[02:57:59] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[02:57:59] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[02:58:00] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[02:58:00] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[02:58:01] [ERROR] CRASH PIPELINE: Decoding failed. ffmpeg returned error code: 3199971767
+
+Output from ffmpeg/avlib:
+
+ffmpeg version 8.0-essentials_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.2.0 (Rev8, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+[mp3 @ 00000258263c4580] Format mp3 detected only with low score of 1, misdetection possible!
+[mp3 @ 00000258263c4580] Failed to find two consecutive MPEG audio frames.
+[in#0 @ 00000258263c4300] Error opening input: Invalid data found when processing input
+Error opening input file E:\Test\temp_1_chim cook\line_0.mp3.
+Error opening input files: Invalid data found when processing input
+
+[02:58:01] [ERROR] CRASH PIPELINE: Decoding failed. ffmpeg returned error code: 3199971767
+
+Output from ffmpeg/avlib:
+
+ffmpeg version 8.0-essentials_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.2.0 (Rev8, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+[mp3 @ 0000022dd2104580] Format mp3 detected only with low score of 1, misdetection possible!
+[mp3 @ 0000022dd2104580] Failed to find two consecutive MPEG audio frames.
+[in#0 @ 0000022dd2104300] Error opening input: Invalid data found when processing input
+Error opening input file E:\Test\temp_1_chim cook\line_0.mp3.
+Error opening input files: Invalid data found when processing input
+
+[03:02:30] [INFO] ==================================================
+[03:02:30] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:02:30] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:02:41] [INFO] Đã nạp file Single: chim cook.mp4
+[03:02:44] [INFO] Thư mục Output: E:/Test
+[03:03:02] [INFO] ==================================================
+[03:03:02] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:03:02] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:03:02] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:03:03] [INFO] ==================================================
+[03:03:03] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:03:03] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:03:03] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:03:24] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:03:24] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:03:25] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0d53398e8be04dbebecb2c5874a82a9d'
+[03:03:25] [WARNING]   [!] Bỏ qua câu 0 do không tạo được giọng đọc.
+[03:03:25] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:03:25] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:03:25] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=14c1ebee7d904b31a19c39a6ad22a00a'
+[03:03:25] [WARNING]   [!] Bỏ qua câu 1 do không tạo được giọng đọc.
+[03:03:25] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=4f8c530145e743329fc9210cddd41cf8'
+[03:03:25] [WARNING]   [!] Bỏ qua câu 0 do không tạo được giọng đọc.
+[03:03:26] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=65734eb83d36497d867bf2a3f153d9ad'
+[03:03:26] [WARNING]   [!] Bỏ qua câu 2 do không tạo được giọng đọc.
+[03:03:26] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=204227883f554a688560a1933b58674a'
+[03:03:26] [WARNING]   [!] Bỏ qua câu 1 do không tạo được giọng đọc.
+[03:03:26] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=84f63ccf9c444206933dafcf2bcf99b8'
+[03:03:26] [WARNING]   [!] Bỏ qua câu 3 do không tạo được giọng đọc.
+[03:03:26] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=8f52c1ba66224fb88a445e10bdc7f3bf'
+[03:03:26] [WARNING]   [!] Bỏ qua câu 2 do không tạo được giọng đọc.
+[03:03:27] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=376f21399f97440abd6feb0a14598282'
+[03:03:27] [WARNING]   [!] Bỏ qua câu 3 do không tạo được giọng đọc.
+[03:03:27] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0a0ab6d503c34decbbed99e6bf34e5dd'
+[03:03:27] [WARNING]   [!] Bỏ qua câu 4 do không tạo được giọng đọc.
+[03:03:27] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=ab354d80490a42b281c334191fbd2d31'
+[03:03:27] [WARNING]   [!] Bỏ qua câu 4 do không tạo được giọng đọc.
+[03:03:27] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0bc748d58ad148b0ad2fb0ce7ef077ab'
+[03:03:27] [WARNING]   [!] Bỏ qua câu 5 do không tạo được giọng đọc.
+[03:03:28] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9496d90951d1404bb7844671fedb61eb'
+[03:03:28] [WARNING]   [!] Bỏ qua câu 6 do không tạo được giọng đọc.
+[03:03:28] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=71916be6d3f6433cb4fb4ad1bfc89590'
+[03:03:28] [WARNING]   [!] Bỏ qua câu 5 do không tạo được giọng đọc.
+[03:03:28] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=08a50ba62d264bf3978ad54cae6c6098'
+[03:03:28] [WARNING]   [!] Bỏ qua câu 6 do không tạo được giọng đọc.
+[03:03:28] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=7a43873bb61a495cb49d727ac939bc66'
+[03:03:28] [WARNING]   [!] Bỏ qua câu 7 do không tạo được giọng đọc.
+[03:03:29] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=1f524f196d4c4790bddbf55a4e3d87c9'
+[03:03:29] [WARNING]   [!] Bỏ qua câu 7 do không tạo được giọng đọc.
+[03:03:29] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=5e41d10f78d14fbe8769ab66915f9ae2'
+[03:03:29] [WARNING]   [!] Bỏ qua câu 8 do không tạo được giọng đọc.
+[03:03:29] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=8a1abdfe5417478e85c83d341c226aad'
+[03:03:29] [WARNING]   [!] Bỏ qua câu 8 do không tạo được giọng đọc.
+[03:03:29] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=51297276c2d3401eba82ee0864d0b88a'
+[03:03:29] [WARNING]   [!] Bỏ qua câu 9 do không tạo được giọng đọc.
+[03:03:29] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=4fe0a7f686f4471da946930cee97960b'
+[03:03:29] [WARNING]   [!] Bỏ qua câu 9 do không tạo được giọng đọc.
+[03:03:30] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=008cd53957f140039dd2e27c7b912bae'
+[03:03:30] [WARNING]   [!] Bỏ qua câu 10 do không tạo được giọng đọc.
+[03:03:30] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9b8195c09aff461fa63cb6bafd973a0b'
+[03:03:30] [WARNING]   [!] Bỏ qua câu 10 do không tạo được giọng đọc.
+[03:03:30] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=7b04b5d5b1e944b4a2a5ce6217b9150c'
+[03:03:30] [WARNING]   [!] Bỏ qua câu 11 do không tạo được giọng đọc.
+[03:03:30] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=87fa40cab4bf4f5697387c9a66429dba'
+[03:03:30] [WARNING]   [!] Bỏ qua câu 11 do không tạo được giọng đọc.
+[03:03:30] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=cbbcdfe14af24f8da60001c412df319c'
+[03:03:30] [WARNING]   [!] Bỏ qua câu 12 do không tạo được giọng đọc.
+[03:03:31] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=babf343bf8164835bf8d09244436aff8'
+[03:03:31] [WARNING]   [!] Bỏ qua câu 13 do không tạo được giọng đọc.
+[03:03:31] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=fdd320ca3ea548db8f8895e563ebbd1a'
+[03:03:31] [WARNING]   [!] Bỏ qua câu 12 do không tạo được giọng đọc.
+[03:03:31] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=4c43a120ef134d5a83eaeba62aaee814'
+[03:03:31] [WARNING]   [!] Bỏ qua câu 13 do không tạo được giọng đọc.
+[03:03:31] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=04cc6bb599f24bb5b1491aa01cdb1e6b'
+[03:03:31] [WARNING]   [!] Bỏ qua câu 14 do không tạo được giọng đọc.
+[03:03:32] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=14c38aec3fb54ee5aba9a869b74d8198'
+[03:03:32] [WARNING]   [!] Bỏ qua câu 15 do không tạo được giọng đọc.
+[03:03:32] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=63850c0c47ad4def80de938dae0e730a'
+[03:03:32] [WARNING]   [!] Bỏ qua câu 14 do không tạo được giọng đọc.
+[03:03:32] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=23ef00c8fe304db0a37e1b61210dbc94'
+[03:03:32] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=7c583453a972472e9609d08c4a80c878'
+[03:03:32] [WARNING]   [!] Bỏ qua câu 15 do không tạo được giọng đọc.
+[03:03:32] [WARNING]   [!] Bỏ qua câu 16 do không tạo được giọng đọc.
+[03:03:33] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9bcc590f08f242fbbb7c9adccdecac3d'
+[03:03:33] [WARNING]   [!] Bỏ qua câu 16 do không tạo được giọng đọc.
+[03:03:33] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=d48268b4601642f3b31bb76eea2f4a34'
+[03:03:33] [WARNING]   [!] Bỏ qua câu 17 do không tạo được giọng đọc.
+[03:03:33] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=03020ef7c9fa41e4aab7adfb293fa98d'
+[03:03:33] [WARNING]   [!] Bỏ qua câu 17 do không tạo được giọng đọc.
+[03:03:33] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=956571bd5009440e9fc5ef8e4ed07152'
+[03:03:33] [WARNING]   [!] Bỏ qua câu 18 do không tạo được giọng đọc.
+[03:03:34] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=078fa93e8d034b3d8bfbda9e01b9a292'
+[03:03:34] [WARNING]   [!] Bỏ qua câu 18 do không tạo được giọng đọc.
+[03:03:34] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=e971844d32cd49a4a0430e112180a870'
+[03:03:34] [WARNING]   [!] Bỏ qua câu 19 do không tạo được giọng đọc.
+[03:03:34] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=3322cdf460c6490ba0ec31725bb0abfe'
+[03:03:34] [WARNING]   [!] Bỏ qua câu 19 do không tạo được giọng đọc.
+[03:03:34] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=5fec2c88691549da95f52a4fe15006cf'
+[03:03:34] [WARNING]   [!] Bỏ qua câu 20 do không tạo được giọng đọc.
+[03:03:35] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=f883fd09aafd4b48b692c63dd9bce895'
+[03:03:35] [WARNING]   [!] Bỏ qua câu 20 do không tạo được giọng đọc.
+[03:03:35] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=3fe0ab5063354e479778cb14c21b7911'
+[03:03:35] [WARNING]   [!] Bỏ qua câu 21 do không tạo được giọng đọc.
+[03:03:35] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=7c1bb459c11c4fb6bc976d8b891ec3f3'
+[03:03:35] [WARNING]   [!] Bỏ qua câu 21 do không tạo được giọng đọc.
+[03:03:35] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=dbf06207081842fd9a51f2248e49c3c8'
+[03:03:35] [WARNING]   [!] Bỏ qua câu 22 do không tạo được giọng đọc.
+[03:03:36] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=6a65ed29b7d0495d9331c25d6b8b62dd'
+[03:03:36] [WARNING]   [!] Bỏ qua câu 22 do không tạo được giọng đọc.
+[03:03:36] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=b04335a266ba49a5a294f68e6efe1657'
+[03:03:36] [WARNING]   [!] Bỏ qua câu 23 do không tạo được giọng đọc.
+[03:03:36] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=c178ce32f38f49ce93cf44ff385ca505'
+[03:03:36] [WARNING]   [!] Bỏ qua câu 23 do không tạo được giọng đọc.
+[03:03:36] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=e25b311ceca34b25bffdc3c4cb6d0de7'
+[03:03:36] [WARNING]   [!] Bỏ qua câu 24 do không tạo được giọng đọc.
+[03:03:37] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=6c294717731b4c53ba8593e1d594917b'
+[03:03:37] [WARNING]   [!] Bỏ qua câu 24 do không tạo được giọng đọc.
+[03:03:37] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=8aed8350170047119e2b6badadffa445'
+[03:03:37] [WARNING]   [!] Bỏ qua câu 25 do không tạo được giọng đọc.
+[03:03:37] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9036ce57973b4943b2cd44eb10762c89'
+[03:03:37] [WARNING]   [!] Bỏ qua câu 25 do không tạo được giọng đọc.
+[03:03:37] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=216fa566e3ce44d5b7bf9879b15c81a8'
+[03:03:37] [WARNING]   [!] Bỏ qua câu 26 do không tạo được giọng đọc.
+[03:03:38] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9ebbf3abb2694e50af81b3386289d2f4'
+[03:03:38] [WARNING]   [!] Bỏ qua câu 26 do không tạo được giọng đọc.
+[03:03:38] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=fe85b54e92ed4749ac8e15bc3248acfc'
+[03:03:38] [WARNING]   [!] Bỏ qua câu 27 do không tạo được giọng đọc.
+[03:03:38] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0a39bda1b166414492ca206e731e69f3'
+[03:03:38] [WARNING]   [!] Bỏ qua câu 27 do không tạo được giọng đọc.
+[03:03:38] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=ed314cc4e4ee4c3f95bfa86f05e6f5cb'
+[03:03:38] [WARNING]   [!] Bỏ qua câu 28 do không tạo được giọng đọc.
+[03:03:39] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=5b0d90520ac7465e9ccdab16c013ff99'
+[03:03:39] [WARNING]   [!] Bỏ qua câu 28 do không tạo được giọng đọc.
+[03:03:39] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=f747c0b5490d4f45919e2df9e89af023'
+[03:03:39] [WARNING]   [!] Bỏ qua câu 29 do không tạo được giọng đọc.
+[03:03:39] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=19325a4f90f64db99514f093c98920f8'
+[03:03:39] [WARNING]   [!] Bỏ qua câu 29 do không tạo được giọng đọc.
+[03:03:39] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=1a088550272748589f1b965f66d81275'
+[03:03:39] [WARNING]   [!] Bỏ qua câu 30 do không tạo được giọng đọc.
+[03:03:40] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=ff9ce75aac664a7db361bbd5a8154c55'
+[03:03:40] [WARNING]   [!] Bỏ qua câu 30 do không tạo được giọng đọc.
+[03:03:40] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9db5a5a8455646b7926c7984a5ca2ab6'
+[03:03:40] [WARNING]   [!] Bỏ qua câu 31 do không tạo được giọng đọc.
+[03:03:40] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=fdb77d0383c6484eb7dd66a09a957ddc'
+[03:03:40] [WARNING]   [!] Bỏ qua câu 31 do không tạo được giọng đọc.
+[03:03:40] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=d35baa3adf00422e8845b0e223f055f0'
+[03:03:40] [WARNING]   [!] Bỏ qua câu 32 do không tạo được giọng đọc.
+[03:03:41] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=1efa06b217364fd2a5b5d1473d99a58c'
+[03:03:41] [WARNING]   [!] Bỏ qua câu 32 do không tạo được giọng đọc.
+[03:03:41] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=82970cea41374c8995421ce2cbeab374'
+[03:03:41] [WARNING]   [!] Bỏ qua câu 33 do không tạo được giọng đọc.
+[03:03:41] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=648322abea10418da83c500a2bc7b959'
+[03:03:41] [WARNING]   [!] Bỏ qua câu 33 do không tạo được giọng đọc.
+[03:03:41] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0e999dd0dce44ac1bfbf13053244b722'
+[03:03:41] [WARNING]   [!] Bỏ qua câu 34 do không tạo được giọng đọc.
+[03:03:41] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=2124a2369893453886a0080ce00a8fbc'
+[03:03:41] [WARNING]   [!] Bỏ qua câu 34 do không tạo được giọng đọc.
+[03:03:42] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=e114e3a14fa5472381d7476b73f12877'
+[03:03:42] [WARNING]   [!] Bỏ qua câu 35 do không tạo được giọng đọc.
+[03:03:42] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0e13881bd57e4aa5964ec16311475b3e'
+[03:03:42] [WARNING]   [!] Bỏ qua câu 35 do không tạo được giọng đọc.
+[03:03:42] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=2d85ad37830c473782f273f5d7611106'
+[03:03:42] [WARNING]   [!] Bỏ qua câu 36 do không tạo được giọng đọc.
+[03:03:42] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=2fd22a65021f423aad9487dd43178eb0'
+[03:03:42] [WARNING]   [!] Bỏ qua câu 36 do không tạo được giọng đọc.
+[03:03:43] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=4befd2e567f04652a45385b4c18b39f0'
+[03:03:43] [WARNING]   [!] Bỏ qua câu 37 do không tạo được giọng đọc.
+[03:03:43] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0f6644068c71461fbb1c01c81b89443c'
+[03:03:43] [WARNING]   [!] Bỏ qua câu 37 do không tạo được giọng đọc.
+[03:03:43] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=5ae059b34267431e93e2cd456e2b418e'
+[03:03:43] [WARNING]   [!] Bỏ qua câu 38 do không tạo được giọng đọc.
+[03:03:43] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=4bd7c1132d0f423d826bbcec547ba10e'
+[03:03:43] [WARNING]   [!] Bỏ qua câu 38 do không tạo được giọng đọc.
+[03:03:43] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=505efcd4378f4720bd0f38fe2cab8f98'
+[03:03:43] [WARNING]   [!] Bỏ qua câu 39 do không tạo được giọng đọc.
+[03:03:44] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=b25adaaeede647d18146a93e48d744be'
+[03:03:44] [WARNING]   [!] Bỏ qua câu 40 do không tạo được giọng đọc.
+[03:03:44] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=a720d90a741f4f8f9ab2d0d1d8da2f19'
+[03:03:44] [WARNING]   [!] Bỏ qua câu 41 do không tạo được giọng đọc.
+[03:03:45] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=30a82efadb2c48ed98be435374fc2e97'
+[03:03:45] [WARNING]   [!] Bỏ qua câu 42 do không tạo được giọng đọc.
+[03:03:45] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=1c026fb0a977489994a6fd994ac73922'
+[03:03:45] [WARNING]   [!] Bỏ qua câu 43 do không tạo được giọng đọc.
+[03:03:46] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=a2d448f8151b4990bf3702978fb22371'
+[03:03:46] [WARNING]   [!] Bỏ qua câu 44 do không tạo được giọng đọc.
+[03:03:46] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=2f9fda51cb3d4bd68a5fa435527b59e7'
+[03:03:46] [WARNING]   [!] Bỏ qua câu 45 do không tạo được giọng đọc.
+[03:03:49] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:03:54] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=bb9f746bca9d47a0ba920195d68643f0'
+[03:03:54] [WARNING]   [!] Bỏ qua câu 39 do không tạo được giọng đọc.
+[03:03:54] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=617371f7e214456ab92327ac525138ee'
+[03:03:54] [WARNING]   [!] Bỏ qua câu 40 do không tạo được giọng đọc.
+[03:03:55] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0e6d0356accb4d7e94cda39ee2f56621'
+[03:03:55] [WARNING]   [!] Bỏ qua câu 41 do không tạo được giọng đọc.
+[03:03:55] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=9c918fea88214913863990c6d1233eb3'
+[03:03:55] [WARNING]   [!] Bỏ qua câu 42 do không tạo được giọng đọc.
+[03:03:56] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=a43e3c3c94d14a02b4d8c6e40a4e76f2'
+[03:03:56] [WARNING]   [!] Bỏ qua câu 43 do không tạo được giọng đọc.
+[03:03:56] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=6e7e1234c53848d4a585a6accda9b23f'
+[03:03:56] [WARNING]   [!] Bỏ qua câu 44 do không tạo được giọng đọc.
+[03:03:56] [ERROR]   [!] Lỗi Edge-TTS: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=a8326f0eee844bd0b55d13b988ab5861'
+[03:03:56] [WARNING]   [!] Bỏ qua câu 45 do không tạo được giọng đọc.
+[03:03:57] [ERROR] Lỗi Render: g input file E:\Test\temp_1_chim cook\goc.wav.
+Error opening input files: No such file or directory
+
+[03:07:43] [INFO] ==================================================
+[03:07:43] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:07:43] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:07:51] [INFO] Đã nạp file Single: chim cook.mp4
+[03:07:54] [INFO] Thư mục Output: E:/Test
+[03:08:05] [INFO] ==================================================
+[03:08:05] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:08:05] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:08:05] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:08:06] [INFO] ==================================================
+[03:08:06] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:08:06] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:08:06] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:08:27] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:08:27] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:08:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:28] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:08:28] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:08:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:53] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:53] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:54] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:54] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:55] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:55] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:08:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:09:16] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:15:41] [INFO] ==================================================
+[03:15:41] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:15:41] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:15:49] [INFO] Đã nạp file Single: chim cook.mp4
+[03:15:52] [INFO] Thư mục Output: E:/Test
+[03:16:44] [INFO] ==================================================
+[03:16:44] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:16:44] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:16:44] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:16:44] [INFO] ==================================================
+[03:16:44] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:16:44] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:16:45] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:17:06] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:17:06] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:17:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:07] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 0. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这是一支搜棄的灵魂无鸟'
+[03:17:07] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:17:07] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:17:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:08] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 1. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一步三鸟 鸟中最长'
+[03:17:08] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 0. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这是一支搜棄的灵魂无鸟'
+[03:17:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:09] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 2. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这边是国家二级保护小废物'
+[03:17:09] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 1. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一步三鸟 鸟中最长'
+[03:17:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:10] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 3. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御'
+[03:17:10] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 2. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这边是国家二级保护小废物'
+[03:17:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:10] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 4. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一种走路自带逼之样的杀鸟'
+[03:17:11] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 3. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御'
+[03:17:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:11] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 5. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='别看它走路调调的'
+[03:17:12] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 4. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一种走路自带逼之样的杀鸟'
+[03:17:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:12] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 6. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='胆子却很小'
+[03:17:13] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 5. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='别看它走路调调的'
+[03:17:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:13] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 7. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一旦受到惊吓 变回一动不动'
+[03:17:13] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 6. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='胆子却很小'
+[03:17:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:14] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 8. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='唐若你在马步上碰到这杀鸟'
+[03:17:14] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 7. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一旦受到惊吓 变回一动不动'
+[03:17:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:15] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 9. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='忍不住按得下喇叭'
+[03:17:15] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 8. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='唐若你在马步上碰到这杀鸟'
+[03:17:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:16] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 10. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='那简直是五则天首画'
+[03:17:16] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 9. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='忍不住按得下喇叭'
+[03:17:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:17] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 11. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='失去的理智'
+[03:17:17] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 10. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='那简直是五则天首画'
+[03:17:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:18] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 12. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='每个两昆半'
+[03:17:18] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 11. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='失去的理智'
+[03:17:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:19] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 13. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='你是别想过去了'
+[03:17:19] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 12. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='每个两昆半'
+[03:17:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:20] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 14. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='我的建议是'
+[03:17:20] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 13. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='你是别想过去了'
+[03:17:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:21] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 15. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='先关闭引擎'
+[03:17:21] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 14. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='我的建议是'
+[03:17:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:22] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 15. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='先关闭引擎'
+[03:17:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:23] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 17. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这图法'
+[03:17:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:24] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 18. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='日本花肥看了'
+[03:17:24] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 17. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这图法'
+[03:17:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:25] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 19. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='都直呼内行'
+[03:17:25] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 18. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='日本花肥看了'
+[03:17:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:26] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 20. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='其实又在时期的秋雨走路是正常的'
+[03:17:26] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 19. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='都直呼内行'
+[03:17:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:27] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 21. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只因喜欢跟在鸡巴后里有样学样'
+[03:17:27] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 20. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='其实又在时期的秋雨走路是正常的'
+[03:17:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:28] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 22. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='导致长大后变机成了这骚气的步伐'
+[03:17:28] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 21. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只因喜欢跟在鸡巴后里有样学样'
+[03:17:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:29] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 23. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只与鸡巴为什么这样走路'
+[03:17:29] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 22. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='导致长大后变机成了这骚气的步伐'
+[03:17:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:29] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 24. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='据我不可靠研究发现'
+[03:17:30] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 23. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只与鸡巴为什么这样走路'
+[03:17:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:30] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 25. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御生活在湿地角色地带'
+[03:17:31] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 24. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='据我不可靠研究发现'
+[03:17:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:31] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 26. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='由于这种环境突然松转'
+[03:17:31] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 25. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御生活在湿地角色地带'
+[03:17:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:32] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 27. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='容易陷阱一中'
+[03:17:32] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 26. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='由于这种环境突然松转'
+[03:17:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:33] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 28. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='因此会通过一步三鸟的步伐反复试谈'
+[03:17:33] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 27. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='容易陷阱一中'
+[03:17:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:34] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 29. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='同时这种步伐'
+[03:17:34] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 28. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='因此会通过一步三鸟的步伐反复试谈'
+[03:17:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:35] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 30. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也有助于他们更好的补试'
+[03:17:35] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 29. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='同时这种步伐'
+[03:17:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:36] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 31. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='通过反复按压突然'
+[03:17:37] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 30. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也有助于他们更好的补试'
+[03:17:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:37] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 32. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时期震动将令我虚感出来'
+[03:17:37] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 31. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='通过反复按压突然'
+[03:17:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:38] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 33. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然后再用行词逆字的嘴巴加住利用'
+[03:17:38] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 32. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时期震动将令我虚感出来'
+[03:17:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:39] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 34. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然而这祸步伐走慢'
+[03:17:39] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 33. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然后再用行词逆字的嘴巴加住利用'
+[03:17:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:40] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 35. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='飞得也特别慢'
+[03:17:40] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 34. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然而这祸步伐走慢'
+[03:17:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:41] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 35. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='飞得也特别慢'
+[03:17:41] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 36. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='号称世界上飞行速度最慢的鸟'
+[03:17:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:42] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 36. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='号称世界上飞行速度最慢的鸟'
+[03:17:42] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 37. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时速和他惊认的八公滴微小时'
+[03:17:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:43] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 37. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时速和他惊认的八公滴微小时'
+[03:17:43] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 38. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='难怪被立为国家保护动物'
+[03:17:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:44] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 38. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='难怪被立为国家保护动物'
+[03:17:44] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 39. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='真是草皮的老婆近菜园'
+[03:17:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:45] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 40. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='震击巴彩'
+[03:17:45] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 39. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='真是草皮的老婆近菜园'
+[03:17:45] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:45] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:46] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 40. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='震击巴彩'
+[03:17:46] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 41. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='最后这祸的叫声'
+[03:17:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:47] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 41. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='最后这祸的叫声'
+[03:17:47] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 42. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也是十分独特'
+[03:17:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:48] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 42. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也是十分独特'
+[03:17:48] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 43. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不信你听'
+[03:17:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:49] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 43. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不信你听'
+[03:17:49] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 44. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不好意思放错了'
+[03:17:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:50] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 44. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不好意思放错了'
+[03:17:50] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 45. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='再听一遍'
+[03:17:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:17:50] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 45. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='再听一遍'
+[03:17:53] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:17:53] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:30:32] [INFO] ==================================================
+[03:30:32] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:30:33] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:31:23] [INFO] 🔐 Đã mã hóa và lưu trữ API Key cá nhân thành công!
+[03:31:35] [INFO] Đã nạp file: chim cook.mp4
+[03:31:38] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[03:31:44] [INFO] ==================================================
+[03:31:44] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:31:44] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:31:45] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:32:00] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:32:00] [INFO]   ↳ [AI] Đang gửi 46 câu thoại sang Gemini để dịch...
+[03:32:01] [ERROR] Lỗi dịch thuật: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+[03:32:01] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:32:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:02] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 0. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这是一支搜棄的灵魂无鸟'
+[03:32:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:03] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 1. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一步三鸟 鸟中最长'
+[03:32:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:04] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 2. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这边是国家二级保护小废物'
+[03:32:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:05] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 3. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御'
+[03:32:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:05] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 4. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一种走路自带逼之样的杀鸟'
+[03:32:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:06] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 5. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='别看它走路调调的'
+[03:32:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:07] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 6. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='胆子却很小'
+[03:32:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:08] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 7. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一旦受到惊吓 变回一动不动'
+[03:32:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:09] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 8. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='唐若你在马步上碰到这杀鸟'
+[03:32:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:10] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 9. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='忍不住按得下喇叭'
+[03:32:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:11] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 10. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='那简直是五则天首画'
+[03:32:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:12] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 11. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='失去的理智'
+[03:32:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:13] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 12. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='每个两昆半'
+[03:32:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:14] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 13. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='你是别想过去了'
+[03:32:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:15] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 14. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='我的建议是'
+[03:32:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:16] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 15. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='先关闭引擎'
+[03:32:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:18] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 17. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这图法'
+[03:32:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:19] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 18. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='日本花肥看了'
+[03:32:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:20] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 19. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='都直呼内行'
+[03:32:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:21] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 20. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='其实又在时期的秋雨走路是正常的'
+[03:32:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:22] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 21. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只因喜欢跟在鸡巴后里有样学样'
+[03:32:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:23] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 22. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='导致长大后变机成了这骚气的步伐'
+[03:32:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:24] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 23. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只与鸡巴为什么这样走路'
+[03:32:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:25] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 24. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='据我不可靠研究发现'
+[03:32:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:26] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 25. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御生活在湿地角色地带'
+[03:32:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:27] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 26. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='由于这种环境突然松转'
+[03:32:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:28] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 27. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='容易陷阱一中'
+[03:32:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:29] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 28. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='因此会通过一步三鸟的步伐反复试谈'
+[03:32:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:29] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 29. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='同时这种步伐'
+[03:32:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:30] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 30. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也有助于他们更好的补试'
+[03:32:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:31] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 31. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='通过反复按压突然'
+[03:32:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:32] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 32. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时期震动将令我虚感出来'
+[03:32:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:33] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 33. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然后再用行词逆字的嘴巴加住利用'
+[03:32:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:34] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 34. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然而这祸步伐走慢'
+[03:32:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:35] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 35. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='飞得也特别慢'
+[03:32:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:36] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 36. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='号称世界上飞行速度最慢的鸟'
+[03:32:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:37] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 37. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时速和他惊认的八公滴微小时'
+[03:32:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:38] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 38. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='难怪被立为国家保护动物'
+[03:32:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:39] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 39. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='真是草皮的老婆近菜园'
+[03:32:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:48] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 40. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='震击巴彩'
+[03:32:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:49] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 41. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='最后这祸的叫声'
+[03:32:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:50] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 42. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也是十分独特'
+[03:32:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:51] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 43. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不信你听'
+[03:32:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:52] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 44. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不好意思放错了'
+[03:32:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:32:52] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 45. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='再听一遍'
+[03:32:55] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:32:56] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[03:41:26] [INFO] ==================================================
+[03:41:26] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:41:27] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:41:37] [INFO] Đã nạp file: chim cook.mp4
+[03:41:40] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[03:41:46] [INFO] ==================================================
+[03:41:46] [INFO] 🚀 KHỞI ĐỘNG CHIẾN DỊCH: 1 Video
+[03:41:46] [INFO] ▶️ XỬ LÝ [1/1]: chim cook.mp4
+[03:41:46] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách lời thoại...
+[03:42:01] [INFO]   ↳ [OK] Đã trích xuất thành công 46 câu thoại.
+[03:42:01] [INFO]   ↳ [4] Đang tạo bản lồng tiếng mới khớp thời gian...
+[03:42:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:02] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 0. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这是一支搜棄的灵魂无鸟'
+[03:42:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:03] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 1. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一步三鸟 鸟中最长'
+[03:42:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:04] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 2. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这边是国家二级保护小废物'
+[03:42:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:05] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 3. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御'
+[03:42:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:06] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 4. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一种走路自带逼之样的杀鸟'
+[03:42:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:07] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 5. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='别看它走路调调的'
+[03:42:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:08] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 6. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='胆子却很小'
+[03:42:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:09] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 7. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='一旦受到惊吓 变回一动不动'
+[03:42:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:10] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 8. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='唐若你在马步上碰到这杀鸟'
+[03:42:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:11] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 9. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='忍不住按得下喇叭'
+[03:42:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:12] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 10. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='那简直是五则天首画'
+[03:42:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:13] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 11. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='失去的理智'
+[03:42:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:14] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 12. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='每个两昆半'
+[03:42:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:15] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 13. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='你是别想过去了'
+[03:42:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:16] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 14. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='我的建议是'
+[03:42:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:17] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 15. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='先关闭引擎'
+[03:42:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:19] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 17. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='这图法'
+[03:42:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:20] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 18. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='日本花肥看了'
+[03:42:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:21] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 19. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='都直呼内行'
+[03:42:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:22] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 20. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='其实又在时期的秋雨走路是正常的'
+[03:42:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:22] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 21. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只因喜欢跟在鸡巴后里有样学样'
+[03:42:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:23] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 22. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='导致长大后变机成了这骚气的步伐'
+[03:42:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:24] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 23. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='只与鸡巴为什么这样走路'
+[03:42:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:25] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 24. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='据我不可靠研究发现'
+[03:42:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:26] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 25. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='修御生活在湿地角色地带'
+[03:42:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:27] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 26. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='由于这种环境突然松转'
+[03:42:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:28] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 27. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='容易陷阱一中'
+[03:42:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:29] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 28. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='因此会通过一步三鸟的步伐反复试谈'
+[03:42:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:30] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 29. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='同时这种步伐'
+[03:42:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:31] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 30. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也有助于他们更好的补试'
+[03:42:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:32] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 31. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='通过反复按压突然'
+[03:42:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:33] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 32. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时期震动将令我虚感出来'
+[03:42:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:34] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 33. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然后再用行词逆字的嘴巴加住利用'
+[03:42:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:35] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 34. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='然而这祸步伐走慢'
+[03:42:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:36] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 35. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='飞得也特别慢'
+[03:42:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:37] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 36. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='号称世界上飞行速度最慢的鸟'
+[03:42:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:38] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 37. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='时速和他惊认的八公滴微小时'
+[03:42:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:39] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 38. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='难怪被立为国家保护动物'
+[03:42:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:40] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 39. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='真是草皮的老婆近菜园'
+[03:42:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:41] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 40. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='震击巴彩'
+[03:42:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:41] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 41. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='最后这祸的叫声'
+[03:42:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:42] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 42. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='也是十分独特'
+[03:42:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:43] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 43. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不信你听'
+[03:42:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:44] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 44. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='不好意思放错了'
+[03:42:45] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:42:45] [WARNING]   [!] Edge-TTS không trả về âm thanh cho câu 45. Kiểm tra tham số: Voice='vi-VN-HoaiMyNeural', Text='再听一遍'
+[03:42:48] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:42:49] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[03:48:25] [INFO] ==================================================
+[03:48:25] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:48:25] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:48:35] [INFO] Đã nạp file: chim cook.mp4
+[03:48:38] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[03:48:58] [INFO] ==================================================
+[03:48:58] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[03:48:58] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[03:48:59] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách kịch bản gốc...
+[03:49:14] [INFO]   ↳ [OK] Đã trích xuất xong 46 câu thoại gốc.
+[03:49:14] [WARNING]   [!] CẢNH BÁO: Thiếu API Key! Bỏ qua dịch thuật, lồng tiếng bằng văn bản gốc.
+[03:49:14] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[03:49:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:49:24] [ERROR]   [!] Lỗi Edge-TTS: cannot schedule new futures after interpreter shutdown
+[03:49:33] [INFO] ==================================================
+[03:49:33] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[03:49:34] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[03:50:03] [INFO] 🔐 Đã mã hóa và lưu trữ API Key cá nhân thành công!
+[03:50:12] [INFO] Đã nạp file: chim cook.mp4
+[03:50:15] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[03:50:24] [INFO] ==================================================
+[03:50:24] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[03:50:24] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[03:50:24] [INFO]   ↳ [AI] Whisper đang lắng nghe và bóc tách kịch bản gốc...
+[03:50:40] [INFO]   ↳ [OK] Đã trích xuất xong 46 câu thoại gốc.
+[03:50:40] [INFO]   ↳ [AI] ĐANG GỬI 46 CÂU THOẠI SANG GEMINI 2.0 FLASH-LITE ĐỂ DỊCH...
+[03:50:40] [ERROR]   [!] LỖI DỊCH THUẬT: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-lite
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-lite
+Please retry in 19.158761806s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash-lite"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 19
+}
+]
+[03:50:40] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[03:50:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:45] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:53] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:50:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[03:51:23] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[03:51:23] [INFO] ==================================================
+[03:51:23] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[03:51:23] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
