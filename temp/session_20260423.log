@@ -1062,3 +1062,441 @@ violations {
 [03:51:23] [INFO] ==================================================
 [03:51:23] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
 [03:51:23] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[04:28:18] [INFO] ==================================================
+[04:28:18] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[04:28:18] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[04:28:39] [INFO] ==================================================
+[04:28:39] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[04:28:39] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[04:31:23] [INFO] ==================================================
+[04:31:23] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[04:31:24] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[04:31:34] [INFO] Đã nạp file: chim cook.mp4
+[04:31:36] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[04:38:59] [INFO] ==================================================
+[04:38:59] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[04:38:59] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[04:39:11] [INFO] Đã nạp file: chim cook.mp4
+[04:39:14] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[04:39:21] [INFO] Key #1 hợp lệ → 31 models
+[04:39:21] [INFO] ✅ Test hoàn tất! Tìm thấy 1 API Key hợp lệ.
+[04:39:39] [INFO] 💾 Đã lưu cấu hình xoay vòng API thành công!
+[04:39:50] [INFO] ==================================================
+[04:39:50] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[04:39:50] [INFO] Đã khởi động pipeline với 1 video.
+[04:39:50] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[04:39:50] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[04:40:03] [ERROR] ❌ TẤT CẢ API ĐÃ HẾT HẠN MỨC HOẶC LỖI. Dừng tiến trình.
+[04:40:03] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[04:40:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:40:42] [INFO] Key #1 hợp lệ → 31 models
+[04:40:42] [INFO] Key #2 hợp lệ → 31 models
+[04:40:42] [INFO] ✅ Test hoàn tất! Tìm thấy 2 API Key hợp lệ.
+[04:40:44] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[04:40:44] [INFO] ==================================================
+[04:40:44] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[04:40:44] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[04:41:00] [INFO] 💾 Đã lưu cấu hình xoay vòng API thành công!
+[04:41:05] [INFO] ==================================================
+[04:41:05] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[04:41:05] [INFO] Đã khởi động pipeline với 1 video.
+[04:41:05] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[04:41:05] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[04:41:20] [ERROR] ❌ TẤT CẢ API ĐÃ HẾT HẠN MỨC HOẶC LỖI. Dừng tiến trình.
+[04:41:20] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[04:41:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:32] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:45] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:53] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:54] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:55] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:41:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:42:02] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[04:42:02] [INFO] ==================================================
+[04:42:02] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[04:42:02] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[04:45:13] [INFO] ==================================================
+[04:45:13] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[04:45:14] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[04:45:14] [INFO] Đã load 2 API Key từ file config.
+[04:45:24] [INFO] Đã nạp file: chim cook.mp4
+[04:45:27] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[04:46:50] [INFO] ✅ Key #1 HỢP LỆ - Tìm thấy 31 models
+[04:46:50] [INFO] ✅ Key #2 HỢP LỆ - Tìm thấy 31 models
+[04:46:51] [INFO] ✅ Key #3 HỢP LỆ - Tìm thấy 31 models
+[04:46:51] [INFO] ✅ Test hoàn tất! 3/3 API Key hợp lệ.
+[04:47:12] [INFO] 💾 Đã lưu cấu hình xoay vòng API thành công!
+[04:47:28] [INFO] Chức năng chọn màu phụ đề đang được phát triển...
+[04:47:39] [INFO] ==================================================
+[04:47:39] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[04:47:39] [INFO] Đã khởi động pipeline với 1 video.
+[04:47:39] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[04:47:40] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[04:47:54] [ERROR] ❌ TẤT CẢ API ĐÃ HẾT HẠN MỨC HOẶC LỖI. Dừng tiến trình.
+[04:47:54] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[04:47:54] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:47:55] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:47:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:47:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:47:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:47:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:47:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[04:48:35] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[04:48:35] [INFO] ==================================================
+[04:48:35] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[04:48:35] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[19:34:42] [INFO] ==================================================
+[19:34:42] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[19:34:43] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[19:49:40] [INFO] ==================================================
+[19:49:40] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[19:49:40] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[19:49:42] [INFO] Đã nạp 3 API Key từ bộ nhớ.
+[19:50:03] [INFO] Đã nạp video: chim cook.mp4
+[19:50:06] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[19:51:52] [INFO] ==================================================
+[19:51:52] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[19:51:52] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[19:51:56] [INFO] ✅ Key #1 HỢP LỆ (Thế hệ 2.0)
+[19:51:57] [INFO] ✅ Key #2 HỢP LỆ (Thế hệ 2.0)
+[19:51:57] [INFO] ✅ Key #3 HỢP LỆ (Thế hệ 2.0)
+[19:52:26] [INFO] 🔐 Đã lưu hệ thống xoay vòng API. Model: gemini-2.5-flash
+[19:53:00] [INFO] ==================================================
+[19:53:00] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[19:53:00] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[19:53:00] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[19:53:15] [ERROR] ❌ TẤT CẢ API ĐÃ HẾT HẠN MỨC HOẶC LỖI. Dừng tiến trình.
+[19:53:15] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[19:53:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:18] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:53] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:54] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:55] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:53:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:04] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:06] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:07] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:09] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:10] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:12] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:13] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[19:54:18] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[19:54:18] [INFO] ==================================================
+[19:54:18] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[19:54:18] [INFO] 🎉 HOÀN TẤT CHIẾN DỊCH!
+[20:22:31] [INFO] ==================================================
+[20:22:31] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[20:22:31] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[20:22:34] [INFO] ✅ Key #1 HỢP LỆ (Thế hệ 2.0)
+[20:22:35] [INFO] ✅ Key #2 HỢP LỆ (Thế hệ 2.0)
+[20:22:35] [INFO] ✅ Key #3 HỢP LỆ (Thế hệ 2.0)
+[20:22:43] [INFO] 🔐 Đã lưu hệ thống xoay vòng API. Model: gemini-2.5-flash
+[20:22:59] [INFO] ==================================================
+[20:22:59] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[20:22:59] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[20:22:59] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[20:23:14] [ERROR] ❌ TẤT CẢ API ĐÃ HẾT HẠN MỨC HOẶC LỖI. Dừng tiến trình.
+[20:23:14] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[20:23:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:15] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:16] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:20] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:21] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:23] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:24] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:26] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:29] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:34] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:35] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:36] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:38] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:39] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:41] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:44] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:45] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:46] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:47] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:48] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:49] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:50] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:53] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:55] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:56] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:58] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:23:59] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:24:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:24:01] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:24:02] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[20:24:06] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[20:24:06] [INFO] ==================================================
+[20:24:06] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[20:24:06] [INFO] 🎉 HOÀN TẤT CHIẾN DỊCH!
+[20:41:02] [INFO] ==================================================
+[20:41:02] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[20:41:03] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[21:10:58] [INFO] ✅ Key #1 HỢP LỆ (Thế hệ 2.0)
+[21:10:59] [INFO] ✅ Key #2 HỢP LỆ (Thế hệ 2.0)
+[21:10:59] [INFO] ✅ Key #3 HỢP LỆ (Thế hệ 2.0)
+[21:11:04] [INFO] 🔐 Đã lưu hệ thống xoay vòng API. Model: gemini-2.5-pro
+[21:11:27] [INFO] ==================================================
+[21:11:27] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[21:11:27] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[21:11:28] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[21:11:43] [INFO]   ↳ [AI] Kiểm tra Key #1...
+[21:11:54] [ERROR] 💥 Lỗi API Key #1: RetryError[<Future at 0x1c88ca357d0 state=finished raised ResourceExhausted>]
+[21:11:55] [INFO]   ↳ [AI] Kiểm tra Key #2...
+[21:12:05] [ERROR] 💥 Lỗi API Key #2: RetryError[<Future at 0x1c88ca37fd0 state=finished raised ResourceExhausted>]
+[21:12:06] [INFO]   ↳ [AI] Kiểm tra Key #3...
+[21:12:16] [ERROR] 💥 Lỗi API Key #3: RetryError[<Future at 0x1c88ca5a750 state=finished raised ResourceExhausted>]
+[21:12:17] [ERROR] ❌ TẤT CẢ API ĐÃ HẾT HẠN MỨC HOẶC LỖI. Dừng video: chim cook.mp4
+[21:12:17] [INFO] ==================================================
+[21:12:17] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH!
+[21:12:17] [INFO] 🎉 HOÀN TẤT CHIẾN DỊCH!
+[21:40:28] [INFO] ==================================================
+[21:40:28] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[21:40:28] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[21:40:31] [INFO] Đã nạp cấu hình AI từ bộ nhớ: GEMINI - gemini-2.5-pro
+[21:42:36] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 5 models.
+[21:42:43] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: translategemma:12b
+[21:42:52] [INFO] Đã nạp file: chim cook.mp4
+[21:42:55] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[21:43:01] [INFO] ==================================================
+[21:43:01] [INFO] 🚀 CHIẾN DỊCH BẮT ĐẦU: Xử lý 1 Video
+[21:43:01] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[21:43:01] [INFO] ▶️ TIẾN TRÌNH [1/1]: chim cook.mp4
+[21:43:02] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[21:43:16] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[21:44:49] [INFO]   ↳ [4] ĐANG TẠO BẢN LỒNG TIẾNG VIỆT (GIỌNG: vi-VN-HoaiMyNeural)...
+[21:44:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:44:57] [WARNING]   [!] TTS thất bại tại câu 1: 'Bước một, ba bước. Loài chim có chân dài nhất.'
+[21:45:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:00] [WARNING]   [!] TTS thất bại tại câu 2: 'Bên này là loài vật quý hiếm cấp độ hai của quốc gia.'
+[21:45:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:03] [WARNING]   [!] TTS thất bại tại câu 3: 'Sưu Nghi'
+[21:45:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:11] [WARNING]   [!] TTS thất bại tại câu 5: 'Đừng đánh giá nó qua vẻ ngoài.'
+[21:45:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:19] [WARNING]   [!] TTS thất bại tại câu 7: 'Khi bị giật mình, nó sẽ trở lại trạng thái bất động.'
+[21:45:27] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:27] [WARNING]   [!] TTS thất bại tại câu 9: 'Bạn sẽ không thể cưỡng lại việc ấn còi.'
+[21:45:30] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:30] [WARNING]   [!] TTS thất bại tại câu 10: 'Điều đó thực sự là một kiệt tác thời cổ.'
+[21:45:33] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:33] [WARNING]   [!] TTS thất bại tại câu 11: 'Mất trí.'
+[21:45:42] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:42] [WARNING]   [!] TTS thất bại tại câu 14: 'Lời khuyên của tôi là...'
+[21:45:52] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:52] [WARNING]   [!] TTS thất bại tại câu 17: 'Cách làm này.'
+[21:45:54] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:54] [WARNING]   [!] TTS thất bại tại câu 18: 'Những người Nhật Bản xem điều này.'
+[21:45:57] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:45:57] [WARNING]   [!] TTS thất bại tại câu 19: 'Đều thốt lên "chuyên nghiệp".'
+[21:46:00] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:00] [WARNING]   [!] TTS thất bại tại câu 20: 'Thực ra, cách đi bộ của Thời Thu trong thời kỳ đó là bình thường.'
+[21:46:03] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:03] [WARNING]   [!] TTS thất bại tại câu 21: 'Nó chỉ là thích bắt chước mọi thứ mà nó thấy, đặc biệt là sau những con gà trống.'
+[21:46:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:05] [WARNING]   [!] TTS thất bại tại câu 22: 'Điều này dẫn đến việc nó lớn lên và có một dáng đi kỳ quặc như vậy.'
+[21:46:25] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:25] [WARNING]   [!] TTS thất bại tại câu 27: 'Nó dễ bị mắc bẫy.'
+[21:46:28] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:28] [WARNING]   [!] TTS thất bại tại câu 28: 'Vì vậy, nó sử dụng dáng đi "bước một, ba bước" để kiểm tra liên tục.'
+[21:46:31] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:31] [WARNING]   [!] TTS thất bại tại câu 29: 'Đồng thời, kiểu đi bộ này.'
+[21:46:37] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:37] [WARNING]   [!] TTS thất bại tại câu 31: 'Thông qua việc ấn liên tục.'
+[21:46:40] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:40] [WARNING]   [!] TTS thất bại tại câu 32: 'Những rung động sẽ giúp nó nhận biết được.'
+[21:46:43] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:43] [WARNING]   [!] TTS thất bại tại câu 33: 'Sau đó, nó sẽ sử dụng cái miệng giống như chữ "khẩu" để chặn lại.'
+[21:46:51] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:46:51] [WARNING]   [!] TTS thất bại tại câu 35: 'Làm cho nó bay rất chậm.'
+[21:47:05] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:05] [WARNING]   [!] TTS thất bại tại câu 38: 'Không trách sao nó lại được đưa vào danh sách bảo vệ quốc gia.'
+[21:47:08] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:08] [WARNING]   [!] TTS thất bại tại câu 39: 'Thật là một sự kết hợp kỳ lạ.'
+[21:47:11] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:11] [WARNING]   [!] TTS thất bại tại câu 41: 'Cuối cùng, tiếng kêu của loài chim này.'
+[21:47:14] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:14] [WARNING]   [!] TTS thất bại tại câu 42: 'Cũng rất đặc biệt.'
+[21:47:17] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:17] [WARNING]   [!] TTS thất bại tại câu 43: 'Không tin tôi, hãy nghe thử.'
+[21:47:19] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:19] [WARNING]   [!] TTS thất bại tại câu 44: 'Xin lỗi, tôi đã bật nhầm.'
+[21:47:22] [ERROR]   [!] Lỗi Edge-TTS: No audio was received. Please verify that your parameters are correct.
+[21:47:22] [WARNING]   [!] TTS thất bại tại câu 45: 'Nghe lại một lần nữa.'
+[21:47:25] [INFO] ✅ THÀNH CÔNG: DUBBED_chim cook.mp4
+[21:47:25] [INFO] ==================================================
+[21:47:25] [INFO] 🎉 HOÀN TẤT TOÀN BỘ DANH SÁCH VIDEO!
+[21:47:25] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[22:06:08] [INFO] ==================================================
+[22:06:08] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[22:06:09] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[22:06:12] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b

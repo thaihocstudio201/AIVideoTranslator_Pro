@@ -1,0 +1,1727 @@
+[09:08:13] [ERROR]   [!] Edge-TTS Lỗi: Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\AIVideoTranslator_Pro\venv\Scripts\edge-tts.exe\__main__.py", line 5, in <module>
+  File "D:\AIVideoTranslator_Pro\venv\Lib\site-packages\edge_tts\util.py", line 141, in main
+    asyncio.run(amain())
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\AIVideoTranslator_Pro\venv\Lib\site-packages\edge_tts\util.py", line 136, in amain
+    await _run_tts(args)
+  File "D:\AIVideoTranslator_Pro\venv\Lib\site-packages\edge_tts\util.py", line 73, in _run_tts
+    async for chunk in communicate.stream():
+  File "D:\AIVideoTranslator_Pro\venv\Lib\site-packages\edge_tts\communicate.py", line 588, in stream
+    async for message in self.__stream():
+  File "D:\AIVideoTranslator_Pro\venv\Lib\site-packages\edge_tts\communicate.py", line 562, in __stream
+    raise NoAudioReceived(
+edge_tts.exceptions.NoAudioReceived: No audio was received. Please verify that your parameters are correct.
+[09:19:24] [INFO] ✅ Đã load Piper TTS thành công
+[09:19:26] [INFO] ✅ Piper TTS tạo voice thành công: temp_voice.wav
+[09:23:17] [INFO] ✅ Đã load Piper TTS thành công
+[09:23:18] [INFO] ✅ Piper TTS tạo voice thành công: temp_voice.wav
+[09:28:04] [INFO] ✅ Đã load Piper TTS thành công
+[09:28:04] [INFO] ✅ Piper TTS tạo voice thành công: temp_voice.wav
+[09:31:06] [INFO] ✅ Đã load thành công voice Piper TTS
+[09:31:06] [ERROR] File voice rỗng
+[12:03:27] [INFO] ==================================================
+[12:03:27] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[12:03:27] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[12:03:31] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[12:03:37] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 5 models.
+[12:03:47] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: translategemma:12b
+[12:03:57] [INFO] Đã nạp file: chim cook.mp4
+[12:04:01] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[12:05:04] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[12:05:04] [INFO] ======================================================================
+[12:05:04] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[12:05:04] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[12:05:04] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[12:05:04] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[12:05:21] [INFO]   ↳ Đang dịch sang Vietnamese...
+[12:05:21] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[12:06:43] [INFO] 
+========================================================================================================================
+[12:06:43] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[12:06:43] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[12:06:43] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[12:06:43] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị bỏ rơi, không có chim nào  
+[12:06:43] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Đi một bước, có ba con chim. Chim nào dài nhất.   
+[12:06:43] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Đây là một loài động vật quý hiếm được bảo vệ ở   
+[12:06:43] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Tu sửa (hoặc: Bảo vệ).                            
+[12:06:43] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một kiểu đi bộ mang lại cảm giác nguy hiểm như m  
+[12:06:43] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ ngoài điệu đà của nó.                
+[12:06:43] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nhưng chúng rất nhút nhát.                        
+[12:06:43] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị giật mình, chúng sẽ đứng im như đá.        
+[12:06:43] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Tang Ruo, nếu bạn dẫm phải con chim chết này khi  
+[12:06:43] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Bạn sẽ không thể cưỡng lại việc ấn còi.           
+[12:06:43] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đó sẽ là một tác phẩm nghệ thuật bậc thầy.        
+[12:06:43] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mất đi lý trí.                                    
+[12:06:43] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi người hai con rưỡi.                           
+[12:06:43] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Đừng nghĩ đến chuyện đó nữa.                      
+[12:06:43] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là:                            
+[12:06:43] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Hãy tắt động cơ trước.                            
+[12:06:43] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Sau đó bật nhạc nền.                              
+[12:06:43] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách làm này.                                     
+[12:06:43] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Những người Nhật Bản am hiểu đã xem.              
+[12:06:43] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Và họ đều thốt lên "Chuyên nghiệp!"               
+[12:06:43] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Trên thực tế, cách đi bộ của Qiu Yu là bình thườ  
+[12:06:43] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Chỉ là chúng thích bắt chước mọi thứ sau lưng "g  
+[12:06:43] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Điều này dẫn đến việc chúng lớn lên và có dáng đ  
+[12:06:43] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Tại sao "gà" lại đi như vậy?                      
+[12:06:43] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo nghiên cứu không đáng tin cậy của tôi,       
+[12:06:43] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Qiu Yu sống ở vùng đầm lầy.                       
+[12:06:43] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Do sự thay đổi đột ngột của môi trường,           
+[12:06:43] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Chúng dễ bị mắc cạn.                              
+[12:06:43] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Do đó, chúng sẽ liên tục thử nghiệm với cách đi   
+[12:06:43] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Đồng thời, cách đi này                            
+[12:06:43] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Cũng giúp chúng bám víu tốt hơn.                  
+[12:06:43] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Bằng cách ấn liên tục và đột ngột,                
+[12:06:43] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Sự rung động sẽ khiến chúng lộ ra.                
+[12:06:43] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Sau đó, chúng sẽ dùng miệng để chặn lại và sử dụ  
+[12:06:43] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Tuy nhiên, cách đi này chậm.                      
+[12:06:43] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Và chúng bay rất chậm.                            
+[12:06:43] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Nó được mệnh danh là loài chim có tốc độ bay chậ  
+[12:06:43] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Tốc độ của nó chỉ là tám cm một giờ.              
+[12:06:43] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không trách sao nó lại được xếp vào danh sách bả  
+[12:06:43] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Thật là một "người trồng cỏ gần vườn rau".        
+[12:06:43] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Rung động.                                        
+[12:06:43] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Cuối cùng, tiếng kêu của loài chim này            
+[12:06:43] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Cũng rất độc đáo.                                 
+[12:06:43] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Không tin thì nghe thử xem.                       
+[12:06:43] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Xin lỗi, tôi đã phát nhầm.                        
+[12:06:43] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Nghe lại một lần nữa.                             
+[12:06:43] [INFO] ========================================================================================================================
+
+[12:06:43] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[12:06:43] [INFO]   ↳ Phần tạo voice đang tạm dừng theo yêu cầu.
+[12:06:43] [INFO] ======================================================================
+[12:06:43] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[12:06:43] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[12:10:12] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[12:10:12] [INFO] ======================================================================
+[12:10:12] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[12:10:12] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[12:10:12] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[12:10:12] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[12:10:30] [INFO]   ↳ Đang dịch sang Vietnamese...
+[12:10:30] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[12:11:12] [INFO] 
+========================================================================================================================
+[12:11:12] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[12:11:12] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[12:11:12] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[12:11:12] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị bỏ rơi, một loài chim khô  
+[12:11:12] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Bước đi ba nhịp, loài chim có chân dài nhất.      
+[12:11:12] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Bên này là một loài vật quý hiếm được bảo vệ ở c  
+[12:11:12] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Tu Vũ.                                            
+[12:11:12] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách đi đặc trưng, mang vẻ nguy hiểm, như mộ  
+[12:11:12] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ ngoài điệu đà của nó.                
+[12:11:12] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nó thực chất rất nhút nhát.                       
+[12:11:12] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị giật mình, nó sẽ trở nên bất động.         
+[12:11:12] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Tân Nhược, nếu bạn vô tình dẫm phải con chim này  
+[12:11:12] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Bạn sẽ không thể cưỡng lại việc đạp mạnh chân.    
+[12:11:12] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Điều đó có thể được coi là một tác phẩm nghệ thu  
+[12:11:12] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Sự mất đi của lý trí.                             
+[12:11:12] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi hai tuần rưỡi.                                
+[12:11:12] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Đừng nghĩ về chuyện đó nữa.                       
+[12:11:12] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là:                            
+[12:11:12] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Hãy tắt động cơ trước.                            
+[12:11:12] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Sau đó bật nhạc nền.                              
+[12:11:12] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách làm này.                                     
+[12:11:12] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Các họa sĩ Nhật Bản đã xem.                       
+[12:11:12] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Và đều thốt lên rằng họ rất chuyên nghiệp.        
+[12:11:12] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Trên thực tế, cách đi của Thời Thu là hoàn toàn   
+[12:11:12] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Nó chỉ đơn giản là thích bắt chước và đi theo sa  
+[12:11:12] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Điều này dẫn đến việc nó lớn lên và phát triển t  
+[12:11:12] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Tại sao Thời Thu lại đi như vậy?                  
+[12:11:12] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo những nghiên cứu không chính xác của tôi,    
+[12:11:12] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Thời Thu sống trong vùng đất ngập nước.           
+[12:11:12] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Do sự thay đổi đột ngột của môi trường,           
+[12:11:12] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Nó dễ bị rơi vào bẫy.                             
+[12:11:12] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Do đó, nó thường xuyên thử nghiệm bằng cách đi t  
+[12:11:12] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Đồng thời, cách đi này                            
+[12:11:12] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Cũng giúp nó thích nghi tốt hơn.                  
+[12:11:12] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Thông qua việc ấn liên tục và đột ngột,           
+[12:11:12] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Những rung động này sẽ giúp nó nhận biết được đi  
+[12:11:12] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Sau đó, nó sẽ sử dụng cái miệng giống chữ "nghịc  
+[12:11:12] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Tuy nhiên, khi đi chậm,                           
+[12:11:12] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Nó bay rất chậm.                                  
+[12:11:12] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Nó được mệnh danh là loài chim có tốc độ bay chậ  
+[12:11:12] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Tốc độ của nó chỉ khoảng 8 km/h, rất chậm.        
+[12:11:12] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không trách sao nó lại được bảo vệ ở cấp quốc gi  
+[12:11:12] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Thật là một "con sâu" trong khu vườn của "bà". (  
+[12:11:12] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Tấn công bằng nhịp điệu.                          
+[12:11:12] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Và âm thanh của loài chim này,                    
+[12:11:12] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Cũng rất độc đáo.                                 
+[12:11:12] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Nếu bạn không tin, hãy nghe thử.                  
+[12:11:12] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Tôi xin lỗi, tôi đã phát sai.                     
+[12:11:12] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Hãy nghe lại một lần nữa.                         
+[12:11:12] [INFO] ========================================================================================================================
+
+[12:11:12] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[12:11:12] [INFO]   ↳ Phần tạo voice đang tạm dừng theo yêu cầu.
+[12:11:12] [INFO] ======================================================================
+[12:11:12] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[12:11:12] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[13:30:41] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[13:30:41] [INFO] ======================================================================
+[13:30:41] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[13:30:41] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[13:30:41] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[13:30:42] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[13:30:56] [INFO]   ↳ Đang dịch sang Vietnamese...
+[13:30:56] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[13:32:15] [INFO] 
+========================================================================================================================
+[13:32:15] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[13:32:15] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[13:32:15] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[13:32:15] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị bỏ rơi, không có chim.     
+[13:32:15] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Bước đi ba chân, loài chim dài nhất.              
+[13:32:15] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Bên này là loài động vật quý hiếm cấp độ 2 của q  
+[13:32:15] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Sở thích.                                         
+[13:32:15] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách đi bộ mang vẻ ngoài nguy hiểm, chuyên s  
+[13:32:15] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ ngoài điệu đà của nó.                
+[13:32:15] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nó thực sự rất nhút nhát.                         
+[13:32:15] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Nếu bị dọa, nó sẽ biến thành một bức tượng.       
+[13:32:15] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Tang Ruo, nếu bạn chạm vào con chim này khi đang  
+[13:32:15] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Bạn sẽ không thể kìm nén được mà bấm còi.         
+[13:32:15] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Điều đó gần như là một kiệt tác của thời đại.     
+[13:32:15] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mất đi lý trí.                                    
+[13:32:15] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi 2,5 giây.                                     
+[13:32:15] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Bạn không thể quay lại quá khứ được đâu.          
+[13:32:15] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là:                            
+[13:32:15] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Đầu tiên, tắt động cơ.                            
+[13:32:15] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Sau đó, bật nhạc nền.                             
+[13:32:15] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách này.                                         
+[13:32:15] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Người Nhật Bản thấy nó rất giỏi.                  
+[13:32:15] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Họ đều thốt lên "Chuyên nghiệp!"                  
+[13:32:15] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Thực ra, cách đi của Thời Thu trong thời đại đó   
+[13:32:15] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Nó chỉ là vì nó thích bắt chước mọi thứ sau lưng  
+[13:32:15] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Điều này dẫn đến việc nó lớn lên và có một dáng   
+[13:32:15] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Tại sao "gà" lại đi như vậy?                      
+[13:32:15] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo những nghiên cứu không đáng tin cậy của tôi  
+[13:32:15] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Sở thích sống ở vùng đầm lầy.                     
+[13:32:15] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Do sự thay đổi đột ngột của môi trường,           
+[13:32:15] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Nó dễ bị mắc cạn.                                 
+[13:32:15] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Vì vậy, nó sẽ thử nghiệm liên tục bằng cách bước  
+[13:32:15] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Đồng thời, cách đi này                            
+[13:32:15] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Cũng giúp nó tìm kiếm thức ăn tốt hơn.            
+[13:32:15] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Bằng cách ấn liên tục và đột ngột,                
+[13:32:15] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Những rung động này sẽ giúp nó cảm nhận được.     
+[13:32:15] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Sau đó, nó sẽ sử dụng cái miệng giống chữ "hành"  
+[13:32:15] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Tuy nhiên, cách đi chậm chạp này                  
+[13:32:15] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Làm cho nó bay rất chậm.                          
+[13:32:15] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Nó được mệnh danh là loài chim bay chậm nhất trê  
+[13:32:15] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Vận tốc của nó chỉ là 8 km/h, thật đáng kinh ngạ  
+[13:32:15] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không có gì ngạc nhiên khi nó được xếp vào danh   
+[13:32:15] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Thật là một con chim "rình rập" gần khu vườn của  
+[13:32:15] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Rình rập.                                         
+[13:32:15] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Cuối cùng, tiếng kêu của loài chim này            
+[13:32:15] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Cũng rất độc đáo.                                 
+[13:32:15] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Không tin thì cứ nghe.                            
+[13:32:15] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Xin lỗi, tôi đã bật nhầm.                         
+[13:32:15] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Nghe lại một lần nữa.                             
+[13:32:15] [INFO] ========================================================================================================================
+
+[13:32:15] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[13:32:15] [INFO]   ↳ Phần tạo voice đang tạm dừng theo yêu cầu.
+[13:32:15] [INFO] ======================================================================
+[13:32:15] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[13:32:15] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[13:33:16] [INFO] ==================================================
+[13:33:16] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[13:33:16] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[13:33:19] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[13:34:57] [INFO] Đã nạp file: chim cook.mp4
+[13:35:00] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[13:35:09] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 5 models.
+[13:35:13] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: translategemma:12b
+[13:35:23] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[13:35:23] [INFO] ======================================================================
+[13:35:23] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[13:35:23] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[13:35:23] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[13:35:23] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[13:35:38] [INFO]   ↳ Đang dịch sang Vietnamese...
+[13:35:38] [INFO]   ↳ [Ollama] Đang dịch bằng model: translategema:12b...
+[13:35:40] [ERROR] Lỗi gọi Ollama API: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[13:35:40] [ERROR] Ollama trả về kết quả rỗng
+[13:35:40] [ERROR] ❌ Dịch thuật thất bại.
+[13:35:40] [INFO] ======================================================================
+[13:35:40] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[13:35:40] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[13:41:02] [INFO] ==================================================
+[13:41:02] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[13:41:02] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[13:41:03] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[13:41:27] [INFO] Đã nạp file: chim cook.mp4
+[13:41:30] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[13:41:40] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 5 models.
+[13:41:44] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: translategemma:12b
+[13:41:49] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[13:41:49] [INFO] ======================================================================
+[13:41:49] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[13:41:49] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[13:41:49] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[13:41:49] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[13:42:03] [INFO]   ↳ Đang dịch sang Vietnamese...
+[13:42:03] [INFO]   ↳ [Ollama] Đang dịch bằng model: translategema:12b...
+[13:42:05] [ERROR] ❌ Lỗi gọi Ollama API: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+[13:42:05] [ERROR] Ollama trả về kết quả rỗng
+[13:42:05] [ERROR] ❌ Dịch thuật thất bại.
+[13:42:05] [INFO] ======================================================================
+[13:42:05] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[13:42:05] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[13:45:35] [INFO] ==================================================
+[13:45:35] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[13:45:35] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[13:45:36] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[13:45:50] [INFO] Đã nạp file: chim cook.mp4
+[13:45:53] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[13:45:57] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: translategemma:12b
+[13:46:03] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[13:46:03] [INFO] ======================================================================
+[13:46:03] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[13:46:03] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[13:46:03] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[13:46:03] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[13:46:16] [INFO]   ↳ Đang dịch sang Vietnamese...
+[13:46:16] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[13:47:39] [INFO] 
+========================================================================================================================
+[13:47:39] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[13:47:39] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[13:47:39] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[13:47:39] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn lạc lõng, không có nơi nào t  
+[13:47:39] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Đi một bước, ba con chim theo sau. Chim nào có b  
+[13:47:39] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Bên này là loài "rác" được bảo vệ ở cấp quốc gia  
+[13:47:39] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Tu Nghi.                                          
+[13:47:39] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một kiểu đi bộ có vẻ ngoài rất nguy hiểm.         
+[13:47:39] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ ngoài điệu đà của nó.                
+[13:47:39] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nó thực sự rất nhút nhát.                         
+[13:47:39] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị dọa, nó sẽ đứng im như tượng.              
+[13:47:39] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu bạn, Tang Nhược, gặp phải cái "chim" này khi  
+[13:47:39] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | bạn sẽ không thể cưỡng lại việc bấm còi xe.       
+[13:47:39] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Thật sự là một kiệt tác của thời đại, thể hiện s  
+[13:47:39] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mỗi hai phút một lần.                             
+[13:47:39] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Bạn đừng có nghĩ đến chuyện đó nữa.               
+[13:47:39] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Lời khuyên của tôi là:                            
+[13:47:39] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Đầu tiên, tắt động cơ.                            
+[13:47:39] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Sau đó, bật nhạc.                                 
+[13:47:39] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Cách làm này...                                   
+[13:47:39] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Ngay cả người Nhật Bản khi xem cũng phải thốt lê  
+[13:47:39] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Thực ra, cách đi của Tu Nghi là hoàn toàn bình t  
+[13:47:39] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Nó chỉ là vì thích bắt chước và đi theo đằng sau  
+[13:47:39] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | ...khi lớn lên, nó lại biến thành cái dáng đi "t  
+[13:47:39] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Tại sao "gà" lại đi như vậy?                      
+[13:47:39] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Theo nghiên cứu không chính xác của tôi,          
+[13:47:39] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Tu Nghi sống ở khu vực đầm lầy.                   
+[13:47:39] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Do môi trường thay đổi đột ngột,                  
+[13:47:39] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | nó rất dễ bị mắc kẹt.                             
+[13:47:39] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Vì vậy, nó sử dụng cách đi "đi một bước, ba con   
+[13:47:39] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Đồng thời, kiểu đi này                            
+[13:47:39] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | cũng giúp nó phát hiện ra những vật thể ẩn.       
+[13:47:39] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Bằng cách ấn mạnh và đột ngột,                    
+[13:47:39] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | nó có thể tạo ra những rung động.                 
+[13:47:39] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Sau đó, nó sẽ dùng cái "mỏ" của mình (ám chỉ cái  
+[13:47:39] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Tuy nhiên, cách đi này khá chậm.                  
+[13:47:39] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Và nó bay rất chậm.                               
+[13:47:39] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Nó được mệnh danh là loài chim có tốc độ bay chậ  
+[13:47:39] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Và chỉ với 8 km/h,                                
+[13:47:39] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | không trách sao nó lại được bảo vệ ở cấp quốc gi  
+[13:47:39] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Thật là một "mụ già" đang trêu chọc "cây rau" (ý  
+[13:47:39] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Hãy nhìn cái dáng vẻ "khinh thường" của nó.       
+[13:47:39] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Cuối cùng, tiếng kêu của nó cũng rất đặc biệt.    
+[13:47:39] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Không tin, hãy nghe thử.                          
+[13:47:39] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Xin lỗi, tôi đã phát nhầm.                        
+[13:47:39] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Lại nghe một lần nữa xem.                         
+[13:47:39] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | 不信你听                                              
+[13:47:39] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | 不好意思放错了                                           
+[13:47:39] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | 再听一遍                                              
+[13:47:39] [INFO] ========================================================================================================================
+
+[13:47:39] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[13:47:39] [INFO]   ↳ Phần tạo voice đang tạm dừng theo yêu cầu.
+[13:47:39] [INFO] ======================================================================
+[13:47:39] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[13:47:39] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[13:55:30] [INFO] ==================================================
+[13:55:30] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[13:55:30] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[13:55:32] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[13:55:41] [INFO] Đã nạp file: chim cook.mp4
+[13:55:45] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[13:55:51] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 5 models.
+[13:56:07] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: translategemma:12b
+[13:56:13] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[13:56:13] [INFO] ======================================================================
+[13:56:13] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[13:56:13] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[13:56:13] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[13:56:14] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[13:56:31] [INFO]   ↳ Đang dịch sang Vietnamese...
+[13:56:31] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[13:57:52] [INFO] 
+========================================================================================================================
+[13:57:52] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[13:57:52] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[13:57:52] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[13:57:52] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một sinh vật kỳ lạ, không có lông, không   
+[13:57:52] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Đi một bước, có ba con chim. Con chim nào cũng d  
+[13:57:52] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Đây là một "sinh vật" được bảo vệ ở cấp quốc gia  
+[13:57:52] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Tuổi thọ.                                         
+[13:57:52] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một kiểu đi bộ vừa ngầu, vừa có vẻ nguy hiểm, nh  
+[13:57:52] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng đánh giá nó qua vẻ ngoài.                    
+[13:57:52] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nó thực sự rất nhút nhát.                         
+[13:57:52] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Một khi bị dọa, nó sẽ đứng im như tượng.          
+[13:57:52] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu bạn đang đi xe và gặp phải "sinh vật" này,    
+[13:57:52] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | bạn sẽ không kìm được mà bấm còi.                 
+[13:57:52] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đó sẽ là một khoảnh khắc lịch sử, một tác phẩm n  
+[13:57:52] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mất đi lý trí.                                    
+[13:57:52] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi người có một "điểm yếu" riêng.                
+[13:57:52] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Đừng cố gắng hiểu nó.                             
+[13:57:52] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là:                            
+[13:57:52] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Hãy tắt động cơ trước.                            
+[13:57:52] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Sau đó, bật nhạc.                                 
+[13:57:52] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách làm này...                                   
+[13:57:52] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Ngay cả những người Nhật "am hiểu" cũng phải thố  
+[13:57:52] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Thực ra, cách đi bộ kỳ lạ của "sinh vật" này là   
+[13:57:52] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Nó chỉ là do nó thích bắt chước cái gì đó ở phía  
+[13:57:52] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | ...nên lớn lên mới có cái dáng đi "thú vị" này.   
+[13:57:52] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Mà tại sao nó lại đi như vậy?                     
+[13:57:52] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Theo một nghiên cứu "không chính xác" của tôi,    
+[13:57:52] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | "Sinh vật" này sống ở vùng đầm lầy.               
+[13:57:52] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Do môi trường sống thay đổi liên tục,             
+[13:57:52] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | nó dễ bị mắc kẹt.                                 
+[13:57:52] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Vì vậy, nó sẽ sử dụng kiểu đi "một bước, ba con   
+[13:57:52] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Đồng thời, kiểu đi này                            
+[13:57:52] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | cũng giúp nó dễ dàng "tìm kiếm" thức ăn hơn.      
+[13:57:52] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Bằng cách liên tục ấn xuống và tạo ra những rung  
+[13:57:52] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | nó có thể phát hiện ra những thứ ẩn giấu.         
+[13:57:52] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Sau đó, nó sẽ dùng cái "miệng" hình chữ "nghịch"  
+[13:57:52] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | ...cố gắng lấy chúng.                             
+[13:57:52] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Tuy nhiên, kiểu đi này khá chậm.                  
+[13:57:52] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Và nó cũng bay rất chậm.                          
+[13:57:52] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Nó được mệnh danh là loài chim có tốc độ bay chậ  
+[13:57:52] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Tốc độ của nó chỉ khoảng 8 km/h, một con số đáng  
+[13:57:52] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không trách sao nó lại được xếp vào danh sách bả  
+[13:57:52] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Thật là một "bà xã" của cỏ, luôn lảng vảng quanh  
+[13:57:52] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Rung động...                                      
+[13:57:52] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Cuối cùng, âm thanh của "sinh vật" này cũng rất   
+[13:57:52] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Không tin sao? Hãy nghe thử xem.                  
+[13:57:52] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Xin lỗi, tôi đã ấn nhầm nút.                      
+[13:57:52] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Hãy nghe lại một lần nữa.                         
+[13:57:52] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | 再听一遍                                              
+[13:57:52] [INFO] ========================================================================================================================
+
+[13:57:52] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[13:57:52] [INFO]   ↳ Phần tạo voice đang tạm dừng theo yêu cầu.
+[13:57:52] [INFO] ======================================================================
+[13:57:52] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[13:57:52] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[14:11:27] [INFO] ==================================================
+[14:11:27] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[14:11:27] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[14:11:29] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[14:11:34] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[14:11:43] [INFO] Đã nạp file: chim cook.mp4
+[14:11:46] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[14:11:58] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[14:11:58] [INFO] ======================================================================
+[14:11:58] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[14:11:58] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[14:11:58] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[14:11:58] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[14:12:17] [INFO]   ↳ Đang dịch sang Vietnamese...
+[14:12:17] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: qwen2.5:14b)...
+[14:13:12] [INFO] 
+========================================================================================================================
+[14:13:12] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[14:13:12] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[14:13:12] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[14:13:12] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị truy nã không có cánh chi  
+[14:13:12] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Một bước ba con chim, trong số các con chim dài   
+[14:13:12] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Ở đây là loại tiểu废物受国家二级保护。                      
+[14:13:12] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Thiệu Dực                                         
+[14:13:12] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách đi đường tạo ra cảm giác áp bức như đan  
+[14:13:12] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn nó điệu đà.                             
+[14:13:12] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Máu liều rất kém.                                 
+[14:13:12] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Rất dễ đứng im khi bị hù dọa.                     
+[14:13:12] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu Tống Nhược gặp con chim này trong tư thế sẵn  
+[14:13:12] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Sẽ không kiềm chế được mà ấn còi xe.              
+[14:13:12] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đó chính là việc mất理智。                           
+[14:13:12] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mỗi hai昆半                                         
+[14:13:12] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Chịu khó đi qua không thể.                        
+[14:13:12] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Rất tiếc, tôi khuyên bạn nên.                     
+[14:13:12] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Tắt máy trước đã.                                 
+[14:13:12] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Rồi mở nhạc nền lên.                              
+[14:13:12] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Phương pháp này,                                  
+[14:13:12] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Ngay cả người Nhật cũng phải khen hay khi nhìn t  
+[14:13:12] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Mọi người đều nói giỏi.                           
+[14:13:12] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Thực ra đi bộ trong mưa mùa thu là điều bình thư  
+[14:13:12] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Chỉ vì thích theo sau con chim cái có cánh,       
+[14:13:12] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Rồi dần trở thành bước đi tinh nghịch này khi tr  
+[14:13:12] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Vì sao nó lại đi như vậy?                         
+[14:13:12] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Theo nghiên cứu không đáng tin cậy của tôi,       
+[14:13:12] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Thiệu Dực sống trong vùng đất ẩm ướt.             
+[14:13:12] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Do môi trường này thay đổi đột ngột,              
+[14:13:12] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Rất dễ mắc bẫy.                                   
+[14:13:12] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Vì vậy chúng sẽ đi từng bước để thử lại,          
+[14:13:12] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Mà cách đi bộ như thế này                         
+[14:13:12] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Rất hữu ích cho việc thích nghi với môi trường,   
+[14:13:12] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Thông qua việc nhấn mạnh vào sự thay đổi đột ngộ  
+[14:13:12] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Thời kỳ rung chuyển làm chúng cảm thấy an toàn h  
+[14:13:12] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Rồi sử dụng miệng hình chữ nhật để giữ lại lợi t  
+[14:13:12] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Mà bước đi chậm chạp này                          
+[14:13:12] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Bay cũng rất chậm.                                
+[14:13:12] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Được mệnh danh là chim bay chậm nhất thế giới,    
+[14:13:12] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Vận tốc chỉ bằng tám phần trăm của một con chó n  
+[14:13:12] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Không trách được nó trở thành loài chim được bảo  
+[14:13:12] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Rất giống cây rau trong vườn nhà.                 
+[14:13:12] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Bị sét đánh trúng cũng không thể tin nổi.         
+[14:13:12] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Mọi người đều khen tiếng hót của nó,              
+[14:13:12] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Rất đặc biệt.                                     
+[14:13:12] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Hãy nghe thử đi.                                  
+[14:13:12] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Rất tiếc, tôi đã phát nhầm file rồi.              
+[14:13:12] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Để tôi phát lại một lần nữa.                      
+[14:13:12] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | 再听一遍                                              
+[14:13:12] [INFO] ========================================================================================================================
+
+[14:13:12] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[14:13:12] [INFO]   ↳ Phần tạo voice đang tạm dừng theo yêu cầu.
+[14:13:12] [INFO] ======================================================================
+[14:13:12] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[14:13:12] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[14:36:04] [INFO] ==================================================
+[14:36:04] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 KHỞI ĐỘNG
+[14:36:05] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[14:36:07] [INFO] Đã nạp cấu hình AI từ bộ nhớ: OLLAMA - translategemma:12b
+[14:36:22] [INFO] Đã nạp file: chim cook.mp4
+[14:36:26] [INFO] Đã đặt thư mục đầu ra: E:/Test
+[14:36:41] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[14:36:45] [INFO] 💾 Đã lưu cấu hình AI (OLLAMA). Model mặc định: qwen2.5:14b
+[14:37:16] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[14:37:16] [INFO] ======================================================================
+[14:37:16] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[14:37:16] [INFO] 🚀 KHỞI ĐỘNG PIPELINE: Xử lý 1 video bằng OLLAMA...
+[14:37:16] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[14:37:16] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[14:37:33] [INFO]   ↳ Đang dịch sang Vietnamese...
+[14:37:33] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: qwen2.5:14b)...
+[14:38:30] [INFO] 
+========================================================================================================================
+[14:38:30] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[14:38:30] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[14:38:30] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[14:38:30] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị đuổi bắt không có cánh ch  
+[14:38:30] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Mỗi bước đi đều mang theo ba con chim, trong đó   
+[14:38:30] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Ở đây là loài chim nhỏ vô dụng được bảo vệ cấp h  
+[14:38:30] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Ruxu                                              
+[14:38:30] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Kiểu đi đường tự tạo ra khí thế áp bức, khiến ng  
+[14:38:30] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ điệu đà của nó                       
+[14:38:30] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Máu liều rất kém                                  
+[14:38:30] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị hù dọa sẽ cứng nhắc không cử động          
+[14:38:30] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu bạn Tang Ru gặp con chim này trong tư thế đứ  
+[14:38:30] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Rất muốn ấn còi xe                                
+[14:38:30] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đó thực sự là một trải nghiệm điên rồ             
+[14:38:30] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Làm mất lý trí                                    
+[14:38:30] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi hai con chim nửa                              
+[14:38:30] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Bạn đừng mong vượt qua nó                         
+[14:38:30] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Một gợi ý của tôi là                              
+[14:38:30] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Tắt động cơ trước                                 
+[14:38:30] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Rồi mở nhạc nền                                   
+[14:38:30] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách này                                          
+[14:38:30] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Người Nhật khi nhìn thấy đều khen ngợi nội tình   
+[14:38:30] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Đều nói rằng họ hiểu rõ                           
+[14:38:30] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Thực tế, đi bộ theo đàn gà trong mưa mùa thu là   
+[14:38:30] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Chỉ vì thích theo sau con vật đó mà làm theo      
+[14:38:30] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Gây ra bước đi đầy phong cách khi trưởng thành    
+[14:38:30] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Một câu hỏi đặt ra là tại sao nó lại đi như vậy   
+[14:38:30] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo nghiên cứu không đáng tin cậy của tôi phát   
+[14:38:30] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Ruxu sống trong khu vực đất ẩm ướt                
+[14:38:30] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Do môi trường này thay đổi đột ngột               
+[14:38:30] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Rất dễ mắc bẫy                                    
+[14:38:30] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Vì vậy, nó sẽ thử nghiệm bước đi một cách liên t  
+[14:38:30] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Cùng lúc đó, kiểu đi bộ này                       
+[14:38:30] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Đồng thời giúp chúng thích nghi tốt hơn trong mô  
+[14:38:30] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Qua việc nhấn nhá liên tục                        
+[14:38:30] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Một giai đoạn rung động làm cho cảm nhận về thời  
+[14:38:30] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Rồi sử dụng miệng giống như một con chữ ngược để  
+[14:38:30] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Rõ ràng, kiểu đi bộ này chậm chạp                 
+[14:38:30] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Bay cũng rất chậm                                 
+[14:38:30] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Được mệnh danh là loài chim bay chậm nhất trên t  
+[14:38:30] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Vận tốc và sự kinh ngạc của nó chỉ khoảng tám câ  
+[14:38:30] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không trách được vì sao nó trở thành động vật bả  
+[14:38:30] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Thật đúng là vợ gần rau vườn như cỏ dại           
+[14:38:30] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Một cú đánh bất ngờ                               
+[14:38:30] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Rõ ràng âm thanh của con chim này                 
+[14:38:30] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Rất đặc biệt                                      
+[14:38:30] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Chẳng tin bạn nghe thử                            
+[14:38:30] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Xin lỗi nhầm phát sai rồi                         
+[14:38:30] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Hãy nghe lại một lần nữa                          
+[14:38:30] [INFO] ========================================================================================================================
+
+[14:38:30] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[14:38:30] [INFO]   ↳ Đang tạo voice cho ngôn ngữ: Vietnamese...
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 0
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 1
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 2
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 3
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 4
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 5
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 6
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 7
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 8
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 9
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 10
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 11
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 12
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 13
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 14
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 15
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 16
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 17
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 18
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 19
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 20
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 21
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 22
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 23
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 24
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 25
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 26
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 27
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 28
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 29
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 30
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 31
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 32
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 33
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 34
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 35
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 36
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 37
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 38
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 39
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 40
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 41
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 42
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 43
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 44
+[14:38:30] [WARNING]   [!] TTS lỗi đoạn 45
+[14:38:33] [INFO] ✅ HOÀN THÀNH: DUBBED_chim cook.mp4
+[14:38:33] [INFO] ======================================================================
+[14:38:33] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[14:38:33] [INFO] 🎉 CHIẾN DỊCH HOÀN TẤT!
+[15:17:53] [INFO] ==================================================
+[15:17:53] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:17:53] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:19:39] [INFO] ==================================================
+[15:19:39] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:19:39] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:19:40] [INFO] ✅ MainWindow đã khởi tạo thành công với 2 tab riêng biệt.
+[15:19:40] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:21:12] [INFO] ==================================================
+[15:21:12] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:21:13] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:21:13] [INFO] ✅ MainWindow đã khởi tạo thành công với 2 tab riêng biệt.
+[15:21:13] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:23:17] [INFO] ==================================================
+[15:23:17] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:23:17] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:23:18] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:23:18] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:23:34] [INFO] Đã chọn file: chim cook.mp4
+[15:23:38] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:27:10] [INFO] ==================================================
+[15:27:10] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:27:11] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:27:11] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:27:11] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:27:19] [INFO] Đã chọn file: chim cook.mp4
+[15:27:21] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:27:29] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:31:07] [INFO] ==================================================
+[15:31:07] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:31:07] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:31:08] [INFO] ✅ MainWindow đã khởi tạo thành công với 2 tab riêng biệt.
+[15:31:08] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:31:21] [INFO] Đã chọn file: chim cook.mp4
+[15:31:27] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:31:44] [INFO] Đã chọn thư mục chứa 66 video.
+[15:34:24] [INFO] ==================================================
+[15:34:24] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:34:24] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:34:25] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:34:25] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:34:33] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:35:07] [INFO] Đã chọn file: chim cook.mp4
+[15:35:12] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:38:04] [INFO] ==================================================
+[15:38:04] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:38:04] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:38:05] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[15:38:05] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:38:39] [INFO] ✅ Key #1 hợp lệ
+[15:44:00] [INFO] ==================================================
+[15:44:00] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:44:01] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:44:01] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:44:02] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:44:11] [INFO] Đã chọn file: chim cook.mp4
+[15:44:15] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:44:24] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:44:27] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[15:49:36] [INFO] ==================================================
+[15:49:36] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:49:36] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:49:36] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:49:37] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:49:46] [INFO] Đã chọn file: chim cook.mp4
+[15:49:49] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:49:56] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:50:00] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[15:50:58] [INFO] ==================================================
+[15:50:58] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:50:59] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:50:59] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:50:59] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:51:20] [INFO] Đã chọn file: chim cook.mp4
+[15:51:23] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:51:29] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:51:31] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[15:52:07] [INFO] ==================================================
+[15:52:07] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:52:08] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:52:08] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:52:08] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:52:16] [INFO] Đã chọn file: chim cook.mp4
+[15:52:19] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:52:24] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:52:26] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[15:53:58] [INFO] ==================================================
+[15:53:58] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:53:58] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:53:58] [INFO] ✅ MainWindow đã khởi tạo và áp dụng stylesheet thành công.
+[15:53:59] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:54:08] [INFO] Đã chọn file: chim cook.mp4
+[15:54:12] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:54:18] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:54:33] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[15:57:26] [INFO] ==================================================
+[15:57:26] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[15:57:27] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[15:57:27] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[15:57:28] [INFO] Cửa sổ chính đã hiển thị thành công.
+[15:57:36] [INFO] Đã chọn file: chim cook.mp4
+[15:57:39] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[15:57:46] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[15:57:48] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[15:58:06] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[15:58:06] [INFO] ======================================================================
+[15:58:06] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[15:58:06] [INFO] 🚀 Khởi động dubbing: 1 video
+[15:58:06] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[15:58:07] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[15:58:22] [INFO]   ↳ Đang dịch sang Vietnamese...
+[15:58:22] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: qwen2.5:14b)...
+[15:59:21] [INFO] 
+========================================================================================================================
+[15:59:21] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[15:59:21] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[15:59:21] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[15:59:21] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị trục xuất không có cánh c  
+[15:59:21] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Mỗi bước đi đều mang theo ba con chim, trong số   
+[15:59:21] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Ở đây là loài vật được quốc gia bảo vệ cấp hai n  
+[15:59:21] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Rùa tu luyện.                                     
+[15:59:21] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách di chuyển tự nhiên toát lên khí chất sá  
+[15:59:21] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ điệu bộ của nó.                      
+[15:59:21] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nhưng lòng can đảm lại rất nhỏ bé.                
+[15:59:21] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị sợ hãi, sẽ đứng yên bất động.              
+[15:59:21] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu bạn gặp con chim này trong tư thế dừng xe ô   
+[15:59:21] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Rất khó kiềm chế không ấn còi xe.                 
+[15:59:21] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đó chính là thiên đường của những người muốn kho  
+[15:59:21] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mất hết lý trí.                                   
+[15:59:21] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi hai cây số rưỡi.                              
+[15:59:21] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Bạn đừng mong vượt qua được.                      
+[15:59:21] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là,                            
+[15:59:21] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Rời máy móc trước.                                
+[15:59:21] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Rồi mở nhạc nền lên.                              
+[15:59:21] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách này hiệu quả.                                
+[15:59:21] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Người Nhật nhìn thấy đều khen ngợi.               
+[15:59:21] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Mọi người đều phải thốt lên: "Thật chuyên nghiệp  
+[15:59:21] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Sự thật là, đi bộ trong mưa thu vào mùa thu như   
+[15:59:21] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Rất thích chạy theo sau con chim đực và bắt chướ  
+[15:59:21] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Rất có thể lớn lên sẽ biến thành bước đi kiêu ng  
+[15:59:21] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Một phần vì lý do con chim đực đi như thế nào.    
+[15:59:21] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo nghiên cứu không đáng tin cậy của tôi,       
+[15:59:21] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Rùa tu luyện sống ở khu vực đất ẩm ướt.           
+[15:59:21] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Do môi trường tự nhiên thay đổi đột ngột,         
+[15:59:21] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Rất dễ bị bẫy.                                    
+[15:59:21] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Vì vậy, chúng sẽ đi bằng cách một bước ba con ch  
+[15:59:21] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Cùng lúc đó, kiểu bước đi này                     
+[15:59:21] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | cũng giúp chúng kiểm tra môi trường xung quanh t  
+[15:59:21] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Bằng việc lặp lại áp lực đột ngột,                
+[15:59:21] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | động đất sẽ khiến họ cảm nhận được rung chấn.     
+[15:59:21] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Rồi sử dụng miệng hình tam giác ngược để tận dụn  
+[15:59:21] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Mặc dù bước đi này chậm rãi,                      
+[15:59:21] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | chúng cũng bay rất chậm.                          
+[15:59:21] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Được mệnh danh là loài chim bay chậm nhất thế gi  
+[15:59:21] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Vận tốc chỉ khoảng 8km/h khi hoảng sợ.            
+[15:59:21] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không trách được chúng trở thành động vật được b  
+[15:59:21] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Rõ ràng như cây cỏ gần vườn rau của vợ.           
+[15:59:21] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Một cú đánh bất ngờ.                              
+[15:59:21] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Tiếng kêu của con chim này,                       
+[15:59:21] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | cũng rất độc đáo.                                 
+[15:59:21] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Hãy tin tôi đi, bạn sẽ nghe thấy.                 
+[15:59:21] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | xin lỗi đã phát sai.                              
+[15:59:21] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Rồi hãy nghe lại một lần nữa.                     
+[15:59:21] [INFO] ========================================================================================================================
+
+[15:59:21] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[15:59:21] [INFO]   ↳ Đang tạo voice cho ngôn ngữ: Vietnamese...
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 0
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 1
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 2
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 3
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 4
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 5
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 6
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 7
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 8
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 9
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 10
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 11
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 12
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 13
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 14
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 15
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 16
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 17
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 18
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 19
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 20
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 21
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 22
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 23
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 24
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 25
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 26
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 27
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 28
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 29
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 30
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 31
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 32
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 33
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 34
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 35
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 36
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 37
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 38
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 39
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 40
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 41
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 42
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 43
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 44
+[15:59:21] [WARNING]   [!] TTS lỗi đoạn 45
+[15:59:24] [INFO] ✅ HOÀN THÀNH: DUBBED_chim cook.mp4
+[15:59:24] [INFO] ======================================================================
+[15:59:24] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[15:59:24] [INFO] 🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!
+[16:09:29] [INFO] ==================================================
+[16:09:29] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[16:09:30] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[16:09:30] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[16:09:30] [INFO] Cửa sổ chính đã hiển thị thành công.
+[16:09:40] [INFO] Đã chọn file: chim cook.mp4
+[16:09:43] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[16:09:54] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[16:09:56] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[16:10:11] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[16:10:11] [INFO] ======================================================================
+[16:10:11] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[16:10:11] [INFO] 🚀 Khởi động dubbing: 1 video
+[16:10:11] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[16:10:11] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[16:10:27] [INFO]   ↳ Đang dịch sang Vietnamese...
+[16:10:27] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: qwen2.5:14b)...
+[16:11:21] [INFO] 
+========================================================================================================================
+[16:11:21] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[16:11:21] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[16:11:21] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[16:11:21] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị trục xuất không có cánh c  
+[16:11:21] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Mỗi bước đi đều mang theo ba con chim, trong số   
+[16:11:21] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Ở đây là loài chim nhỏ yếu đuối được bảo vệ cấp   
+[16:11:21] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Ruxu                                              
+[16:11:21] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách đi đường đầy áp lực và uy nghiêm đến mứ  
+[16:11:21] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ điệu bộ của nó.                      
+[16:11:21] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nhưng lòng can đảm lại rất nhỏ.                   
+[16:11:21] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị giật mình, nó sẽ cứng đờ không cử động.    
+[16:11:21] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu Tang Ruo gặp con chim này khi đang ở thế đứn  
+[16:11:21] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | mắc cười không nhịn được mà ấn còi xe.            
+[16:11:21] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Rõ ràng là mất hết lý trí.                        
+[16:11:21] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mỗi hai quả dưa.                                  
+[16:11:21] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Bạn đừng mong qua khỏi.                           
+[16:11:21] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Lời khuyên của tôi là                             
+[16:11:21] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | hãy tắt động cơ trước,                            
+[16:11:21] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | rồi mở nhạc nền lên.                              
+[16:11:21] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Đây là cách làm.                                  
+[16:11:21] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Rất nhiều người Nhật đã xem nó và đều khen ngợi.  
+[16:11:21] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Thực ra đi bộ trong mưa mùa thu cũng bình thường  
+[16:11:21] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | mà chỉ vì thích theo sau con chim đực mà học the  
+[16:11:21] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Lớn lên, bước đi trở nên kiêu sa như vậy.         
+[16:11:21] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Rằng tại sao chim đực lại đi như thế?             
+[16:11:21] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Theo nghiên cứu không đáng tin cậy của tôi,       
+[16:11:21] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | ruxu sống trong vùng đất ẩm ướt.                  
+[16:11:21] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Do môi trường này thay đổi đột ngột,              
+[16:11:21] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | mà dễ dàng bị rơi vào bẫy.                        
+[16:11:21] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Vì vậy, chúng sẽ đi với bước đi lắc lư để thử ng  
+[16:11:21] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Rồi lại giúp chúng kiểm tra tốt hơn.              
+[16:11:21] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Mỗi lần nhấn xuống đều đặn,                       
+[16:11:21] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | ruxu cảm nhận rung động từ môi trường xung quanh  
+[16:11:21] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Rồi dùng miệng rộng mở để giữ chặt.               
+[16:11:21] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Tuy nhiên, bước đi chậm chạp này                  
+[16:11:21] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | mà cũng khiến chúng bay rất chậm.                 
+[16:11:21] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Được gọi là loài chim bay chậm nhất thế giới,     
+[16:11:21] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | với tốc độ chỉ bằng một nửa cây số giờ.           
+[16:11:21] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Rõ ràng được liệt kê trong danh sách bảo vệ cấp   
+[16:11:21] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Một con chim đáng yêu như cỏ gần hàng rào.        
+[16:11:21] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Cuối cùng, tiếng kêu của nó                       
+[16:11:21] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | cũng rất đặc biệt.                                
+[16:11:21] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Không tin bạn nghe thử xem,                       
+[16:11:21] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | xin lỗi, sai file rồi,                            
+[16:11:21] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | hãy nghe lại một lần nữa.                         
+[16:11:21] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | 也是十分独特                                            
+[16:11:21] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | 不信你听                                              
+[16:11:21] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | 不好意思放错了                                           
+[16:11:21] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | 再听一遍                                              
+[16:11:21] [INFO] ========================================================================================================================
+
+[16:11:21] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[16:11:21] [INFO]   ↳ Đang tạo voice cho ngôn ngữ: Vietnamese...
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 0
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 1
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 2
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 3
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 4
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 5
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 6
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 7
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 8
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 9
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 10
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 11
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 12
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 13
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 14
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 15
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 16
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 17
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 18
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 19
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 20
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 21
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 22
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 23
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 24
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 25
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 26
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 27
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 28
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 29
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 30
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 31
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 32
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 33
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 34
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 35
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 36
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 37
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 38
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 39
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 40
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 41
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 42
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 43
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 44
+[16:11:21] [WARNING]   [!] TTS lỗi đoạn 45
+[16:11:24] [INFO] ✅ HOÀN THÀNH: DUBBED_chim cook.mp4
+[16:11:24] [INFO] ======================================================================
+[16:11:24] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[16:11:24] [INFO] 🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!
+[16:26:18] [INFO] ==================================================
+[16:26:18] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[16:26:19] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[16:26:21] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[16:26:21] [INFO] Cửa sổ chính đã hiển thị thành công.
+[16:27:02] [INFO] Đã chọn file: chim cook.mp4
+[16:27:06] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[16:27:37] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[16:27:39] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[16:27:50] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[16:27:50] [INFO] ======================================================================
+[16:27:50] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[16:27:50] [INFO] 🚀 Khởi động dubbing: 1 video
+[16:27:50] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[16:27:50] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[16:28:06] [INFO]   ↳ Đang dịch sang Vietnamese...
+[16:28:06] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: qwen2.5:14b)...
+[16:29:03] [INFO] 
+========================================================================================================================
+[16:29:03] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[16:29:03] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[16:29:03] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[16:29:03] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị trục xuất, không có con c  
+[16:29:03] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Một bước ba con chim, trong số chim dài nhất.     
+[16:29:03] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Ở đây là loài vật được bảo vệ cấp hai của quốc g  
+[16:29:03] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Thư Y                                             
+[16:29:03] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách đi đường tựa như mang theo khí chất bức  
+[16:29:03] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ điệu bộ của nó trông rất sang chảnh  
+[16:29:03] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | mà bản thân lại rất nhút nhát.                    
+[16:29:03] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Rất dễ khiếp đảm đến mức đứng im bất động.        
+[16:29:03] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu Tống Nhược bạn gặp phải con chim này khi đan  
+[16:29:03] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | sẽ không kiềm chế được mà ấn kèn.                 
+[16:29:03] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đó chính là cảnh tượng như trời đánh đất nứt.     
+[16:29:03] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Rời bỏ lý trí.                                    
+[16:29:03] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi hai cây số rưỡi.                              
+[16:29:03] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Bạn đừng nghĩ rằng có thể vượt qua.               
+[16:29:03] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là                             
+[16:29:03] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | hãy tắt máy,                                      
+[16:29:03] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | rồi mở nhạc nền lên.                              
+[16:29:03] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách pháp này.                                    
+[16:29:03] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Người Nhật nhìn thấy cũng phải khen ngợi.         
+[16:29:03] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Mọi người đều hét lên nội行人。                      
+[16:29:03] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Thực tế, đi bộ theo sau dương vật khi trời mưa t  
+[16:29:03] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Rất thích làm theo cái đuôi của dương vật,        
+[16:29:03] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | vì thế lớn lên trở thành bước đi đầy vẻ sành điệ  
+[16:29:03] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Một câu hỏi đặt ra, tại sao chúng lại đi như vậy  
+[16:29:03] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo nghiên cứu không đáng tin cậy của tôi phát   
+[16:29:03] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Rùa thư sống ở vùng đất ẩm,                       
+[16:29:03] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | do môi trường đột ngột thay đổi,                  
+[16:29:03] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | rất dễ bị mắc bẫy.                                
+[16:29:03] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Vì thế chúng sẽ đi với cách bước ba con chim để   
+[16:29:03] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | mà cũng nhờ vậy,                                  
+[16:29:03] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | cũng giúp chúng thích nghi tốt hơn trong việc ki  
+[16:29:03] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Rất nhiều lần ấn xuống đột nhiên,                 
+[16:29:03] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | mỗi lần rung chuyển sẽ khiến chúng cảm nhận được  
+[16:29:03] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Rồi dùng miệng rộng mở để nắm bắt thông tin,      
+[16:29:03] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Mà bước đi này lại chậm chạp,                     
+[16:29:03] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | vì thế bay cũng rất chậm.                         
+[16:29:03] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Được mệnh danh là loài chim bay chậm nhất trên t  
+[16:29:03] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | mỗi giờ chỉ hơn tám cây số.                       
+[16:29:03] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không trách được tại sa被列为国家级保护动物。                
+[16:29:03] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | 真是草包的老婆近菜园，智者见状远庖厨。                               
+[16:29:03] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | 震击巴彩                                              
+[16:29:03] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Cuối cùng, tiếng kêu của nó,                      
+[16:29:03] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | cũng rất độc đáo.                                 
+[16:29:03] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Rất khó tin? Hãy nghe đi.                         
+[16:29:03] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Xin lỗi, đã phát sai rồi.                         
+[16:29:03] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Hãy nghe lại một lần nữa.                         
+[16:29:03] [INFO] ========================================================================================================================
+
+[16:29:03] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[16:29:03] [INFO]   ↳ Đang tạo voice cho ngôn ngữ: Vietnamese...
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 0
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 1
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 2
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 3
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 4
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 5
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 6
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 7
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 8
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 9
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 10
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 11
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 12
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 13
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 14
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 15
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 16
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 17
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 18
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 19
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 20
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 21
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 22
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 23
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 24
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 25
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 26
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 27
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 28
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 29
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 30
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 31
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 32
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 33
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 34
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 35
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 36
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 37
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 38
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 39
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 40
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 41
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 42
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 43
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 44
+[16:29:03] [WARNING]   [!] TTS lỗi đoạn 45
+[16:29:06] [INFO] ✅ HOÀN THÀNH: DUBBED_chim cook.mp4
+[16:29:06] [INFO] ======================================================================
+[16:29:06] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[16:29:06] [INFO] 🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!
+[16:37:06] [INFO] ==================================================
+[16:37:06] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[16:37:07] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[16:37:07] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[16:37:07] [INFO] Cửa sổ chính đã hiển thị thành công.
+[16:37:17] [INFO] Đã chọn file: chim cook.mp4
+[16:37:21] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[16:37:40] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[16:37:44] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: translategemma:12b
+[16:37:51] [INFO] ✅ Đã load VieNeu-TTS thành công trên CPU
+[16:37:51] [INFO] ======================================================================
+[16:37:51] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[16:37:51] [INFO] 🚀 Khởi động dubbing: 1 video
+[16:37:51] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[16:37:52] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[16:38:08] [INFO]   ↳ Đang dịch sang Vietnamese...
+[16:38:08] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[16:39:11] [INFO] 
+========================================================================================================================
+[16:39:11] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[16:39:11] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[16:39:11] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[16:39:11] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một loài chim kỳ lạ, chẳng biết thuộc loạ  
+[16:39:11] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Đi từng bước, ba con chim cùng lúc. Con chim nào  
+[16:39:11] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Bên này là loài "rác" được bảo vệ ở cấp quốc gia  
+[16:39:11] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Tu Nghi.                                          
+[16:39:11] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một kiểu đi bộ vừa ngầu, vừa khiến người ta muốn  
+[16:39:11] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn nó điệu đà thế.                         
+[16:39:11] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nhưng mà nó rất nhát.                             
+[16:39:11] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Một khi bị dọa, nó sẽ đứng im như tượng.          
+[16:39:11] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu như Tang Nhược mà dẫm phải con chim này khi   
+[16:39:11] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Chắc chắn sẽ đạp phanh xe ngay lập tức.           
+[16:39:11] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Thật là một bức tranh hài hước về sự mất trí.     
+[16:39:11] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mỗi con hai con rưỡi.                             
+[16:39:11] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Đừng có nghĩ đến chuyện đó nữa.                   
+[16:39:11] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Lời khuyên của tôi là...                          
+[16:39:11] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Hãy tắt máy.                                      
+[16:39:11] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Sau đó bật nhạc.                                  
+[16:39:11] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Cách làm này...                                   
+[16:39:11] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Ngay cả dân Nhật Bản khi xem cũng phải thốt lên   
+[16:39:11] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Thực ra, dáng đi của Tu Nghi là hoàn toàn bình t  
+[16:39:11] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Nó chỉ là vì thích bắt chước cái gì đó ở phía sa  
+[16:39:11] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Dẫn đến việc nó lớn lên và có dáng đi kì cục như  
+[16:39:11] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Tại sao "chim" lại đi như vậy?                    
+[16:39:11] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Theo một nghiên cứu không chính xác của tôi...    
+[16:39:11] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Tu Nghi sống ở vùng đầm lầy.                      
+[16:39:11] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Do môi trường ẩm ướt và trơn trượt, dễ bị vấp ng  
+[16:39:11] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Vì vậy, nó sẽ thử nghiệm bằng cách đi từng bước,  
+[16:39:11] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Đồng thời, kiểu đi này...                         
+[16:39:11] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | ...cũng giúp nó "khám phá" tốt hơn.               
+[16:39:11] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Bằng cách ấn mạnh và rung lắc liên tục.           
+[16:39:11] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Sau đó, nó sẽ sử dụng cái "mồm" (ám chỉ bộ phận   
+[16:39:11] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Tuy nhiên, dáng đi này rất chậm.                  
+[16:39:11] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Và nó bay rất chậm.                               
+[16:39:11] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Nó được mệnh danh là loài chim có tốc độ bay chậ  
+[16:39:11] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Tốc độ của nó chỉ khoảng tám centimet mỗi giờ.    
+[16:39:11] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Không trách sao nó lại được bảo vệ ở cấp quốc gi  
+[16:39:11] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Thật là một "vợ" của cỏ, gần khu vườn rau.        
+[16:39:11] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Chấn Động Ba Màu.                                 
+[16:39:11] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Cuối cùng, tiếng kêu của nó cũng rất đặc biệt.    
+[16:39:11] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Không tin hả? Nghe đây.                           
+[16:39:11] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Xin lỗi, tôi bấm nhầm.                            
+[16:39:11] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Nghe lại xem.                                     
+[16:39:11] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | 最后这祸的叫声                                           
+[16:39:11] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | 也是十分独特                                            
+[16:39:11] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | 不信你听                                              
+[16:39:11] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | 不好意思放错了                                           
+[16:39:11] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | 再听一遍                                              
+[16:39:11] [INFO] ========================================================================================================================
+
+[16:39:11] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[16:39:11] [INFO]   ↳ Đang tạo voice cho Vietnamese...
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 0
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 1
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 2
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 3
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 4
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 5
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 6
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 7
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 8
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 9
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 10
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 11
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 12
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 13
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 14
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 15
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 16
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 17
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 18
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 19
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 20
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 21
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 22
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 23
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 24
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 25
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 26
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 27
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 28
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 29
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 30
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 31
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 32
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 33
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 34
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 35
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 36
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 37
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 38
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 39
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 40
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 41
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 42
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 43
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 44
+[16:39:11] [WARNING]   [!] TTS lỗi đoạn 45
+[16:39:11] [INFO]   ↳ Đang tách nhạc nền bằng Demucs...
+[16:39:11] [INFO]   ↳ Demucs đang chạy trên **CPU** (CPU)
+[16:40:22] [WARNING] Demucs trả về lỗi: 
+  0%|          | 0.00/80.2M [00:00<?, ?B/s]
+  1%|1         | 1.00M/80.2M [00:00<00:08, 10.1MB/s]
+  4%|3         | 2.88M/80.2M [00:00<00:05, 15.4MB/s]
+  6%|5         | 4.75M/80.2M [00:00<00:04, 16.6MB/s]
+  8%|7         | 6.38M/80.2M [00:00<00:04, 16.7MB/s]
+ 10%|9         | 8.00M/80.2M [00:00<00:04, 16.0MB/s]
+ 12%|#1        | 9.62M/80.2M [00:00<00:05, 14.7MB/s]
+ 14%|#3        | 11.1M/80.2M [00:00<0
+[16:40:22] [INFO] ⚠️ Chuyển sang filter FFmpeg thay thế
+[16:40:22] [INFO]   ↳ Mix âm thanh: AI=120%, Nhạc nền=115%, Gốc=5%
+[16:40:22] [ERROR] Lỗi Render cuối: 100
+[AVFilterGraph @ 000002acbdc85740] More input link labels specified for filter 'volume' than it has inputs: 2 > 1
+[AVFilterGraph @ 000002acbdc85740] Error linking filters
+Error : Invalid argument
+
+[16:40:22] [INFO] ======================================================================
+[16:40:22] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[16:40:22] [INFO] 🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!
+[16:43:14] [INFO] Đang xem trước: chim cook.mp4
+[16:54:59] [INFO] ✅ Đã login Hugging Face thành công với HF_TOKEN
+[16:54:59] [INFO] ==================================================
+[16:54:59] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[16:54:59] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[16:55:00] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[16:55:00] [INFO] Cửa sổ chính đã hiển thị thành công.
+[16:56:34] [INFO] ✅ Đã login Hugging Face thành công với HF_TOKEN
+[16:56:34] [INFO] ==================================================
+[16:56:34] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[16:56:34] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[16:56:34] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[16:56:35] [INFO] Cửa sổ chính đã hiển thị thành công.
+[17:43:15] [INFO] ✅ Đã login Hugging Face thành công với HF_TOKEN
+[17:43:15] [INFO] ==================================================
+[17:43:15] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[17:43:15] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[17:43:16] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[17:43:16] [INFO] Cửa sổ chính đã hiển thị thành công.
+[17:43:28] [INFO] Đã chọn file: chim cook.mp4
+[17:43:31] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[17:43:40] [INFO] 💾 Đã lưu cấu hình: GEMINI - Model: 
+[17:43:46] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[17:43:50] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: translategemma:12b
+[17:43:55] [INFO] 🔄 Đang load VieNeu-TTS...
+[17:43:55] [ERROR] ❌ Không tìm thấy thư viện vienneu_tts / vieneu. Cài bằng: pip install vienneu-tts
+[17:43:55] [INFO] ======================================================================
+[17:43:55] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[17:43:55] [INFO] 🚀 Khởi động dubbing: 1 video
+[17:43:55] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[17:43:56] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[17:44:10] [INFO]   ↳ Đang dịch sang Vietnamese...
+[17:44:10] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: translategemma:12b)...
+[17:45:15] [INFO] 
+========================================================================================================================
+[17:45:15] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[17:45:15] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[17:45:15] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[17:45:15] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một loài chim kỳ lạ, không có lông.        
+[17:45:15] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Đi từng bước, ba chân cùng lúc, loài chim có châ  
+[17:45:15] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Đây là một "mảnh vỡ" được bảo vệ ở cấp quốc gia.  
+[17:45:15] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Tu Nghi (tên nhân vật).                           
+[17:45:15] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Một cách đi có vẻ rất "ngầu" nhưng thực chất lại  
+[17:45:15] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn vẻ ngoài "điệu đà" của nó.              
+[17:45:15] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Nó thực sự rất nhút nhát.                         
+[17:45:15] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị giật mình, nó sẽ đứng im như tượng.        
+[17:45:15] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu bạn, Tang Nhược, gặp phải "kẻ giết chim" này  
+[17:45:15] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | bạn sẽ không thể cưỡng lại việc nhấn còi.         
+[17:45:15] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Điều đó sẽ giống như một bức tranh "bức tranh nă  
+[17:45:15] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mất đi lý trí.                                    
+[17:45:15] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi người hai con (ám chỉ sự bốc đồng).           
+[17:45:15] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Bạn đừng nghĩ đến chuyện đó nữa.                  
+[17:45:15] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là:                            
+[17:45:15] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Trước tiên, hãy tắt động cơ.                      
+[17:45:15] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Sau đó, bật nhạc nền.                             
+[17:45:15] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách làm này...                                   
+[17:45:15] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Ngay cả những người Nhật Bản am hiểu về chim cũn  
+[17:45:15] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Thực ra, cách đi của Tu Nghi là hoàn toàn bình t  
+[17:45:15] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Nó chỉ là do nó thích bắt chước mọi thứ ở phía s  
+[17:45:15] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Và điều đó dẫn đến việc nó lớn lên và có một dán  
+[17:45:15] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Tại sao "gà" lại đi như vậy?                      
+[17:45:15] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Theo những nghiên cứu "không đáng tin cậy" của t  
+[17:45:15] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Tu Nghi sống ở một vùng đất ngập nước.            
+[17:45:15] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Do môi trường thay đổi đột ngột,                  
+[17:45:15] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | nó rất dễ bị trúng bẫy.                           
+[17:45:15] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Vì vậy, nó sử dụng cách đi "bước một, ba chân" đ  
+[17:45:15] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Đồng thời, cách đi này                            
+[17:45:15] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | cũng giúp nó phát hiện ra những điều tốt đẹp hơn  
+[17:45:15] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Bằng cách nhấn liên tục và tạo ra những rung độn  
+[17:45:15] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | nó có thể phát hiện ra những thứ ẩn giấu.         
+[17:45:15] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Sau đó, nó sẽ sử dụng cái "mồm" của mình (ám chỉ  
+[17:45:15] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Tuy nhiên, cách đi này rất chậm.                  
+[17:45:15] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Và nó bay rất chậm.                               
+[17:45:15] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Nó được mệnh danh là loài chim có tốc độ bay chậ  
+[17:45:15] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Tốc độ của nó chỉ là... (giá trị rất nhỏ).        
+[17:45:15] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Không trách sao nó lại được xếp vào danh sách bả  
+[17:45:15] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Thật là một "người bạn thân thiết của cỏ dại, gầ  
+[17:45:15] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | "Zhen Ji Ba Cai" (một câu nói đùa, ám chỉ sự kỳ   
+[17:45:15] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Cuối cùng, tiếng kêu của loài chim này            
+[17:45:15] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | cũng rất độc đáo.                                 
+[17:45:15] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Không tin à? Hãy nghe xem.                        
+[17:45:15] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Xin lỗi, tôi đã phát nhầm.                        
+[17:45:15] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Hãy nghe lại một lần nữa.                         
+[17:45:15] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | 再听一遍                                              
+[17:45:15] [INFO] ========================================================================================================================
+
+[17:45:15] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[17:45:15] [INFO]   ↳ Đang tạo voice cho Vietnamese...
+[17:45:15] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:16] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:16] [INFO]   ✅ Voice đoạn 0 OK
+[17:45:16] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:17] [INFO]   ✅ Voice đoạn 1 OK
+[17:45:17] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:17] [INFO]   ✅ Voice đoạn 2 OK
+[17:45:17] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:17] [INFO]   ✅ Voice đoạn 3 OK
+[17:45:17] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:17] [INFO]   ✅ Voice đoạn 4 OK
+[17:45:17] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:17] [INFO]   ✅ Voice đoạn 5 OK
+[17:45:17] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:18] [INFO]   ✅ Voice đoạn 6 OK
+[17:45:18] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:18] [INFO]   ✅ Voice đoạn 7 OK
+[17:45:18] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:18] [INFO]   ✅ Voice đoạn 8 OK
+[17:45:18] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:18] [INFO]   ✅ Voice đoạn 9 OK
+[17:45:18] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:18] [INFO]   ✅ Voice đoạn 10 OK
+[17:45:18] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:19] [INFO]   ✅ Voice đoạn 11 OK
+[17:45:19] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:19] [INFO]   ✅ Voice đoạn 12 OK
+[17:45:19] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:19] [INFO]   ✅ Voice đoạn 13 OK
+[17:45:19] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:19] [INFO]   ✅ Voice đoạn 14 OK
+[17:45:19] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:19] [INFO]   ✅ Voice đoạn 15 OK
+[17:45:19] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:20] [INFO]   ✅ Voice đoạn 16 OK
+[17:45:20] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:20] [INFO]   ✅ Voice đoạn 17 OK
+[17:45:20] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:20] [INFO]   ✅ Voice đoạn 18 OK
+[17:45:20] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:20] [INFO]   ✅ Voice đoạn 19 OK
+[17:45:20] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:20] [INFO]   ✅ Voice đoạn 20 OK
+[17:45:20] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:21] [INFO]   ✅ Voice đoạn 21 OK
+[17:45:21] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:21] [INFO]   ✅ Voice đoạn 22 OK
+[17:45:21] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:21] [INFO]   ✅ Voice đoạn 23 OK
+[17:45:21] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:21] [INFO]   ✅ Voice đoạn 24 OK
+[17:45:21] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:21] [INFO]   ✅ Voice đoạn 25 OK
+[17:45:21] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:21] [INFO]   ✅ Voice đoạn 26 OK
+[17:45:21] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:22] [INFO]   ✅ Voice đoạn 27 OK
+[17:45:22] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:22] [INFO]   ✅ Voice đoạn 28 OK
+[17:45:22] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:22] [INFO]   ✅ Voice đoạn 29 OK
+[17:45:22] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:22] [INFO]   ✅ Voice đoạn 30 OK
+[17:45:22] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:22] [INFO]   ✅ Voice đoạn 31 OK
+[17:45:22] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:22] [INFO]   ✅ Voice đoạn 32 OK
+[17:45:22] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:23] [INFO]   ✅ Voice đoạn 33 OK
+[17:45:23] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:23] [INFO]   ✅ Voice đoạn 34 OK
+[17:45:23] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:23] [INFO]   ✅ Voice đoạn 35 OK
+[17:45:23] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:23] [INFO]   ✅ Voice đoạn 36 OK
+[17:45:23] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:23] [INFO]   ✅ Voice đoạn 37 OK
+[17:45:23] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:23] [INFO]   ✅ Voice đoạn 38 OK
+[17:45:23] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:24] [INFO]   ✅ Voice đoạn 39 OK
+[17:45:24] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:24] [INFO]   ✅ Voice đoạn 40 OK
+[17:45:24] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:24] [INFO]   ✅ Voice đoạn 41 OK
+[17:45:24] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:24] [INFO]   ✅ Voice đoạn 42 OK
+[17:45:24] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:24] [INFO]   ✅ Voice đoạn 43 OK
+[17:45:24] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:45:24] [INFO]   ✅ Voice đoạn 44 OK
+[17:45:24] [ERROR]   [!] TTS model chưa được khởi tạo
+[17:45:25] [WARNING]   [!] TTS lỗi đoạn 45 (bỏ qua)
+[17:45:25] [INFO]   ↳ Đang tách nhạc nền bằng Demucs...
+[17:45:25] [INFO]   ↳ Demucs đang chạy trên **CPU** (CPU)
+[17:46:28] [WARNING] Demucs trả về lỗi: 
+  0%|                                                                                  | 0.0/117.0 [00:00<?, ?seconds/s]
+  5%|###6                                                                     | 5.85/117.0 [00:05<01:40,  1.11seconds/s]
+ 10%|#######3                                                                 | 11.7/117.0 [00:08<01:07,  1.55seconds/s]
+ 15%|########8                      
+[17:46:28] [INFO] ⚠️ Chuyển sang filter FFmpeg thay thế
+[17:46:28] [INFO]   ↳ Mix âm thanh: AI=120%, Nhạc nền=97%, Gốc=5%
+[17:46:28] [ERROR] Lỗi Render cuối: 100
+[AVFilterGraph @ 0000026ec3c45700] More input link labels specified for filter 'volume' than it has inputs: 2 > 1
+[AVFilterGraph @ 0000026ec3c45700] Error linking filters
+Error : Invalid argument
+
+[17:46:28] [INFO] ======================================================================
+[17:46:28] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[17:46:28] [INFO] 🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!
+[17:56:15] [INFO] ✅ Đã login Hugging Face với HF_TOKEN
+[17:56:15] [INFO] ==================================================
+[17:56:15] [INFO] HỆ THỐNG AI VIDEO TRANSLATOR PRO 2026 ĐÃ KHỞI ĐỘNG
+[17:56:16] [INFO] Đã xác thực mã thiết bị: 7BA666EB09774C6CF386
+[17:56:16] [INFO] ✅ MainWindow đã khởi tạo thành công.
+[17:56:17] [INFO] Cửa sổ chính đã hiển thị thành công.
+[17:56:25] [INFO] Đã chọn file: chim cook.mp4
+[17:56:29] [INFO] Đã chọn thư mục đầu ra: E:/Test
+[17:56:42] [INFO] 💾 Đã lưu cấu hình: GEMINI - Model: 
+[17:56:46] [INFO] 💾 Đã lưu cấu hình: GEMINI - Model: 
+[17:56:58] [INFO] ✅ Đã kết nối Ollama Local. Tìm thấy 6 models.
+[17:57:02] [INFO] 💾 Đã lưu cấu hình: OLLAMA - Model: qwen2.5:14b
+[17:57:08] [INFO] 🔄 Đang khởi tạo VieNeu-TTS...
+[17:57:08] [ERROR] ❌ Không tìm thấy thư viện vienneu_tts / vieneu
+[17:57:08] [ERROR]    → Hãy chạy lệnh: pip install vienneu-tts
+[17:57:08] [INFO] ======================================================================
+[17:57:08] [INFO] 🚀 BẮT ĐẦU XỬ LÝ 1 VIDEO
+[17:57:08] [INFO] 🚀 Khởi động dubbing: 1 video
+[17:57:08] [INFO] ▶️ ĐANG XỬ LÝ [1/1]: chim cook.mp4
+[17:57:08] [INFO]   ↳ [AI] Whisper đang bóc tách kịch bản gốc...
+[17:57:24] [INFO]   ↳ Đang dịch sang Vietnamese...
+[17:57:24] [INFO]   ↳ [AI] Đang dịch bằng Ollama Local (Model: qwen2.5:14b)...
+[17:58:17] [INFO] 
+========================================================================================================================
+[17:58:17] [INFO] 📋 BẢNG SO SÁNH SRT - VIDEO 1
+[17:58:17] [INFO] STT  THỜI GIAN                 NỘI DUNG GỐC                                       | NỘI DUNG ĐÃ DỊCH                                  
+[17:58:17] [INFO] ------------------------------------------------------------------------------------------------------------------------
+[17:58:17] [INFO] 0    00:00:00,000 → 00:00:02,000 这是一支搜棄的灵魂无鸟                                        | Đây là một linh hồn bị truy lùng không có chim.   
+[17:58:17] [INFO] 0    00:00:06,320 → 00:00:08,519 一步三鸟 鸟中最长                                          | Một bước ba con chim, dài nhất trong số các con   
+[17:58:17] [INFO] 0    00:00:08,519 → 00:00:11,000 这边是国家二级保护小废物                                       | Phía này là loài động vật nhỏ vô dụng được bảo v  
+[17:58:17] [INFO] 0    00:00:11,000 → 00:00:12,040 修御                                                 | Ruxu                                              
+[17:58:17] [INFO] 0    00:00:12,040 → 00:00:14,400 一种走路自带逼之样的杀鸟                                       | Cách đi đường tựa như mang theo áp lực chết ngườ  
+[17:58:17] [INFO] 0    00:00:18,960 → 00:00:20,480 别看它走路调调的                                           | Đừng nhìn nó điệu đà.                             
+[17:58:17] [INFO] 0    00:00:20,480 → 00:00:21,719 胆子却很小                                              | Máu liều lại rất thấp.                            
+[17:58:17] [INFO] 0    00:00:21,719 → 00:00:24,160 一旦受到惊吓 变回一动不动                                      | Khi bị bất ngờ, nó sẽ ngay lập tức đứng im.       
+[17:58:17] [INFO] 0    00:00:24,160 → 00:00:26,440 唐若你在马步上碰到这杀鸟                                       | Nếu bạn gặp con chim này khi đang ở thế võ,       
+[17:58:17] [INFO] 0    00:00:26,440 → 00:00:27,839 忍不住按得下喇叭                                           | Rất khó để không ấn còi xe của mình.              
+[17:58:17] [INFO] 0    00:00:28,719 → 00:00:30,440 那简直是五则天首画                                          | Đây thực sự là một cảnh tượng đáng kinh ngạc.     
+[17:58:17] [INFO] 0    00:00:30,440 → 00:00:31,640 失去的理智                                              | Mất kiểm soát hoàn toàn.                          
+[17:58:17] [INFO] 0    00:00:31,640 → 00:00:32,920 每个两昆半                                              | Mỗi hai mét rưỡi.                                 
+[17:58:17] [INFO] 0    00:00:32,920 → 00:00:34,200 你是别想过去了                                            | Bạn đừng nghĩ rằng bạn có thể tiếp tục đi qua.    
+[17:58:17] [INFO] 0    00:00:35,039 → 00:00:36,000 我的建议是                                              | Lời khuyên của tôi là,                            
+[17:58:17] [INFO] 0    00:00:36,000 → 00:00:37,320 先关闭引擎                                              | Tắt máy trước,                                    
+[17:58:17] [INFO] 0    00:00:37,320 → 00:00:38,719 然后打开BGM                                            | Rồi mở nhạc nền lên.                              
+[17:58:17] [INFO] 0    00:00:46,920 → 00:00:47,840 这图法                                                | Cách này đây.                                     
+[17:58:17] [INFO] 0    00:00:47,840 → 00:00:49,079 日本花肥看了                                             | Một khi nhìn thấy bức hình này, người Nhật đều k  
+[17:58:17] [INFO] 0    00:00:49,079 → 00:00:50,320 都直呼内行                                              | Ai cũng phải thốt lên rằng "đúng rồi".            
+[17:58:17] [INFO] 0    00:00:53,920 → 00:00:56,760 其实又在时期的秋雨走路是正常的                                    | Thực ra đi bộ trong mưa thu là điều bình thường,  
+[17:58:17] [INFO] 0    00:00:56,759 → 00:00:59,320 只因喜欢跟在鸡巴后里有样学样                                     | Rất thích đi sau con chim cút,                    
+[17:58:17] [INFO] 0    00:00:59,320 → 00:01:02,280 导致长大后变机成了这骚气的步伐                                    | Khi lớn lên đã trở thành bước đi quái gở này.     
+[17:58:17] [INFO] 0    00:01:02,280 → 00:01:04,239 只与鸡巴为什么这样走路                                        | Một số người hỏi tại sao con chim lại đi như vậy  
+[17:58:17] [INFO] 0    00:01:04,239 → 00:01:06,239 据我不可靠研究发现                                          | Theo nghiên cứu không đáng tin của tôi,           
+[17:58:17] [INFO] 0    00:01:06,239 → 00:01:08,480 修御生活在湿地角色地带                                        | Ruxu sống ở vùng đất ẩm ướt,                      
+[17:58:17] [INFO] 0    00:01:08,480 → 00:01:10,599 由于这种环境突然松转                                         | Do môi trường đột ngột thay đổi,                  
+[17:58:17] [INFO] 0    00:01:10,599 → 00:01:11,840 容易陷阱一中                                             | Rất dễ bị mắc bẫy.                                
+[17:58:17] [INFO] 0    00:01:11,840 → 00:01:15,039 因此会通过一步三鸟的步伐反复试谈                                   | Vì vậy, nó sẽ đi bằng cách một bước ba con chim   
+[17:58:17] [INFO] 0    00:01:15,039 → 00:01:16,200 同时这种步伐                                             | Bước đi này cũng giúp chúng cảm nhận rung động c  
+[17:58:17] [INFO] 0    00:01:16,200 → 00:01:18,159 也有助于他们更好的补试                                        | Một cách tốt hơn để tìm thức ăn.                  
+[17:58:17] [INFO] 0    00:01:18,159 → 00:01:19,920 通过反复按压突然                                           | Qua việc nhấn liên tục,                           
+[17:58:17] [INFO] 0    00:01:19,920 → 00:01:22,359 时期震动将令我虚感出来                                        | Rung động từ môi trường sẽ khiến nó cảm thấy đượ  
+[17:58:17] [INFO] 0    00:01:22,359 → 00:01:25,319 然后再用行词逆字的嘴巴加住利用                                    | Rồi sử dụng miệng rộng mở để nắm bắt thông tin.   
+[17:58:17] [INFO] 0    00:01:25,320 → 00:01:27,040 然而这祸步伐走慢                                           | Tuy nhiên, bước đi này chậm chạp,                 
+[17:58:17] [INFO] 0    00:01:27,040 → 00:01:28,240 飞得也特别慢                                             | Cũng làm cho chúng bay rất chậm.                  
+[17:58:17] [INFO] 0    00:01:28,240 → 00:01:31,000 号称世界上飞行速度最慢的鸟                                      | Nổi tiếng là loài chim bay chậm nhất thế giới.    
+[17:58:17] [INFO] 0    00:01:31,000 → 00:01:33,840 时速和他惊认的八公滴微小时                                      | Vận tốc chỉ bằng 80 mét mỗi giờ.                  
+[17:58:17] [INFO] 0    00:01:33,840 → 00:01:36,160 难怪被立为国家保护动物                                        | Điều này giải thích tại sao nó được bảo vệ như m  
+[17:58:17] [INFO] 0    00:01:36,160 → 00:01:38,320 真是草皮的老婆近菜园                                         | Thật đáng thương cho những con chim ở gần khu vư  
+[17:58:17] [INFO] 0    00:01:38,320 → 00:01:39,600 震击巴彩                                               | Một cú sốc mạnh mẽ,                               
+[17:58:17] [INFO] 0    00:01:39,600 → 00:01:41,120 最后这祸的叫声                                            | Rốt cuộc, tiếng kêu của chúng cũng rất đặc biệt.  
+[17:58:17] [INFO] 0    00:01:41,120 → 00:01:42,440 也是十分独特                                             | Rất độc đáo.                                      
+[17:58:17] [INFO] 0    00:01:42,440 → 00:01:43,320 不信你听                                               | Hãy nghe xem,                                     
+[17:58:17] [INFO] 0    00:01:44,320 → 00:01:45,680 不好意思放错了                                            | Rất tiếc tôi đã phát nhầm file rồi.               
+[17:58:17] [INFO] 0    00:01:45,680 → 00:01:46,640 再听一遍                                               | Nghe lại một lần nữa.                             
+[17:58:17] [INFO] ========================================================================================================================
+
+[17:58:17] [INFO] 💾 ĐÃ LƯU SRT ĐÃ DỊCH: chim cook_translated.srt
+[17:58:17] [INFO]   ↳ Đang tạo voice cho Vietnamese...
+[17:58:17] [ERROR]   [!] TTS model chưa load được
+[17:58:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:17] [ERROR]   [!] TTS model chưa load được
+[17:58:17] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:17] [ERROR]   [!] TTS model chưa load được
+[17:58:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:18] [ERROR]   [!] TTS model chưa load được
+[17:58:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:18] [ERROR]   [!] TTS model chưa load được
+[17:58:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:18] [ERROR]   [!] TTS model chưa load được
+[17:58:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:18] [ERROR]   [!] TTS model chưa load được
+[17:58:18] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:18] [ERROR]   [!] TTS model chưa load được
+[17:58:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:19] [ERROR]   [!] TTS model chưa load được
+[17:58:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:19] [ERROR]   [!] TTS model chưa load được
+[17:58:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:19] [ERROR]   [!] TTS model chưa load được
+[17:58:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:19] [ERROR]   [!] TTS model chưa load được
+[17:58:19] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:19] [ERROR]   [!] TTS model chưa load được
+[17:58:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:20] [ERROR]   [!] TTS model chưa load được
+[17:58:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:20] [ERROR]   [!] TTS model chưa load được
+[17:58:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:20] [ERROR]   [!] TTS model chưa load được
+[17:58:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:20] [ERROR]   [!] TTS model chưa load được
+[17:58:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:20] [ERROR]   [!] TTS model chưa load được
+[17:58:20] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:20] [ERROR]   [!] TTS model chưa load được
+[17:58:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:21] [ERROR]   [!] TTS model chưa load được
+[17:58:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:21] [ERROR]   [!] TTS model chưa load được
+[17:58:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:21] [ERROR]   [!] TTS model chưa load được
+[17:58:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:21] [ERROR]   [!] TTS model chưa load được
+[17:58:21] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:21] [ERROR]   [!] TTS model chưa load được
+[17:58:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:22] [ERROR]   [!] TTS model chưa load được
+[17:58:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:22] [ERROR]   [!] TTS model chưa load được
+[17:58:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:22] [ERROR]   [!] TTS model chưa load được
+[17:58:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:22] [ERROR]   [!] TTS model chưa load được
+[17:58:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:22] [ERROR]   [!] TTS model chưa load được
+[17:58:22] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:22] [ERROR]   [!] TTS model chưa load được
+[17:58:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:23] [ERROR]   [!] TTS model chưa load được
+[17:58:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:23] [ERROR]   [!] TTS model chưa load được
+[17:58:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:23] [ERROR]   [!] TTS model chưa load được
+[17:58:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:23] [ERROR]   [!] TTS model chưa load được
+[17:58:23] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:23] [ERROR]   [!] TTS model chưa load được
+[17:58:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:24] [ERROR]   [!] TTS model chưa load được
+[17:58:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:24] [ERROR]   [!] TTS model chưa load được
+[17:58:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:24] [ERROR]   [!] TTS model chưa load được
+[17:58:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:24] [ERROR]   [!] TTS model chưa load được
+[17:58:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:24] [ERROR]   [!] TTS model chưa load được
+[17:58:24] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:25] [ERROR]   [!] TTS model chưa load được
+[17:58:25] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:25] [ERROR]   [!] TTS model chưa load được
+[17:58:25] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:25] [ERROR]   [!] TTS model chưa load được
+[17:58:25] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:25] [ERROR]   [!] TTS model chưa load được
+[17:58:25] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:25] [ERROR]   [!] TTS model chưa load được
+[17:58:25] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:25] [ERROR]   [!] TTS model chưa load được
+[17:58:26] [INFO]   ✅ Fallback pyttsx3 thành công
+[17:58:26] [INFO]   ↳ Đang tách nhạc nền bằng Demucs...
+[17:58:26] [INFO]   ↳ Demucs đang chạy trên **CPU** (CPU)
+[17:59:31] [WARNING] Demucs lỗi: 
+  0%|                                                                                  | 0.0/117.0 [00:00<?, ?seconds/s]
+  5%|###6                                                                     | 5.85/117.0 [00:04<01:31,  1.21seconds/s]
+ 10%|#######3                                                                 | 11.7/117.0 [00:07<01:03,  1.65seconds/s]
+ 15%|########8                      
+[17:59:31] [INFO] ⚠️ Chuyển sang filter FFmpeg thay thế
+[17:59:31] [INFO]   ↳ Mix âm thanh: AI=150%, Nhạc nền=116%, Gốc=5%
+[17:59:31] [ERROR] Lỗi Render cuối: 100
+[AVFilterGraph @ 000001f0a7105700] More input link labels specified for filter 'volume' than it has inputs: 2 > 1
+[AVFilterGraph @ 000001f0a7105700] Error linking filters
+Error : Invalid argument
+
+[17:59:31] [INFO] ======================================================================
+[17:59:31] [INFO] 🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!
+[17:59:31] [INFO] 🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!
+[19:42:32] [INFO] 🔄 Đang load VieNeu-TTS...
+[19:42:37] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[19:42:37] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[19:45:00] [INFO] 🔄 Đang load VieNeu-TTS...
+[19:45:03] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[19:45:03] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[19:51:01] [INFO] 🔄 Đang load VieNeu-TTS...
+[19:51:04] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[19:51:04] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[19:57:44] [INFO] 🔄 Đang load VieNeu-TTS...
+[19:57:47] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[19:57:47] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[19:58:25] [INFO] 🔄 Đang load VieNeu-TTS...
+[19:58:27] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[19:58:27] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:00:40] [INFO] 🔄 Đang load VieNeu-TTS...
+[20:00:43] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:00:43] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:01:09] [INFO] 🔄 Đang load VieNeu-TTS...
+[20:01:11] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:01:11] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:48] [INFO] 🔄 Đang load VieNeu-TTS...
+[20:07:51] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:07:51] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:51] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:51] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:52] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:52] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:52] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:07:52] [ERROR]   [!] Lỗi VieNeu-TTS: 'TurboVieNeuTTS' object has no attribute 'synthesize'
+[20:15:27] [INFO] 🔄 Đang load VieNeu-TTS...
+[20:15:31] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:17:58] [INFO] 🔄 Đang load VieNeu-TTS...
+[20:18:02] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:19:12] [INFO] 🔄 Đang load VieNeu-TTS...
+[20:19:16] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:20:00] [INFO] 🔄 Đang khởi tạo VieNeu-TTS...
+[20:20:04] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:20:04] [INFO] ✅ Đã load 4 preset voices: ['Bích Ngọc (Nữ - Miền Bắc)', 'Phạm Tuyên (Nam - Miền Bắc)', 'Thục Đoan (Nữ - Miền Nam)', 'Xuân Vĩnh (Nam - Miền Nam)']
+[20:20:04] [INFO]   🎙️ Dung preset: Bích Ngọc (Nữ - Miền Bắc)
+[20:20:05] [INFO]   ✅ TTS OK [Bích Ngọc (Nữ - Miền Bắc)] -> preset_Bích Ngọc (Nữ - Miền Bắc).wav
+[20:20:05] [INFO]   🎙️ Dung preset: Phạm Tuyên (Nam - Miền Bắc)
+[20:20:07] [INFO]   ✅ TTS OK [Phạm Tuyên (Nam - Miền Bắc)] -> preset_Phạm Tuyên (Nam - Miền Bắc).wav
+[20:20:07] [INFO]   🎙️ Dung preset: Thục Đoan (Nữ - Miền Nam)
+[20:20:08] [INFO]   ✅ TTS OK [Thục Đoan (Nữ - Miền Nam)] -> preset_Thục Đoan (Nữ - Miền Nam).wav
+[20:20:08] [INFO]   🎙️ Dung preset: Xuân Vĩnh (Nam - Miền Nam)
+[20:20:09] [INFO]   ✅ TTS OK [Xuân Vĩnh (Nam - Miền Nam)] -> preset_Xuân Vĩnh (Nam - Miền Nam).wav
+[20:20:09] [INFO]   🎙️ Clone voice tu: sample.wav
+[20:20:34] [INFO]   ✅ TTS OK [sample.wav] -> clone_short.wav
+[20:20:34] [INFO]   🎙️ Clone voice tu: sample.wav
+[20:20:38] [INFO]   ✅ TTS OK [sample.wav] -> clone_medium.wav
+[20:20:38] [WARNING] ⚠️ VieNeu model khong kha dung -> fallback pyttsx3
+[20:20:38] [INFO]   ✅ Fallback pyttsx3 OK -> fallback_pyttsx3.wav
+[20:20:39] [INFO]   ✅ TTS OK [sample.wav] -> edge_no_voice.wav
+[20:20:39] [WARNING]   ⚠️ Khong nhan dien voice 'id_sai_xyz' -> dung default
+[20:20:40] [INFO]   ✅ TTS OK [sample.wav] -> edge_bad_id.wav
+[20:23:03] [INFO] 🔄 Đang khởi tạo VieNeu-TTS...
+[20:23:07] [INFO] ✅ VieNeu-TTS load thành công trên CUDA
+[20:23:07] [INFO] ✅ Đã load 4 preset voices: ['Bích Ngọc (Nữ - Miền Bắc)', 'Phạm Tuyên (Nam - Miền Bắc)', 'Thục Đoan (Nữ - Miền Nam)', 'Xuân Vĩnh (Nam - Miền Nam)']
+[20:23:07] [INFO]   🎙️ Dung preset: Bích Ngọc (Nữ - Miền Bắc)
+[20:23:08] [INFO]   ✅ TTS OK [Bích Ngọc (Nữ - Miền Bắc)] -> preset_Bích Ngọc (Nữ - Miền Bắc).wav
+[20:23:08] [INFO]   🎙️ Dung preset: Phạm Tuyên (Nam - Miền Bắc)
+[20:23:09] [INFO]   ✅ TTS OK [Phạm Tuyên (Nam - Miền Bắc)] -> preset_Phạm Tuyên (Nam - Miền Bắc).wav
+[20:23:09] [INFO]   🎙️ Dung preset: Thục Đoan (Nữ - Miền Nam)
+[20:23:10] [INFO]   ✅ TTS OK [Thục Đoan (Nữ - Miền Nam)] -> preset_Thục Đoan (Nữ - Miền Nam).wav
+[20:23:10] [INFO]   🎙️ Dung preset: Xuân Vĩnh (Nam - Miền Nam)
+[20:23:11] [INFO]   ✅ TTS OK [Xuân Vĩnh (Nam - Miền Nam)] -> preset_Xuân Vĩnh (Nam - Miền Nam).wav
+[20:23:11] [INFO]   🎙️ Clone voice tu: sample.wav
+[20:23:17] [INFO]   ✅ TTS OK [sample.wav] -> clone_short.wav
+[20:23:17] [INFO]   🎙️ Clone voice tu: sample.wav
+[20:23:21] [INFO]   ✅ TTS OK [sample.wav] -> clone_medium.wav
+[20:23:21] [WARNING] ⚠️ VieNeu model khong kha dung -> fallback pyttsx3
+[20:23:21] [INFO]   ✅ Fallback pyttsx3 OK -> fallback_pyttsx3.wav
+[20:23:22] [INFO]   ✅ TTS OK [sample.wav] -> edge_no_voice.wav
+[20:23:22] [WARNING]   ⚠️ Khong nhan dien voice 'id_sai_xyz' -> dung default
+[20:23:24] [INFO]   ✅ TTS OK [sample.wav] -> edge_bad_id.wav

@@ -1,0 +1,5 @@
+{
+  "ai_platform": "ollama",
+  "default_model": "qwen2.5:14b",
+  "target_lang": "Vietnamese"
+}
