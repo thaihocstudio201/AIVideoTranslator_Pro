@@ -1,0 +1,340 @@
+{
+  "video_path": "E:\\Test\\chim cook.mp4",
+  "out_dir": "E:\\Test",
+  "stage": "tts_done",
+  "segments": [
+    {
+      "id": 1,
+      "start": 0.0,
+      "end": 2.04,
+      "text": "Đây là linh hồn lạc loài không có chim nào cả",
+      "original_text": "这是一只搜棄的灵魂无鸟"
+    },
+    {
+      "id": 2,
+      "start": 2.8,
+      "end": 8.48,
+      "text": "Mỗi bước đi đều có chim theo, chim trong đám đông ồn ào nhất",
+      "original_text": "一步三鸟 鸟中最吵"
+    },
+    {
+      "id": 3,
+      "start": 8.68,
+      "end": 10.88,
+      "text": "Đó chính là con废物(đồ vô dụng) được bảo vệ cấp hai của quốc gia",
+      "original_text": "这便是国家二级保护小废物"
+    },
+    {
+      "id": 4,
+      "start": 11.08,
+      "end": 11.72,
+      "text": "Sửa Yù",
+      "original_text": "修御"
+    },
+    {
+      "id": 5,
+      "start": 12.2,
+      "end": 14.32,
+      "text": "Một kiểu đi đường tự mang khí chất đáng sợ, khiến người khác phải né tránh",
+      "original_text": "一种走路自带逼之样的杀鸟"
+    },
+    {
+      "id": 6,
+      "start": 18.98,
+      "end": 20.3,
+      "text": "Đừng nhìn nó đi bộ trông đĩnh đạc vậy",
+      "original_text": "别看它走路调调的"
+    },
+    {
+      "id": 7,
+      "start": 20.54,
+      "end": 21.54,
+      "text": "Màu gan lại rất nhỏ",
+      "original_text": "胆子却很小"
+    },
+    {
+      "id": 8,
+      "start": 21.78,
+      "end": 24.02,
+      "text": "Rất dễ bị hù dọa và sẽ bất động ngay lập tức",
+      "original_text": "一旦受到惊吓 变回一动不动"
+    },
+    {
+      "id": 9,
+      "start": 24.33,
+      "end": 26.33,
+      "text": "Nếu Tang Ru của chúng ta gặp con chim này khi đang ở tư thế đứng vững",
+      "original_text": "唐若你在马步上碰到这杀鸟"
+    },
+    {
+      "id": 10,
+      "start": 26.53,
+      "end": 27.77,
+      "text": "Không kiềm chế được việc không muốn chạm vào nó",
+      "original_text": "忍不住按得下拿吧"
+    },
+    {
+      "id": 11,
+      "start": 28.66,
+      "end": 30.3,
+      "text": "Đó thực sự là một cảnh tượng đáng kinh ngạc",
+      "original_text": "那简直是五则天首划"
+    },
+    {
+      "id": 12,
+      "start": 30.5,
+      "end": 31.46,
+      "text": "Rời bỏ lý trí",
+      "original_text": "失去了理智"
+    },
+    {
+      "id": 13,
+      "start": 31.7,
+      "end": 32.7,
+      "text": "Mỗi hai lần thở nửa lần",
+      "original_text": "每个两昆半"
+    },
+    {
+      "id": 14,
+      "start": 32.9,
+      "end": 34.02,
+      "text": "Ngươi đừng mong qua khỏi chỗ này",
+      "original_text": "你是别想过去了"
+    },
+    {
+      "id": 15,
+      "start": 35.06,
+      "end": 37.1,
+      "text": "Lời khuyên của tôi là tắt máy trước đã",
+      "original_text": "我的建议是先关闭引擎"
+    },
+    {
+      "id": 16,
+      "start": 37.3,
+      "end": 38.58,
+      "text": "Rồi mở ra khí chất đáng sợ đó",
+      "original_text": "然后打开逼之样"
+    },
+    {
+      "id": 17,
+      "start": 46.92,
+      "end": 47.52,
+      "text": "Phương pháp này thật hay",
+      "original_text": "这图法"
+    },
+    {
+      "id": 18,
+      "start": 47.8,
+      "end": 48.96,
+      "text": "Nhật Bản chi tiền để xem",
+      "original_text": "日本花费看了"
+    },
+    {
+      "id": 19,
+      "start": 49.16,
+      "end": 50.16,
+      "text": "Cả đám đều khen ngợi không ngớt",
+      "original_text": "都直呼内行"
+    },
+    {
+      "id": 20,
+      "start": 53.9,
+      "end": 56.66,
+      "text": "Thực tế, việc Sửa Yù đi bộ như vậy là bình thường trong thời kỳ đó",
+      "original_text": "其实又在时期的修御走路是正常的"
+    },
+    {
+      "id": 21,
+      "start": 56.86,
+      "end": 59.18,
+      "text": "Một phần vì thích theo sau đằng sau con chim cái và bắt chước nó",
+      "original_text": "只因喜欢跟在鸡巴后面有样学样"
+    },
+    {
+      "id": 22,
+      "start": 59.38,
+      "end": 61.94,
+      "text": "Rốt cuộc lớn lên thành người có bước đi tinh nghịch như thế này",
+      "original_text": "导致长大后边机成了这骚气的步伐"
+    },
+    {
+      "id": 23,
+      "start": 62.34,
+      "end": 63.94,
+      "text": "Vì sao Sửa Yù lại đi bộ như vậy?",
+      "original_text": "只与鸡巴为什么这样走路"
+    },
+    {
+      "id": 24,
+      "start": 64.26,
+      "end": 65.94,
+      "text": "Theo nghiên cứu của tôi không đáng tin cậy",
+      "original_text": "据我不可靠研究发现"
+    },
+    {
+      "id": 25,
+      "start": 66.26,
+      "end": 68.3,
+      "text": "Sửa Yù sống trong vùng đất nhiều xác chết",
+      "original_text": "修御生活在尸体角色地带"
+    },
+    {
+      "id": 26,
+      "start": 68.5,
+      "end": 70.38,
+      "text": "Do môi trường như vậy, cảm giác dễ chìm vào bùn lầy",
+      "original_text": "由于这种环境图长松感"
+    },
+    {
+      "id": 27,
+      "start": 70.62,
+      "end": 71.58,
+      "text": "Rất dễ bị陷进泥中(vướng vào bùn)",
+      "original_text": "容易陷入泥中"
+    },
+    {
+      "id": 28,
+      "start": 71.86,
+      "end": 74.66,
+      "text": "Vì thế thường đi bộ một bước có ba con chim theo để thử lại",
+      "original_text": "因此会通过一步三鸟的步伐反复试谈"
+    },
+    {
+      "id": 29,
+      "start": 75.06,
+      "end": 76.14,
+      "text": "Một kiểu đi bộ này",
+      "original_text": "同时这种步伐"
+    },
+    {
+      "id": 30,
+      "start": 76.34,
+      "end": 77.94,
+      "text": "Cũng giúp họ thích nghi và thử thách tốt hơn",
+      "original_text": "也有助于他们更好的补试"
+    },
+    {
+      "id": 31,
+      "start": 78.14,
+      "end": 79.7,
+      "text": "Bằng cách nhấn nút liên tục vào cái hình này",
+      "original_text": "通过反复按压图长"
+    },
+    {
+      "id": 32,
+      "start": 79.94,
+      "end": 82.14,
+      "text": "Một thời gian sau sẽ rung lên khiến tôi cảm thấy mình đang ảo giác ra",
+      "original_text": "时期震动将令我虚感出来"
+    },
+    {
+      "id": 33,
+      "start": 82.34,
+      "end": 84.9,
+      "text": "Rồi dùng miệng của đứa con gái để kẹp lấy nó",
+      "original_text": "然后再用形词粵子的嘴巴夹住粵"
+    },
+    {
+      "id": 34,
+      "start": 85.34,
+      "end": 86.94,
+      "text": "Nhưng lúc này không chỉ đi chậm",
+      "original_text": "然而这会儿不光走慢"
+    },
+    {
+      "id": 35,
+      "start": 87.14,
+      "end": 88.18,
+      "text": "mà bay cũng rất chậm",
+      "original_text": "飞的也特别慢"
+    },
+    {
+      "id": 36,
+      "start": 88.38,
+      "end": 90.7,
+      "text": "Đúng là chim bay chậm nhất trên thế giới",
+      "original_text": "好称世界上飞行速度最慢的鸟"
+    },
+    {
+      "id": 37,
+      "start": 91.1,
+      "end": 93.58,
+      "text": "Mang lại cảm giác như ăn chay và thần thức của chú chó Akita thời gian nhỏ nhắn",
+      "original_text": "食素和它精神的八公帝位小时"
+    },
+    {
+      "id": 38,
+      "start": 93.9,
+      "end": 95.86,
+      "text": "Không trách nổi được đặt làm động vật bảo vệ quốc gia",
+      "original_text": "难怪被立为国家保护动"
+    },
+    {
+      "id": 39,
+      "start": 96.22,
+      "end": 98.22,
+      "text": "Rất là vợ chồng cỏ cây gần vườn",
+      "original_text": "真是草皮的老婆近菜圆"
+    },
+    {
+      "id": 40,
+      "start": 98.42,
+      "end": 99.38,
+      "text": "Đúng là cái lồn",
+      "original_text": "正鸡巴菜"
+    },
+    {
+      "id": 41,
+      "start": 99.66,
+      "end": 102.34,
+      "text": "Cuối cùng, phần giáo dục lúc này cũng rất đặc biệt",
+      "original_text": "最后这会儿的教生也是十分独特"
+    },
+    {
+      "id": 42,
+      "start": 102.54,
+      "end": 103.3,
+      "text": "Anh không tin em nghe đi",
+      "original_text": "不信你听"
+    },
+    {
+      "id": 43,
+      "start": 103.34,
+      "end": 103.94,
+      "text": "Ồ",
+      "original_text": "惊"
+    },
+    {
+      "id": 44,
+      "start": 104.36,
+      "end": 105.56,
+      "text": "Xin lỗi nhầm rồi",
+      "original_text": "不好意思放错了"
+    },
+    {
+      "id": 45,
+      "start": 105.76,
+      "end": 106.52,
+      "text": "Rồi nghe lại một lần nữa",
+      "original_text": "再听一遍"
+    },
+    {
+      "id": 46,
+      "start": 107.32,
+      "end": 108.32,
+      "text": "Trời ơi",
+      "original_text": "我的天哪"
+    }
+  ],
+  "temp_files": {
+    "audio_goc": "E:\\Test\\temp_1_chim cook\\goc.wav",
+    "srt_orig": "E:\\Test\\temp_1_chim cook\\sub_orig.srt",
+    "srt_translated": "E:\\Test\\chim cook_translated.srt",
+    "audio_dub": "E:\\Test\\temp_1_chim cook\\dub_final.wav"
+  },
+  "error_count": 1,
+  "created_at": 1777132409.1330547,
+  "updated_at": 1777132531.730322,
+  "last_error": "Render thất bại",
+  "last_error_time": 1777132531.730322
+}

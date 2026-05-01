@@ -1,42 +1,78 @@
+"""
+custom_logger.py - Logger tích hợp với SystemConsole.
+Mọi log đều: (1) in ra terminal, (2) gửi tới Console widget qua Qt signal.
+"""
+
 import logging
-import os
+import sys
 from datetime import datetime
 
-class AppLogger:
-    """Quản lý việc ghi Log và xuất Log ra giao diện PyQt6"""
-    
-    def __init__(self, log_dir="temp"):
-        self.log_dir = log_dir
-        # Đảm bảo thư mục temp luôn tồn tại
-        os.makedirs(self.log_dir, exist_ok=True)
-        
-        self.logger = logging.getLogger("AITranslatorPro")
-        self.logger.setLevel(logging.DEBUG)
-        
-        # Định dạng dòng log: [14:30:05] [INFO] Nội dung...
-        formatter = logging.Formatter('[%(asctime)s] [%(levelname)s] %(message)s', datefmt='%H:%M:%S')
-        
-        # Xóa các handler cũ nếu có (tránh in log bị trùng lặp)
-        if self.logger.hasHandlers():
-            self.logger.handlers.clear()
-            
-        # Cấu hình lưu Log vào file (Để chạy tính năng Resume)
-        log_file = os.path.join(self.log_dir, f"session_{datetime.now().strftime('%Y%m%d')}.log")
-        file_handler = logging.FileHandler(log_file, encoding='utf-8')
-        file_handler.setFormatter(formatter)
-        self.logger.addHandler(file_handler)
 
-    def info(self, msg):
-        self.logger.info(msg)
-        # TODO: Sau này sẽ thêm code bắn tín hiệu (Signal) chữ Xanh Lá ra giao diện tại đây
+class QtConsoleHandler(logging.Handler):
+    """Handler gửi log tới SystemConsole widget qua Qt signal (thread-safe)."""
 
-    def warning(self, msg):
-        self.logger.warning(msg)
-        # TODO: Bắn tín hiệu chữ Vàng ra giao diện
+    def emit(self, record: logging.LogRecord):
+        try:
+            # Import lazy để tránh circular import
+            from ui.console_widget import log_bridge
+            level = record.levelname
+            msg = self.format(record)
+            log_bridge.new_log.emit(level, msg)
+        except Exception:
+            pass  # Không làm crash app nếu UI chưa init
 
-    def error(self, msg):
-        self.logger.error(msg)
-        # TODO: Bắn tín hiệu chữ Đỏ ra giao diện
 
-# Khởi tạo sẵn một đối tượng để các module khác import và dùng ngay
-sys_log = AppLogger()
+class SysLogger:
+    """Logger singleton cho toàn bộ ứng dụng."""
+
+    def __init__(self, name: str = "AIVideoTranslator"):
+        self._logger = logging.getLogger(name)
+        self._logger.setLevel(logging.DEBUG)
+
+        if not self._logger.handlers:
+            # Handler 1: Terminal — open fd directly as UTF-8 so Vietnamese/emoji
+            # don't crash on Windows cp125x consoles
+            import io
+            try:
+                safe_out = io.open(sys.stdout.fileno(), mode='w',
+                                   encoding='utf-8', errors='replace',
+                                   closefd=False)
+            except Exception:
+                safe_out = sys.stdout  # type: ignore[assignment]
+            stream_handler = logging.StreamHandler(safe_out)
+            stream_handler.setLevel(logging.DEBUG)
+            formatter = logging.Formatter(
+                "[%(asctime)s] [%(levelname)s] %(message)s",
+                datefmt="%H:%M:%S"
+            )
+            stream_handler.setFormatter(formatter)
+            self._logger.addHandler(stream_handler)
+
+            # Handler 2: Qt Console widget
+            qt_handler = QtConsoleHandler()
+            qt_handler.setLevel(logging.DEBUG)
+            qt_handler.setFormatter(formatter)
+            self._logger.addHandler(qt_handler)
+
+    def info(self, msg: str):
+        self._logger.info(msg)
+
+    def warning(self, msg: str):
+        self._logger.warning(msg)
+
+    def error(self, msg: str):
+        self._logger.error(msg)
+
+    def critical(self, msg: str):
+        self._logger.critical(msg)
+
+    def debug(self, msg: str):
+        self._logger.debug(msg)
+
+    def success(self, msg: str):
+        """Alias cho info với prefix ✅ để hiển thị màu cyan trong console."""
+        self._logger.info(f"✅ {msg}")
+
+
+# Singleton instance dùng toàn app
+sys_log = SysLogger()

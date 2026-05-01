@@ -1,5 +1,15 @@
 {
   "ai_platform": "ollama",
   "default_model": "qwen2.5:14b",
-  "target_lang": "Vietnamese"
+  "target_lang": "Vietnamese",
+  "source_lang": "Chinese",
+  "vol_ai": 120,
+  "vol_bg": 60,
+  "vol_orig": 15,
+  "use_advanced_separation": true,
+  "voice_profile": "vi-VN-HoaiMyNeural",
+  "api_keys": [],
+  "platform_keys": {
+    "ollama": []
+  }
 }
