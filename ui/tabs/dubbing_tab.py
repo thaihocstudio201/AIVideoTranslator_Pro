@@ -304,6 +304,13 @@ class DubbingTab(QWidget):
     # VOICE — LOAD ASYNC
     # ═══════════════════════════════════════════════════════════
     def _load_voices_async(self):
+        # Ngắt kết nối signal của thread cũ nếu vẫn còn chạy,
+        # tránh _on_voices_loaded bị gọi 2 lần khi user bấm Reload nhanh.
+        if hasattr(self, '_voice_loader'):
+            try:
+                self._voice_loader.done.disconnect()
+            except RuntimeError:
+                pass
         self.cb_voice_model.clear()
         self.cb_voice_model.addItem("⏳ Đang khởi tạo VieNeu-TTS...")
         self._voice_loader = VoiceLoaderThread()
