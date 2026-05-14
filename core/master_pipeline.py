@@ -6,6 +6,7 @@ FIX 2: Sau khi tạo TTS, tự động retry các đoạn bị lỗi (tối đa 
 """
 
 import os
+import sys
 import json
 import time
 import shutil
@@ -44,12 +45,33 @@ LANG_CHAR_PATTERNS = {
 }
 
 
-def _has_source_lang(text: str, source_lang: str) -> bool:
-    """Kiểm tra xem text còn chứa ký tự của ngôn ngữ nguồn không."""
+def _has_source_lang(text: str, source_lang: str, original_text: str = "") -> bool:
+    """
+    Kiểm tra xem text còn chứa ký tự của ngôn ngữ nguồn không.
+    Với tiếng Anh (Latin script), không thể dùng ký tự để phát hiện vì ngôn ngữ
+    đích (Việt, Thái, v.v.) cũng dùng hoặc có loanword Latin → kiểm tra bằng
+    cách so sánh với văn bản gốc: nếu text KHÔNG đổi thì coi là chưa dịch.
+    """
+    if source_lang == "English":
+        return bool(original_text and text.strip() == original_text.strip())
     pattern = LANG_CHAR_PATTERNS.get(source_lang)
     if pattern is None:
         return False
     return bool(pattern.search(text))
+
+
+def _mk_si():
+    """Trả về STARTUPINFO ẩn cửa sổ console trên Windows; None trên Linux/Mac."""
+    if sys.platform != "win32":
+        return None
+    si = subprocess.STARTUPINFO()
+    si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    return si
+
+
+def _mk_cflags() -> int:
+    """Trả về CREATE_NO_WINDOW trên Windows; 0 trên Linux/Mac."""
+    return subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
 
 
 class _PipelineStopRequest(BaseException):
@@ -104,7 +126,8 @@ class VideoPipelineEngine:
         self._pause_event = threading.Event()   # set() = đang tạm dừng
 
         whisper_device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.ai    = AIService(device=whisper_device)
+        whisper_model  = settings.get("whisper_model", "base")
+        self.ai    = AIService(model_size=whisper_model, device=whisper_device)
         self.voice = VoiceService()
 
     # ── Điều khiển từ UI ───────────────────────────────────────
@@ -147,12 +170,10 @@ class VideoPipelineEngine:
 
     # ── helpers ────────────────────────────────────────────────
     def _run_hidden_cmd(self, cmd: str, error_msg: str = "Lỗi") -> bool:
-        si = subprocess.STARTUPINFO()
-        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         proc = subprocess.run(
             cmd, shell=True, capture_output=True, text=True,
-            encoding='utf-8', errors='replace', startupinfo=si,
-            creationflags=subprocess.CREATE_NO_WINDOW
+            encoding='utf-8', errors='replace',
+            startupinfo=_mk_si(), creationflags=_mk_cflags()
         )
         if proc.returncode != 0:
             sys_log.error(f"{error_msg}: {proc.stderr[-400:]}")
@@ -161,12 +182,10 @@ class VideoPipelineEngine:
 
     def _run_cmd_list(self, cmd: list, error_msg: str = "Lỗi") -> bool:
         """Chạy FFmpeg với danh sách tham số (không qua shell) — tránh lỗi escape trên Windows."""
-        si = subprocess.STARTUPINFO()
-        si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         proc = subprocess.run(
             cmd, capture_output=True, text=True,
-            encoding='utf-8', errors='replace', startupinfo=si,
-            creationflags=subprocess.CREATE_NO_WINDOW
+            encoding='utf-8', errors='replace',
+            startupinfo=_mk_si(), creationflags=_mk_cflags()
         )
         if proc.returncode != 0:
             sys_log.error(f"{error_msg}: {proc.stderr[-400:]}")
@@ -204,7 +223,10 @@ class VideoPipelineEngine:
             # Tìm các đoạn còn sót ngôn ngữ gốc
             dirty_indices = [
                 i for i, seg in enumerate(segments)
-                if _has_source_lang(seg.get('text', ''), source_lang)
+                if _has_source_lang(
+                    seg.get('text', ''), source_lang,
+                    seg.get('original_text', '')
+                )
             ]
 
             if not dirty_indices:
@@ -235,7 +257,10 @@ class VideoPipelineEngine:
                 sys_log.warning(f"  ⚠️ Dịch lại lần {attempt} thất bại — bỏ qua.")
         else:
             # Hết số lần retry nhưng vẫn còn dirty
-            remaining = sum(1 for seg in segments if _has_source_lang(seg.get('text', ''), source_lang))
+            remaining = sum(
+                1 for seg in segments
+                if _has_source_lang(seg.get('text', ''), source_lang, seg.get('original_text', ''))
+            )
             if remaining:
                 sys_log.warning(f"  ⚠️ Còn {remaining} đoạn chưa dịch được sau {self.MAX_TRANSLATE_RETRIES} lần kiểm tra.")
 
@@ -1364,13 +1389,11 @@ class VideoPipelineEngine:
             with open(concat_lst, 'w', encoding='utf-8') as f:
                 for p in done_blocks:
                     f.write(f"file '{p.replace(chr(92), '/')}'\n")
-            si = subprocess.STARTUPINFO()
-            si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
             r = subprocess.run(
                 ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', concat_lst,
                  '-c', 'copy', '-y', output_path],
                 capture_output=True, text=True, encoding='utf-8', errors='replace',
-                startupinfo=si, creationflags=subprocess.CREATE_NO_WINDOW
+                startupinfo=_mk_si(), creationflags=_mk_cflags()
             )
             if r.returncode != 0:
                 sys_log.error(f"  Concat lỗi: {r.stderr[-300:]}")
@@ -1402,7 +1425,8 @@ class VideoPipelineEngine:
             )
             if not ok or not os.path.exists(audio_tmp):
                 continue
-            self.ai.reload_model(device=whisper_dev)
+            self.ai.reload_model(model_size=self.settings.get("whisper_model", "base"),
+                                   device=whisper_dev)
             segs = self.ai.transcribe_and_get_segments(audio_tmp, srt_tmp)
             self.ai.unload_model()
             if segs:
@@ -1447,8 +1471,9 @@ class VideoPipelineEngine:
             music_path, vocals_path = self._separate_with_demucs(audio_goc, blk_temp)
 
         # Trạm 1c: Whisper → giải phóng VRAM ngay
-        whisper_dev = "cuda" if torch.cuda.is_available() else "cpu"
-        self.ai.reload_model(device=whisper_dev)
+        whisper_dev   = "cuda" if torch.cuda.is_available() else "cpu"
+        whisper_model = self.settings.get("whisper_model", "base")
+        self.ai.reload_model(model_size=whisper_model, device=whisper_dev)
         srt_orig = os.path.join(blk_temp, "sub_orig.srt")
         segments = self.ai.transcribe_and_get_segments(audio_goc, srt_orig)
         self.ai.unload_model()
@@ -1695,8 +1720,9 @@ class VideoPipelineEngine:
         # Bước 2: Whisper (load → run → unload VRAM)
         srt_orig = ckpt.get_temp_file("srt_orig") or os.path.join(temp_dir, "sub_orig.srt")
         if not ckpt.is_stage_done("transcribed") or not ckpt.segments:
-            whisper_dev = "cuda" if torch.cuda.is_available() else "cpu"
-            self.ai.reload_model(device=whisper_dev)
+            whisper_dev   = "cuda" if torch.cuda.is_available() else "cpu"
+            whisper_model = self.settings.get("whisper_model", "base")
+            self.ai.reload_model(model_size=whisper_model, device=whisper_dev)
             segments = self.ai.transcribe_and_get_segments(audio_goc_path, srt_orig)
             self.ai.unload_model()
             if not segments:
