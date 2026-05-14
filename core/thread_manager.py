@@ -49,18 +49,16 @@ class PipelineThread(threading.Thread):
             import traceback
             sys_log.error(traceback.format_exc())
         finally:
-            # Phát signal finished để UI thread xử lý on_finish an toàn
-            self.signals.finished.emit()
-
+            # Connect TRƯỚC khi emit để callback nhận được signal
             if self._on_finish:
-                # Gọi on_finish trong Qt main thread
-                self.signals.finished.connect(self._on_finish)
-                # Đã emit ở trên, nên _on_finish sẽ được gọi qua signal
-
+                self.signals.finished.connect(
+                    self._on_finish, Qt.ConnectionType.QueuedConnection
+                )
+            self.signals.finished.emit()
             # Dọn dẹp signal sau khi dùng
             try:
                 self.signals.finished.disconnect()
-            except:
+            except Exception:
                 pass
 
     def request_stop(self):
