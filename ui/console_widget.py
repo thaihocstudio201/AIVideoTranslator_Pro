@@ -1,68 +1,91 @@
-import logging
-# Đổi PyQt6 thành PySide6
-from PySide6.QtWidgets import QTextBrowser, QVBoxLayout, QWidget
-from PySide6.QtCore import Signal, QObject
-from PySide6.QtGui import QFont
+"""
+console_widget.py - SystemConsole Widget
+Màn hình đen hiển thị log realtime (INFO=xanh lá, WARNING=vàng, ERROR=đỏ).
+Kết nối với custom_logger qua Qt Signal để thread-safe.
+"""
 
-# 1. Tạo một Signal Emitter để chuyển Log từ Thread của Python sang Thread của UI (PyQt6)
-class LogEmitter(QObject):
-    # PySide6 dùng Signal thay vì pyqtSignal
-    log_signal = Signal(str, str)
+from PySide6.QtWidgets import QTextEdit, QWidget, QVBoxLayout
+from PySide6.QtCore import Qt, QObject, Signal, Slot
+from PySide6.QtGui import QColor, QTextCursor, QFont
 
-# 2. Tạo một Handler tùy chỉnh cho thư viện logging
-class UIConsoleHandler(logging.Handler):
-    def __init__(self, emitter):
-        super().__init__()
-        self.emitter = emitter
 
-    def emit(self, record):
-        msg = self.format(record)
-        self.emitter.log_signal.emit(record.levelname, msg)
+class LogSignalBridge(QObject):
+    """Bridge thread-safe giữa logger và Qt widget."""
+    new_log = Signal(str, str)  # (level, message)
 
-# 3. Widget Console Chính
+
+# Singleton bridge - dùng chung toàn app
+log_bridge = LogSignalBridge()
+
+
 class SystemConsole(QWidget):
-    def __init__(self):
-        super().__init__()
-        
-        # SỬA Ở ĐÂY: Đổi tên biến thành self.main_layout để không trùng với hàm hệ thống
-        self.main_layout = QVBoxLayout(self)
-        self.main_layout.setContentsMargins(0, 0, 0, 0)
-        
-        # Tạo màn hình hiển thị text
-        self.text_browser = QTextBrowser()
-        self.text_browser.setStyleSheet("background-color: #1e1e1e; color: #d4d4d4; padding: 10px;")
-        
-        # Cài đặt font chữ giống Hacker (Consolas hoặc Courier)
-        font = QFont("Consolas", 10)
-        self.text_browser.setFont(font)
-        
-        # SỬA Ở ĐÂY: Gọi addWidget từ self.main_layout
-        self.main_layout.addWidget(self.text_browser)
+    """
+    Widget console kiểu terminal hacker.
+    - Nền đen, chữ màu theo level
+    - Thread-safe: nhận log từ bất kỳ thread nào qua Qt signal
+    - Tự cuộn xuống cuối
+    - Giới hạn 2000 dòng để tránh tràn RAM
+    """
 
-        # Khởi tạo bộ lắng nghe Log
-        self.emitter = LogEmitter()
-        self.emitter.log_signal.connect(self.append_log)
-        
-        # Kết nối với custom_logger đã tạo trước đó
-        self.attach_to_system_logger()
+    MAX_LINES = 2000
 
-    def attach_to_system_logger(self):
-        logger = logging.getLogger("AITranslatorPro")
-        console_handler = UIConsoleHandler(self.emitter)
-        formatter = logging.Formatter('[%(asctime)s] [%(levelname)s] %(message)s', datefmt='%H:%M:%S')
-        console_handler.setFormatter(formatter)
-        logger.addHandler(console_handler)
+    COLORS = {
+        "INFO":     "#00ff88",   # Xanh lá
+        "WARNING":  "#ffd700",   # Vàng
+        "ERROR":    "#ff4444",   # Đỏ
+        "CRITICAL": "#ff0000",   # Đỏ đậm
+        "DEBUG":    "#888888",   # Xám
+        "SUCCESS":  "#00f2ff",   # Cyan
+    }
 
-    def append_log(self, level, message):
-        """Định dạng màu sắc dựa trên cấp độ Log"""
-        if level == "INFO":
-            color = "#4AF626"  # Xanh lá Hacker
-        elif level == "WARNING":
-            color = "#F39C12"  # Vàng cảnh báo
-        elif level in ["ERROR", "CRITICAL"]:
-            color = "#E74C3C"  # Đỏ lỗi
-        else:
-            color = "#FFFFFF"  # Trắng mặc định
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._line_count = 0
+        self._init_ui()
+        self._connect_bridge()
 
-        html_msg = f'<span style="color: {color};">{message}</span>'
-        self.text_browser.append(html_msg)
+    def _init_ui(self):
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+
+        self.text_area = QTextEdit()
+        self.text_area.setReadOnly(True)
+        self.text_area.setStyleSheet("""
+            QTextEdit {
+                background-color: #0a0a0f;
+                border: 1px solid #00f2ff;
+                border-radius: 4px;
+                padding: 6px;
+                font-family: 'Consolas', 'Courier New', monospace;
+                font-size: 12px;
+            }
+        """)
+        self.text_area.document().setMaximumBlockCount(self.MAX_LINES)
+
+        layout.addWidget(self.text_area)
+
+    def _connect_bridge(self):
+        log_bridge.new_log.connect(self._append_log)
+
+    @Slot(str, str)
+    def _append_log(self, level: str, message: str):
+        color = self.COLORS.get(level.upper(), "#c9d1d9")
+        cursor = self.text_area.textCursor()
+        cursor.movePosition(QTextCursor.MoveOperation.End)
+
+        # Format HTML
+        html = f'<span style="color:{color};">{message}</span><br>'
+        cursor.insertHtml(html)
+
+        # Auto-scroll
+        self.text_area.setTextCursor(cursor)
+        self.text_area.ensureCursorVisible()
+        self._line_count += 1
+
+    def append_raw(self, level: str, message: str):
+        """Gọi từ bất kỳ thread nào - thread safe qua signal."""
+        log_bridge.new_log.emit(level, message)
+
+    def clear_console(self):
+        self.text_area.clear()
+        self._line_count = 0
