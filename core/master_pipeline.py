@@ -817,17 +817,14 @@ class VideoPipelineEngine:
         sys_log.info(f"  ↳ [OpenCV] {label} | {W}x{H} @{fps:.2f}fps | {total} frames")
 
         # Pipe frames → FFmpeg (H.264 encode + audio copy from original)
-        import sys as _sys
-        _si = None
-        _cflags = 0
-        if _sys.platform == "win32":
-            _si = subprocess.STARTUPINFO()
-            _si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            _cflags = subprocess.CREATE_NO_WINDOW
         enc = self._get_video_encoder()
-        enc_args = (['-c:v', enc, '-preset', 'p4', '-cq', '22']  # NVENC/AMF preset
-                    if enc != 'libx264' else
-                    ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22'])
+        if enc == "h264_nvenc":
+            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22']
+        elif enc == "h264_amf":
+            enc_args = ['-c:v', 'h264_amf', '-quality', 'balanced',
+                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22']
+        else:
+            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22']
         ff_cmd = [
             'ffmpeg', '-y',
             '-f', 'rawvideo', '-pixel_format', 'bgr24',
@@ -841,7 +838,7 @@ class VideoPipelineEngine:
         ]
         proc = subprocess.Popen(ff_cmd, stdin=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
-                                startupinfo=_si, creationflags=_cflags)
+                                startupinfo=_mk_si(), creationflags=_mk_cflags())
         assert proc.stdin is not None and proc.stderr is not None
 
         frame_idx = 0
