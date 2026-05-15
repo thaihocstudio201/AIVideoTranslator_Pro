@@ -261,6 +261,14 @@ class ApiManagementTab(QWidget):
         status.setText("⏳  Đang load...")
         status.setStyleSheet("color:#aaa; font-size:12px;")
 
+        # Disconnect old loader signal to prevent double-fire on rapid re-click
+        old = self._loaders.get(pid)
+        if old is not None:
+            try:
+                old.done.disconnect()
+            except RuntimeError:
+                pass
+
         loader = _ModelLoader(pid, key)
         loader.done.connect(lambda models, p=pid: self._on_models_loaded(p, models))
         self._loaders[pid] = loader  # prevent GC

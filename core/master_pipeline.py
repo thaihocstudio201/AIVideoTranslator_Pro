@@ -429,8 +429,10 @@ class VideoPipelineEngine:
         audio.export(in_path, format="wav")
 
         atempo = self._build_atempo_chain(ratio)
-        cmd = f'ffmpeg -i "{in_path}" -filter:a "{atempo}" -y "{out_path}"'
-        ok  = self._run_hidden_cmd(cmd, f"Speedup đoạn {seg_idx}")
+        ok  = self._run_cmd_list(
+            ["ffmpeg", "-i", in_path, "-filter:a", atempo, "-y", out_path],
+            f"Speedup đoạn {seg_idx}"
+        )
 
         if ok and os.path.exists(out_path) and os.path.getsize(out_path) > 0:
             sped: AudioSegment = AudioSegment.from_file(out_path)
@@ -600,8 +602,6 @@ class VideoPipelineEngine:
         fps  = 30
         n    = len(parts)
 
-        inputs = " ".join(f'-i "{p}"' for p in parts)
-
         # Mỗi clip: scale → pad → setsar → fps / aformat
         vf_parts = []
         af_parts = []
@@ -621,15 +621,19 @@ class VideoPipelineEngine:
             f"{concat_in}concat=n={n}:v=1:a=1[outv][outa]"
         )
 
-        cmd = (
-            f'ffmpeg {inputs} '
-            f'-filter_complex "{filter_complex}" '
-            f'-map "[outv]" -map "[outa]" '
-            f'-c:v libx264 -preset fast -crf 22 '
-            f'-c:a aac -b:a 192k -y "{tmp_out}"'
-        )
+        # Build as list to avoid shell injection from paths with special characters
+        cmd_list = ["ffmpeg"]
+        for p in parts:
+            cmd_list += ["-i", p]
+        cmd_list += [
+            "-filter_complex", filter_complex,
+            "-map", "[outv]", "-map", "[outa]",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+            "-c:a", "aac", "-b:a", "192k",
+            "-y", tmp_out,
+        ]
 
-        ok = self._run_hidden_cmd(cmd, "Ghép intro/outro (filter_complex)")
+        ok = self._run_cmd_list(cmd_list, "Ghép intro/outro (filter_complex)")
 
         if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
             os.replace(tmp_out, main_video)
