@@ -33,6 +33,43 @@ class VoiceLoaderThread(QThread):
             self.done.emit([], {})
 
 
+class _ProfileSaverThread(QThread):
+    """Lưu clone profile trên background thread để không block UI."""
+    done = Signal(bool, str)  # (success, name)
+
+    def __init__(self, name: str, wav_path: str):
+        super().__init__()
+        self._name = name
+        self._wav_path = wav_path
+
+    def run(self):
+        try:
+            from services.voice_service import VoiceService
+            ok = VoiceService().save_clone_profile(self._name, self._wav_path)
+            self.done.emit(ok, self._name)
+        except Exception as e:
+            sys_log.error(f"ProfileSaverThread lỗi: {e}")
+            self.done.emit(False, self._name)
+
+
+class _ProfileDeleterThread(QThread):
+    """Xóa clone profile trên background thread để không block UI."""
+    done = Signal(bool, str)  # (success, name)
+
+    def __init__(self, name: str):
+        super().__init__()
+        self._name = name
+
+    def run(self):
+        try:
+            from services.voice_service import VoiceService
+            VoiceService().delete_profile(self._name)
+            self.done.emit(True, self._name)
+        except Exception as e:
+            sys_log.error(f"ProfileDeleterThread lỗi: {e}")
+            self.done.emit(False, self._name)
+
+
 class DubbingTab(QWidget):
     def __init__(self, main_window):
         super().__init__()
@@ -304,6 +341,13 @@ class DubbingTab(QWidget):
     # VOICE — LOAD ASYNC
     # ═══════════════════════════════════════════════════════════
     def _load_voices_async(self):
+        # Ngắt kết nối signal của thread cũ nếu vẫn còn chạy,
+        # tránh _on_voices_loaded bị gọi 2 lần khi user bấm Reload nhanh.
+        if hasattr(self, '_voice_loader'):
+            try:
+                self._voice_loader.done.disconnect()
+            except RuntimeError:
+                pass
         self.cb_voice_model.clear()
         self.cb_voice_model.addItem("⏳ Đang khởi tạo VieNeu-TTS...")
         self._voice_loader = VoiceLoaderThread()
@@ -350,22 +394,21 @@ class DubbingTab(QWidget):
         if not name:
             QMessageBox.warning(self, "Thiếu tên", "Vui lòng đặt tên cho profile!")
             return
-        try:
-            from services.voice_service import VoiceService
-            svc = VoiceService()
-            ok = svc.save_clone_profile(name, self._clone_wav_path)
-            if ok:
-                if self.cb_profiles.itemText(0) == "(Chưa có profile)":
-                    self.cb_profiles.clear()
-                self.cb_profiles.addItem(name)
-                self.cb_profiles.setCurrentText(name)
-                self._voice_profiles[name] = {"type": "clone", "value": self._clone_wav_path}
-                self.txt_profile_name.clear()
-                QMessageBox.information(self, "Đã lưu", f"✅ Profile '{name}' đã được lưu!")
-            else:
-                QMessageBox.critical(self, "Lỗi", "Không lưu được profile!")
-        except Exception as e:
-            QMessageBox.critical(self, "Lỗi", f"Lỗi lưu profile: {e}")
+        self._saver_thread = _ProfileSaverThread(name, self._clone_wav_path)
+        self._saver_thread.done.connect(self._on_profile_saved)
+        self._saver_thread.start()
+
+    def _on_profile_saved(self, ok: bool, name: str):
+        if ok:
+            if self.cb_profiles.itemText(0) == "(Chưa có profile)":
+                self.cb_profiles.clear()
+            self.cb_profiles.addItem(name)
+            self.cb_profiles.setCurrentText(name)
+            self._voice_profiles[name] = {"type": "clone", "value": self._clone_wav_path}
+            self.txt_profile_name.clear()
+            QMessageBox.information(self, "Đã lưu", f"✅ Profile '{name}' đã được lưu!")
+        else:
+            QMessageBox.critical(self, "Lỗi", "Không lưu được profile!")
 
     def _delete_profile(self):
         name = self.cb_profiles.currentText()
@@ -373,16 +416,19 @@ class DubbingTab(QWidget):
             return
         reply = QMessageBox.question(self, "Xác nhận", f"Xóa profile '{name}'?", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         if reply == QMessageBox.StandardButton.Yes:
-            try:
-                from services.voice_service import VoiceService
-                VoiceService().delete_profile(name)
-                idx = self.cb_profiles.findText(name)
-                if idx >= 0:
-                    self.cb_profiles.removeItem(idx)
-                if self.cb_profiles.count() == 0:
-                    self.cb_profiles.addItem("(Chưa có profile)")
-            except Exception as e:
-                QMessageBox.critical(self, "Lỗi", f"Lỗi xóa profile: {e}")
+            self._deleter_thread = _ProfileDeleterThread(name)
+            self._deleter_thread.done.connect(lambda ok, n=name: self._on_profile_deleted(ok, n))
+            self._deleter_thread.start()
+
+    def _on_profile_deleted(self, ok: bool, name: str):
+        if ok:
+            idx = self.cb_profiles.findText(name)
+            if idx >= 0:
+                self.cb_profiles.removeItem(idx)
+            if self.cb_profiles.count() == 0:
+                self.cb_profiles.addItem("(Chưa có profile)")
+        else:
+            QMessageBox.critical(self, "Lỗi", f"Không xóa được profile '{name}'!")
 
     def get_selected_voice(self):
         if self.radio_preset.isChecked():

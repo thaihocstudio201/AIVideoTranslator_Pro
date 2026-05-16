@@ -38,8 +38,24 @@ EDGE_TTS_VOICES = {
 }
 
 
+_instance: "Optional[VoiceService]" = None
+
+
 class VoiceService:
+    """Singleton — gọi VoiceService() nhiều lần vẫn trả về cùng 1 instance."""
+
+    def __new__(cls):
+        global _instance
+        if _instance is None:
+            _instance = super().__new__(cls)
+            _instance._initialized = False
+        return _instance
+
     def __init__(self):
+        if self._initialized:
+            return
+        self._initialized = True
+
         self.tts_model: Any    = None
         self.current_voice_data: Any = None
         self.current_voice_name: str = "default"
@@ -201,7 +217,7 @@ class VoiceService:
         # ── Phân giải loại voice ──────────────────────────────
         is_clone   = voice and os.path.isfile(voice) and voice.lower().endswith(('.wav','.mp3','.flac'))
         is_profile = voice and voice in self._profiles
-        is_edge    = voice and voice.startswith("vi-VN-") or voice and "-Neural" in (voice or "")
+        is_edge    = bool(voice and (voice.startswith("vi-VN-") or "-Neural" in voice))
         is_edge_default = voice is None and self._engine == "edge_tts"
 
         # Clone voice → bắt buộc dùng VieNeu
@@ -259,18 +275,14 @@ class VoiceService:
                 communicate = edge_tts.Communicate(text=text.strip(), voice=voice_id, rate="-5%")
                 await communicate.save(output_path)
 
-            # Chạy async trong sync context
+            # Chạy async trong sync context — dùng asyncio.run() luôn an toàn trên Python 3.10+
             try:
-                loop = asyncio.get_event_loop()
-                if loop.is_running():
-                    import concurrent.futures
-                    with concurrent.futures.ThreadPoolExecutor() as pool:
-                        future = pool.submit(asyncio.run, _synthesize())
-                        future.result(timeout=30)
-                else:
-                    loop.run_until_complete(_synthesize())
-            except RuntimeError:
                 asyncio.run(_synthesize())
+            except RuntimeError:
+                # Fallback khi đã có event loop chạy (e.g. Jupyter / embedded Qt loop)
+                import concurrent.futures
+                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+                    pool.submit(asyncio.run, _synthesize()).result(timeout=30)
 
             if os.path.exists(output_path) and os.path.getsize(output_path) > 1024:
                 self.current_voice_name = voice_id

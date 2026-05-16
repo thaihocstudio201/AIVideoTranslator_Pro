@@ -169,17 +169,6 @@ class VideoPipelineEngine:
         threading.Thread(target=self._run_engine, daemon=True).start()
 
     # ── helpers ────────────────────────────────────────────────
-    def _run_hidden_cmd(self, cmd: str, error_msg: str = "Lỗi") -> bool:
-        proc = subprocess.run(
-            cmd, shell=True, capture_output=True, text=True,
-            encoding='utf-8', errors='replace',
-            startupinfo=_mk_si(), creationflags=_mk_cflags()
-        )
-        if proc.returncode != 0:
-            sys_log.error(f"{error_msg}: {proc.stderr[-400:]}")
-            return False
-        return True
-
     def _run_cmd_list(self, cmd: list, error_msg: str = "Lỗi") -> bool:
         """Chạy FFmpeg với danh sách tham số (không qua shell) — tránh lỗi escape trên Windows."""
         proc = subprocess.run(
@@ -429,8 +418,10 @@ class VideoPipelineEngine:
         audio.export(in_path, format="wav")
 
         atempo = self._build_atempo_chain(ratio)
-        cmd = f'ffmpeg -i "{in_path}" -filter:a "{atempo}" -y "{out_path}"'
-        ok  = self._run_hidden_cmd(cmd, f"Speedup đoạn {seg_idx}")
+        ok  = self._run_cmd_list(
+            ["ffmpeg", "-i", in_path, "-filter:a", atempo, "-y", out_path],
+            f"Speedup đoạn {seg_idx}"
+        )
 
         if ok and os.path.exists(out_path) and os.path.getsize(out_path) > 0:
             sped: AudioSegment = AudioSegment.from_file(out_path)
@@ -475,16 +466,20 @@ class VideoPipelineEngine:
 
         for fmt_name, fmt_flag, fmt_ext in self._DEMUCS_FORMATS:
             sys_log.info(f"  ↳ Demucs thử format [{fmt_name.upper()}] trên {device.upper()}...")
-            cmd = (
-                f'python -m demucs --two-stems=vocals -n htdemucs '
-                f'{fmt_flag} --device {device} -o "{output_dir}" "{audio_path}"'
-            ).strip()
+            cmd_list = [
+                sys.executable, '-m', 'demucs',
+                '--two-stems=vocals', '-n', 'htdemucs',
+                '--device', device, '-o', output_dir, audio_path,
+            ]
+            if fmt_flag:
+                cmd_list.insert(cmd_list.index('-o'), fmt_flag)
 
             try:
                 result = subprocess.run(
-                    cmd, shell=True, capture_output=True, text=True,
+                    cmd_list, capture_output=True, text=True,
                     timeout=600,
                     encoding="utf-8", errors="replace",
+                    startupinfo=_mk_si(), creationflags=_mk_cflags(),
                     env={**os.environ,
                          "TORCHAUDIO_USE_BACKEND_DISPATCHER": "1",
                          "PYTHONUTF8": "1",
@@ -565,10 +560,10 @@ class VideoPipelineEngine:
         """Trả về (width, height) của video bằng ffprobe. Mặc định 1920x1080."""
         try:
             result = subprocess.run(
-                f'ffprobe -v error -select_streams v:0 '
-                f'-show_entries stream=width,height '
-                f'-of csv=p=0 "{video_path}"',
-                shell=True, capture_output=True, text=True, timeout=10
+                ['ffprobe', '-v', 'error', '-select_streams', 'v:0',
+                 '-show_entries', 'stream=width,height', '-of', 'csv=p=0', video_path],
+                capture_output=True, text=True, timeout=10,
+                startupinfo=_mk_si(), creationflags=_mk_cflags()
             )
             parts = result.stdout.strip().split(',')
             if len(parts) == 2:
@@ -600,8 +595,6 @@ class VideoPipelineEngine:
         fps  = 30
         n    = len(parts)
 
-        inputs = " ".join(f'-i "{p}"' for p in parts)
-
         # Mỗi clip: scale → pad → setsar → fps / aformat
         vf_parts = []
         af_parts = []
@@ -621,15 +614,19 @@ class VideoPipelineEngine:
             f"{concat_in}concat=n={n}:v=1:a=1[outv][outa]"
         )
 
-        cmd = (
-            f'ffmpeg {inputs} '
-            f'-filter_complex "{filter_complex}" '
-            f'-map "[outv]" -map "[outa]" '
-            f'-c:v libx264 -preset fast -crf 22 '
-            f'-c:a aac -b:a 192k -y "{tmp_out}"'
-        )
+        # Build as list to avoid shell injection from paths with special characters
+        cmd_list = ["ffmpeg"]
+        for p in parts:
+            cmd_list += ["-i", p]
+        cmd_list += [
+            "-filter_complex", filter_complex,
+            "-map", "[outv]", "-map", "[outa]",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+            "-c:a", "aac", "-b:a", "192k",
+            "-y", tmp_out,
+        ]
 
-        ok = self._run_hidden_cmd(cmd, "Ghép intro/outro (filter_complex)")
+        ok = self._run_cmd_list(cmd_list, "Ghép intro/outro (filter_complex)")
 
         if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
             os.replace(tmp_out, main_video)
@@ -648,26 +645,85 @@ class VideoPipelineEngine:
         """
         Orchestrator: thử GPU fast path trước (FFmpeg+ASS+NVENC/AMF/libx264),
         fallback về OpenCV+PIL nếu GPU thất bại (đảm bảo tiếng Việt).
+        Luôn đảm bảo output là H.264/yuv420p để tương thích mọi player.
         """
         blur_on = visuals.get("blur_enabled", False)
         sub_on  = os.path.isfile(srt_path)
         if not blur_on and not sub_on:
+            self._ensure_h264_compat(video_path)
             return
-        if self._apply_visuals_gpu(video_path, visuals, srt_path):
+        gpu_ok, sub_handled = self._apply_visuals_gpu(video_path, visuals, srt_path)
+        if gpu_ok and sub_handled:
+            return
+        if gpu_ok and not sub_handled and sub_on:
+            # GPU xử lý blur OK nhưng subtitle filter lỗi (thiếu libass)
+            # → OpenCV chỉ hardsub, không blur lại
+            sys_log.info("  ↳ GPU không xử lý subtitle (thiếu libass) → OpenCV hardsub only")
+            no_blur = {**visuals, "blur_enabled": False}
+            self._apply_visuals_opencv(video_path, no_blur, srt_path)
             return
         sys_log.warning("  ⚠️ GPU render thất bại → fallback OpenCV+PIL")
         self._apply_visuals_opencv(video_path, visuals, srt_path)
 
+    def _ensure_h264_compat(self, video_path: str) -> None:
+        """Re-encode sang H.264/yuv420p để đảm bảo tương thích mọi player.
+        Luôn chạy khi không có visuals — preset ultrafast nên rất nhanh."""
+        # Kiểm tra codec trước; nếu đã là H.264/yuv420p thì bỏ qua để tiết kiệm thời gian
+        try:
+            r = subprocess.run(
+                ['ffprobe', '-v', 'error', '-select_streams', 'v:0',
+                 '-show_entries', 'stream=codec_name,pix_fmt', '-of', 'csv=p=0', video_path],
+                capture_output=True, text=True, timeout=10,
+                startupinfo=_mk_si(), creationflags=_mk_cflags()
+            )
+            info = r.stdout.strip().lower()
+        except Exception:
+            info = ""
+
+        # Bỏ qua nếu đã là H.264 yuv420p (tương thích hoàn toàn)
+        if 'h264' in info and 'yuv420p' in info:
+            return
+
+        sys_log.info(f"  ↳ Compat encode: {codec.upper()} → H.264 (tương thích Windows)...")
+        enc = self._get_video_encoder()
+        if enc == "h264_nvenc":
+            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22', '-pix_fmt', 'yuv420p']
+        elif enc == "h264_amf":
+            enc_args = ['-c:v', 'h264_amf', '-quality', 'balanced',
+                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22', '-pix_fmt', 'yuv420p']
+        else:
+            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22', '-pix_fmt', 'yuv420p']
+
+        tmp_out = video_path + ".tmp_compat.mp4"
+        ok = self._run_cmd_list(
+            ['ffmpeg', '-i', video_path, '-map', '0:v', '-map', '0:a?',
+             *enc_args, '-c:a', 'copy', '-y', tmp_out],
+            "Compat encode H.264"
+        )
+        if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
+            os.replace(tmp_out, video_path)
+            sys_log.info("  ✅ Compat encode OK → H.264/yuv420p")
+        else:
+            try:
+                if os.path.exists(tmp_out):
+                    os.remove(tmp_out)
+            except OSError:
+                pass
+
     def _apply_visuals_gpu(self, video_path: str, visuals: dict,
-                           srt_path: str) -> bool:
+                           srt_path: str) -> "tuple[bool, bool]":
         """
         Fast path: FFmpeg + ASS subtitle filter + GPU encoder chain.
-        Thử h264_nvenc → h264_amf → libx264. Trả về True nếu thành công.
+        Thử h264_nvenc → h264_amf → libx264.
+        Trả về (gpu_ok, sub_handled):
+          (True,  True)  → blur + subtitle đều xong
+          (True,  False) → chỉ blur xong, subtitle chưa render (thiếu libass)
+          (False, False) → hoàn toàn thất bại, cần fallback OpenCV
         """
         blur_on = visuals.get("blur_enabled", False)
         sub_on  = os.path.isfile(srt_path)
         if not blur_on and not sub_on:
-            return True
+            return True, True
 
         tmp_dir  = os.path.dirname(video_path)
         ass_path = os.path.join(tmp_dir, "_tmp_sub.ass")
@@ -687,34 +743,9 @@ class VideoPipelineEngine:
             bx = min(bx, 1.0 - bw); by = min(by, 1.0 - bh)
             return bx, by, bw, bh, bs
 
-        # Escape Windows path for ASS/subtitles filter: C:/path → C\:/path
+        # Escape Windows path for ASS filter: C:\path → C\:/path
         def _esc_ass(p: str) -> str:
             return p.replace("\\", "/").replace(":", "\\:")
-
-        if blur_on and sub_on:
-            bx, by, bw, bh, bs = _blur_params()
-            ass_fwd = _esc_ass(ass_path)
-            fc = (
-                f"[0:v]split[v_main][v_blur_src];"
-                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
-                f"boxblur={bs}:10[v_b_only];"
-                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f}[v_blurred];"
-                f"[v_blurred]subtitles='{ass_fwd}',format=yuv420p[v_final]"
-            )
-            label = "Blur+ASS"
-        elif blur_on:
-            bx, by, bw, bh, bs = _blur_params()
-            fc = (
-                f"[0:v]split[v_main][v_blur_src];"
-                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
-                f"boxblur={bs}:10[v_b_only];"
-                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f},format=yuv420p[v_final]"
-            )
-            label = "Blur"
-        else:
-            ass_fwd = _esc_ass(ass_path)
-            fc = f"[0:v]subtitles='{ass_fwd}',format=yuv420p[v_final]"
-            label = "ASS"
 
         enc = self._get_video_encoder()
         if enc == "h264_nvenc":
@@ -731,34 +762,78 @@ class VideoPipelineEngine:
                         '-pix_fmt', 'yuv420p']
             hw_args  = []
 
-        tmp_out = video_path + ".tmp_gpu.mp4"
-        sys_log.info(f"  ↳ GPU render [{enc}] {label}...")
-        ok = self._run_cmd_list(
-            ['ffmpeg', *hw_args, '-i', video_path,
-             '-filter_complex', fc,
-             '-map', '[v_final]', '-map', '0:a?',
-             *enc_args, '-c:a', 'copy', '-y', tmp_out],
-            f"GPU {label}"
-        )
-
-        if sub_on and os.path.exists(ass_path):
+        def _run_gpu(fc: str, label: str) -> bool:
+            tmp_out = video_path + ".tmp_gpu.mp4"
+            sys_log.info(f"  ↳ GPU render [{enc}] {label}...")
+            ok = self._run_cmd_list(
+                ['ffmpeg', *hw_args, '-i', video_path,
+                 '-filter_complex', fc,
+                 '-map', '[v_final]', '-map', '0:a?',
+                 *enc_args, '-c:a', 'copy',
+                 '-movflags', '+faststart', '-y', tmp_out],
+                f"GPU {label}"
+            )
+            if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
+                os.replace(tmp_out, video_path)
+                sys_log.info(f"  ✅ GPU {label} OK [{enc}]")
+                return True
             try:
-                os.remove(ass_path)
+                if os.path.exists(tmp_out):
+                    os.remove(tmp_out)
             except OSError:
                 pass
+            sys_log.warning(f"  ⚠️ GPU {label} thất bại [{enc}]")
+            return False
 
-        if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
-            os.replace(tmp_out, video_path)
-            sys_log.info(f"  ✅ GPU {label} OK [{enc}]")
-            return True
+        def _blur_fc() -> str:
+            bx, by, bw, bh, bs = _blur_params()
+            return (
+                f"[0:v]split[v_main][v_blur_src];"
+                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
+                f"boxblur={bs}:10[v_b_only];"
+                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f},format=yuv420p[v_final]"
+            )
 
-        try:
-            if os.path.exists(tmp_out):
-                os.remove(tmp_out)
-        except OSError:
-            pass
-        sys_log.warning(f"  ⚠️ GPU {label} thất bại [{enc}]")
-        return False
+        def _cleanup_ass():
+            if os.path.exists(ass_path):
+                try:
+                    os.remove(ass_path)
+                except OSError:
+                    pass
+
+        if blur_on and sub_on:
+            bx, by, bw, bh, bs = _blur_params()
+            ass_fwd = _esc_ass(ass_path)
+            fc_full = (
+                f"[0:v]split[v_main][v_blur_src];"
+                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
+                f"boxblur={bs}:10[v_b_only];"
+                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f}[v_blurred];"
+                f"[v_blurred]subtitles='{ass_fwd}',format=yuv420p[v_final]"
+            )
+            if _run_gpu(fc_full, "Blur+ASS"):
+                _cleanup_ass()
+                return True, True
+            # subtitles filter thất bại (thường do thiếu libass) → thử blur-only
+            sys_log.info("  ↳ Blur+ASS thất bại → thử GPU Blur-only, subtitle sẽ do OpenCV xử lý")
+            _cleanup_ass()
+            if _run_gpu(_blur_fc(), "Blur"):
+                return True, False  # blur OK, subtitle chưa xử lý
+            return False, False
+
+        elif blur_on:
+            ok = _run_gpu(_blur_fc(), "Blur")
+            return ok, True  # không có subtitle nên sub_handled=True
+
+        else:  # sub_on only
+            ass_fwd = _esc_ass(ass_path)
+            fc_sub = f"[0:v]subtitles='{ass_fwd}',format=yuv420p[v_final]"
+            ok = _run_gpu(fc_sub, "ASS")
+            _cleanup_ass()
+            if ok:
+                return True, True
+            # subtitle filter thất bại (thiếu libass) → báo caller dùng OpenCV
+            return False, False
 
     # ── VISUALS: OpenCV frame-by-frame + PIL (fallback) ────────────
     def _apply_visuals_opencv(self, video_path: str, visuals: dict,
@@ -819,14 +894,17 @@ class VideoPipelineEngine:
         # Pipe frames → FFmpeg (H.264 encode + audio copy from original)
         enc = self._get_video_encoder()
         if enc == "h264_nvenc":
-            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22']
+            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22',
+                        '-pix_fmt', 'yuv420p']
         elif enc == "h264_amf":
             enc_args = ['-c:v', 'h264_amf', '-quality', 'balanced',
-                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22']
+                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22',
+                        '-pix_fmt', 'yuv420p']
         else:
-            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22']
+            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22',
+                        '-pix_fmt', 'yuv420p']
         ff_cmd = [
-            'ffmpeg', '-y',
+            'ffmpeg',
             '-f', 'rawvideo', '-pixel_format', 'bgr24',
             '-video_size', f'{W}x{H}', '-framerate', str(fps),
             '-i', 'pipe:0',
@@ -834,12 +912,15 @@ class VideoPipelineEngine:
             *enc_args,
             '-c:a', 'copy',
             '-map', '0:v:0', '-map', '1:a?',
+            '-movflags', '+faststart',
+            '-shortest',
             '-y', tmp_out,
         ]
         proc = subprocess.Popen(ff_cmd, stdin=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
                                 startupinfo=_mk_si(), creationflags=_mk_cflags())
-        assert proc.stdin is not None and proc.stderr is not None
+        if proc.stdin is None or proc.stderr is None:
+            raise RuntimeError("Không mở được pipe stdin/stderr cho FFmpeg OpenCV render")
 
         frame_idx = 0
         pipe_ok   = True
@@ -941,7 +1022,8 @@ class VideoPipelineEngine:
                            f"OutlineColour={_hex_bgr(visuals.get('sub_border_color_hex','#000000'))},"
                            f"BorderStyle={bstyle},Outline={outline_w},Shadow={shadow_v},"
                            f"Alignment={align},MarginV={margin_v}")
-            srt_filt   = srt_path.replace("\\", "/")
+            # FFmpeg subtitles filter: escape backslash trước, rồi escape single-quote
+            srt_filt   = srt_path.replace("\\", "/").replace("'", "\\'")
             sub_filter = f"subtitles='{srt_filt}':force_style='{force_style}'"
 
         if blur_on and sub_on:
@@ -1188,18 +1270,16 @@ class VideoPipelineEngine:
         music_out  = os.path.join(output_dir, "no_vocals_final.wav")
         vocals_out = os.path.join(output_dir, "vocals_final.wav")
         try:
-            # Lọc nhạc nền: loại bỏ tần số giọng người (200Hz–3400Hz)
-            ok1 = self._run_hidden_cmd(
-                f'ffmpeg -i "{audio_path}" '
-                f'-af "pan=stereo|c0=0.5*c0-0.5*c1|c1=0.5*c1-0.5*c0" '
-                f'-y "{music_out}"',
+            ok1 = self._run_cmd_list(
+                ['ffmpeg', '-i', audio_path,
+                 '-af', 'pan=stereo|c0=0.5*c0-0.5*c1|c1=0.5*c1-0.5*c0',
+                 '-y', music_out],
                 "FFmpeg music separation"
             )
-            # Giữ lại giọng người: bandpass 200–3400Hz
-            ok2 = self._run_hidden_cmd(
-                f'ffmpeg -i "{audio_path}" '
-                f'-af "highpass=f=200,lowpass=f=3400" '
-                f'-y "{vocals_out}"',
+            ok2 = self._run_cmd_list(
+                ['ffmpeg', '-i', audio_path,
+                 '-af', 'highpass=f=200,lowpass=f=3400',
+                 '-y', vocals_out],
                 "FFmpeg vocal separation"
             )
             if ok1 and ok2 and os.path.exists(music_out) and os.path.exists(vocals_out):
@@ -1295,19 +1375,19 @@ class VideoPipelineEngine:
         tmp_out = video_path + ".tmp_cr.mp4"
 
         if h265_on:
-            codec_v = "-c:v libx265 -preset fast -crf 23"
+            codec_v_args = ['-c:v', 'libx265', '-preset', 'fast', '-crf', '23']
         elif has_filter or gop_on:
-            gop_flag = " -g 30" if gop_on else ""
-            codec_v  = f"-c:v libx264 -preset fast -crf 22{gop_flag}"
+            codec_v_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22']
+            if gop_on:
+                codec_v_args += ['-g', '30']
         else:
-            codec_v  = "-c:v copy"
+            codec_v_args = ['-c:v', 'copy']
 
-        meta_flags = ""
+        meta_args: list = []
         if exif_on:
-            meta_flags += " -map_metadata -1"
+            meta_args += ['-map_metadata', '-1']
         if meta_on and meta_title:
-            safe = meta_title.replace('"', '\\"')
-            meta_flags += f' -metadata title="{safe}"'
+            meta_args += ['-metadata', f'title={meta_title}']
 
         use_logo = logo_on and logo_path and os.path.isfile(logo_path)
 
@@ -1321,17 +1401,24 @@ class VideoPipelineEngine:
                         f"colorchannelmixer=aa={logo_op:.2f}[logo];")
             overlay_flt = f"[vbase][logo]overlay={overlay_pos}[vout]"
             fc = base_vf + logo_flt + overlay_flt
-            cmd = (f'ffmpeg -i "{video_path}" -i "{logo_path}" '
-                   f'-filter_complex "{fc}" -map "[vout]" -map 0:a? '
-                   f'{codec_v} -c:a copy{meta_flags} -y "{tmp_out}"')
+            cmd_list = (
+                ['ffmpeg', '-i', video_path, '-i', logo_path,
+                 '-filter_complex', fc, '-map', '[vout]', '-map', '0:a?']
+                + codec_v_args + ['-c:a', 'copy'] + meta_args + ['-y', tmp_out]
+            )
         elif vf_parts:
-            vf_str = ",".join(vf_parts)
-            cmd = (f'ffmpeg -i "{video_path}" -vf "{vf_str}" '
-                   f'-map 0:v -map 0:a? {codec_v} -c:a copy{meta_flags} -y "{tmp_out}"')
+            cmd_list = (
+                ['ffmpeg', '-i', video_path, '-vf', ','.join(vf_parts),
+                 '-map', '0:v', '-map', '0:a?']
+                + codec_v_args + ['-c:a', 'copy'] + meta_args + ['-y', tmp_out]
+            )
         else:
-            cmd = (f'ffmpeg -i "{video_path}" -map 0 -c copy{meta_flags} -y "{tmp_out}"')
+            cmd_list = (
+                ['ffmpeg', '-i', video_path, '-map', '0', '-c', 'copy']
+                + meta_args + ['-y', tmp_out]
+            )
 
-        ok = self._run_hidden_cmd(cmd, "Lách bản quyền")
+        ok = self._run_cmd_list(cmd_list, "Lách bản quyền")
         if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
             os.replace(tmp_out, video_path)
             sys_log.info("✅ Lách bản quyền OK")
@@ -1415,9 +1502,9 @@ class VideoPipelineEngine:
         for bi in sample_idx:
             audio_tmp = os.path.join(work_dir, f"ctx_a{bi}.wav")
             srt_tmp   = os.path.join(work_dir, f"ctx_{bi}.srt")
-            ok = self._run_hidden_cmd(
-                f'ffmpeg -i "{blocks[bi]}" -vn -acodec pcm_s16le -ar 44100 -ac 2'
-                f' -t 120 -y "{audio_tmp}"',
+            ok = self._run_cmd_list(
+                ['ffmpeg', '-i', blocks[bi], '-vn', '-acodec', 'pcm_s16le',
+                 '-ar', '44100', '-ac', '2', '-t', '120', '-y', audio_tmp],
                 f"Context audio block {bi}"
             )
             if not ok or not os.path.exists(audio_tmp):
@@ -1455,8 +1542,9 @@ class VideoPipelineEngine:
 
         # Trạm 1a: Tách audio
         audio_goc = os.path.join(blk_temp, "goc.wav")
-        if not self._run_hidden_cmd(
-            f'ffmpeg -i "{blk_path}" -vn -acodec pcm_s16le -ar 44100 -ac 2 -y "{audio_goc}"',
+        if not self._run_cmd_list(
+            ['ffmpeg', '-i', blk_path, '-vn', '-acodec', 'pcm_s16le',
+             '-ar', '44100', '-ac', '2', '-y', audio_goc],
             f"Tách audio block {blk_idx}"
         ) or not os.path.exists(audio_goc):
             return False
@@ -1508,24 +1596,28 @@ class VideoPipelineEngine:
         blk_mixed = os.path.join(blk_temp, "mixed.mp4")
 
         if use_advanced and music_path and vocals_path:
-            mix_cmd = (
-                f'ffmpeg -i "{blk_path}" -i "{music_path}" -i "{vocals_path}" -i "{audio_dub}" '
-                f'-filter_complex '
-                f'"[1:a]volume={vol_bg}[music];[2:a]volume={vol_orig}[orig_voc];'
+            mix_cmd = [
+                'ffmpeg', '-i', blk_path, '-i', music_path, '-i', vocals_path, '-i', audio_dub,
+                '-filter_complex',
+                f'[1:a]volume={vol_bg}[music];[2:a]volume={vol_orig}[orig_voc];'
                 f'[music][orig_voc]amix=inputs=2:duration=first:normalize=0[bg];'
                 f'[3:a]volume={vol_ai}[dub];'
-                f'[bg][dub]amix=inputs=2:duration=first:normalize=0[final]" '
-                f'-map 0:v -map "[final]" -c:v copy -c:a aac -b:a 192k -shortest -y "{blk_mixed}"'
-            )
+                f'[bg][dub]amix=inputs=2:duration=first:normalize=0[final]',
+                '-map', '0:v', '-map', '[final]',
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', blk_mixed,
+            ]
         else:
-            mix_cmd = (
-                f'ffmpeg -i "{blk_path}" -i "{audio_goc}" -i "{audio_dub}" '
-                f'-filter_complex '
-                f'"[1:a]volume={vol_orig}[orig];[2:a]volume={vol_ai}[dub];'
-                f'[orig][dub]amix=inputs=2:duration=first:normalize=0[mix]" '
-                f'-map 0:v -map "[mix]" -c:v copy -c:a aac -b:a 192k -shortest -y "{blk_mixed}"'
-            )
-        if not self._run_hidden_cmd(mix_cmd, f"Mix audio block {blk_idx}"):
+            mix_cmd = [
+                'ffmpeg', '-i', blk_path, '-i', audio_goc, '-i', audio_dub,
+                '-filter_complex',
+                f'[1:a]volume={vol_orig}[orig];[2:a]volume={vol_ai}[dub];'
+                f'[orig][dub]amix=inputs=2:duration=first:normalize=0[mix]',
+                '-map', '0:v', '-map', '[mix]',
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', blk_mixed,
+            ]
+        if not self._run_cmd_list(mix_cmd, f"Mix audio block {blk_idx}"):
             return False
 
         # Trạm 3: GPU Render (ASS + NVENC/AMF/libx264)
@@ -1700,8 +1792,9 @@ class VideoPipelineEngine:
         # Bước 1: Tách audio gốc
         audio_goc_path = ckpt.get_temp_file("audio_goc") or os.path.join(temp_dir, "goc.wav")
         if not ckpt.is_stage_done("audio_extracted"):
-            ok = self._run_hidden_cmd(
-                f'ffmpeg -i "{vid_path}" -vn -acodec pcm_s16le -ar 44100 -ac 2 -y "{audio_goc_path}"',
+            ok = self._run_cmd_list(
+                ['ffmpeg', '-i', vid_path, '-vn', '-acodec', 'pcm_s16le',
+                 '-ar', '44100', '-ac', '2', '-y', audio_goc_path],
                 "Lỗi tách audio gốc"
             )
             if not ok or not os.path.exists(audio_goc_path):
@@ -1800,25 +1893,29 @@ class VideoPipelineEngine:
         )
 
         if use_advanced and music_path and vocals_path:
-            mix_cmd = (
-                f'ffmpeg -i "{vid_path}" -i "{music_path}" -i "{vocals_path}" -i "{audio_dub_path}" '
-                f'-filter_complex '
-                f'"[1:a]volume={vol_bg}[music];[2:a]volume={vol_orig}[orig_voc];'
+            mix_cmd = [
+                'ffmpeg', '-i', vid_path, '-i', music_path, '-i', vocals_path, '-i', audio_dub_path,
+                '-filter_complex',
+                f'[1:a]volume={vol_bg}[music];[2:a]volume={vol_orig}[orig_voc];'
                 f'[music][orig_voc]amix=inputs=2:duration=first:normalize=0[bg];'
                 f'[3:a]volume={vol_ai}[dub_vol];'
-                f'[bg][dub_vol]amix=inputs=2:duration=first:normalize=0[final]" '
-                f'-map 0:v -map "[final]" -c:v copy -c:a aac -b:a 192k -shortest -y "{final_out}"'
-            )
+                f'[bg][dub_vol]amix=inputs=2:duration=first:normalize=0[final]',
+                '-map', '0:v', '-map', '[final]',
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', final_out,
+            ]
         else:
-            mix_cmd = (
-                f'ffmpeg -i "{vid_path}" -i "{audio_goc_path}" -i "{audio_dub_path}" '
-                f'-filter_complex '
-                f'"[1:a]volume={vol_orig}[orig];[2:a]volume={vol_ai}[dub];'
-                f'[orig][dub]amix=inputs=2:duration=first:normalize=0[mix]" '
-                f'-map 0:v -map "[mix]" -c:v copy -c:a aac -b:a 192k -shortest -y "{final_out}"'
-            )
+            mix_cmd = [
+                'ffmpeg', '-i', vid_path, '-i', audio_goc_path, '-i', audio_dub_path,
+                '-filter_complex',
+                f'[1:a]volume={vol_orig}[orig];[2:a]volume={vol_ai}[dub];'
+                f'[orig][dub]amix=inputs=2:duration=first:normalize=0[mix]',
+                '-map', '0:v', '-map', '[mix]',
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', final_out,
+            ]
 
-        if self._run_hidden_cmd(mix_cmd, "Lỗi Render cuối"):
+        if self._run_cmd_list(mix_cmd, "Lỗi Render cuối"):
             size_mb = os.path.getsize(final_out) // (1024*1024) if os.path.exists(final_out) else 0
             sys_log.info(f"✅ HOÀN THÀNH: {os.path.basename(final_out)} ({size_mb} MB)")
 
@@ -1856,16 +1953,19 @@ class VideoPipelineEngine:
             sys_log.error(f"❌ Lỗi lưu SRT: {e}")
 
     def _log_srt_comparison(self, segments, video_idx):
-        sys_log.info(f"\n{'='*120}")
+        def _trunc(s: str, n: int) -> str:
+            return s[:n - 1] + '…' if len(s) > n else s
+
+        sys_log.info(f"\n{'='*140}")
         sys_log.info(f"📋 SO SÁNH SRT — VIDEO {video_idx}")
-        sys_log.info(f"{'ID':<5} {'THỜI GIAN':<26} {'GỐC':<48} | {'ĐÃ DỊCH':<48}")
-        sys_log.info("-" * 120)
+        sys_log.info(f"{'ID':<5} {'THỜI GIAN':<26} {'GỐC':<60} | {'ĐÃ DỊCH':<60}")
+        sys_log.info("-" * 140)
         for seg in segments[:50]:
-            orig  = (seg.get('original_text') or '')[:46]
-            trans = seg.get('text', '')[:46]
+            orig  = _trunc(seg.get('original_text') or '', 60)
+            trans = _trunc(seg.get('text', ''), 60)
             tstr  = f"{self._format_time(seg['start'])} → {self._format_time(seg['end'])}"
-            sys_log.info(f"{seg.get('id','-'):<5} {tstr:<26} {orig:<48} | {trans:<48}")
-        sys_log.info("=" * 120 + "\n")
+            sys_log.info(f"{seg.get('id','-'):<5} {tstr:<26} {orig:<61} | {trans:<61}")
+        sys_log.info("=" * 140 + "\n")
 
     def _format_time(self, seconds: float) -> str:
         td = time.gmtime(seconds)

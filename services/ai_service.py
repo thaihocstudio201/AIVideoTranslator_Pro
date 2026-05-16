@@ -235,7 +235,15 @@ class AIService:
                     headers=headers, json=payload, timeout=120,
                 )
                 if resp.status_code == 200:
-                    result = resp.json()["choices"][0]["message"]["content"]
+                    data = resp.json()
+                    choices = data.get("choices") or []
+                    if not choices:
+                        sys_log.warning(f"  [!] {platform} Key #{idx} trả về choices rỗng → thử key tiếp")
+                        continue
+                    result = choices[0].get("message", {}).get("content", "")
+                    if not result:
+                        sys_log.warning(f"  [!] {platform} Key #{idx} trả về content rỗng → thử key tiếp")
+                        continue
                     self._parse_translation(result, segments)
                     sys_log.info(f"  ✅ [{platform.upper()}] dịch thành công")
                     return segments, True
@@ -578,6 +586,14 @@ class AIService:
                 "- Đại từ nhân xưng: LINH HOẠT theo sắc thái cảm xúc — đánh nhau/căng thẳng "
                 "→ tao/mày; tình cảm/thân thiết → anh/em/bé/cưng; trang trọng → tôi/ông/bà. "
                 "KHÔNG bám vào từ gốc 我/你/他.\n"
+                "- Từ chỉ THỜI GIAN — phải CHÍNH XÁC, KHÔNG tự đổi sáng/trưa/tối/đêm:\n"
+                "  前夕/前夜=đêm trước/tối trước (KHÔNG phải 'sáng trước'), "
+                "  清晨/早上=sáng sớm, 傍晚=chiều tối, 深夜=đêm khuya,\n"
+                "  隔天/次日/第二天=ngày hôm sau, 此刻/此时=lúc này, 顷刻/片刻=thoáng chốc.\n"
+                "- Động từ chính thức — giữ ĐÚNG cường độ, KHÔNG làm yếu:\n"
+                "  质疑=chất vấn/đặt câu hỏi (KHÔNG phải 'nghi ngờ'), "
+                "  提出=nêu ra/đề xuất, 申请=nộp đơn, 投诉=khiếu nại,\n"
+                "  声明=tuyên bố, 要求=yêu cầu/đòi hỏi, 斥责=quở trách, 警告=cảnh cáo.\n"
                 "- Thành ngữ 4 chữ (成语): dịch theo NGHĨA & CẢM XÚC, KHÔNG dịch mặt chữ. "
                 "VD: 马到成功→thành công rực rỡ, 一石二鸟→một công đôi việc, "
                 "心有余悸→tim còn đập loạn, 如虎添翼→mạnh như hổ thêm cánh.\n"

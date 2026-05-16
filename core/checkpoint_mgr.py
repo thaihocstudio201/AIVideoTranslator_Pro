@@ -12,7 +12,10 @@ from typing import Optional
 from utils.custom_logger import sys_log
 
 CHECKPOINT_DIR = Path("config/checkpoints")
-CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+try:
+    CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+except Exception:
+    pass
 
 
 class CheckpointManager:

@@ -1,9 +1,23 @@
 import sys
+import traceback
 from PySide6.QtWidgets import QApplication
 
 from ui.main_window import MainWindow
 from utils.custom_logger import sys_log
 from security.hwid_generator import HardwareAuthenticator
+
+
+def _handle_uncaught_exception(exc_type, exc_value, exc_tb):
+    """Bắt mọi exception chưa xử lý trên main thread — log trước khi app thoát."""
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_tb)
+        return
+    msg = "".join(traceback.format_exception(exc_type, exc_value, exc_tb))
+    sys_log.error(f"UNHANDLED EXCEPTION — ứng dụng sắp tắt:\n{msg}")
+
+
+sys.excepthook = _handle_uncaught_exception
+
 
 def main():
     sys_log.info("=" * 50)

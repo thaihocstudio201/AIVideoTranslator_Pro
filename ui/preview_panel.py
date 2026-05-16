@@ -677,6 +677,14 @@ class PreviewPanel(QWidget):
         self._extract_thumbnail(path)
 
     def _extract_thumbnail(self, path: str):
+        # Disconnect signals from old thread before replacing to prevent stale callbacks
+        old = getattr(self, '_thumb_thread', None)
+        if old is not None:
+            try:
+                old.thumb_ready.disconnect()
+                old.video_size_ready.disconnect()
+            except RuntimeError:
+                pass
         self._thumb_thread = ThumbExtractThread(path)
         self._thumb_thread.thumb_ready.connect(self._on_thumb_ready)
         self._thumb_thread.video_size_ready.connect(self._on_video_size)

@@ -210,7 +210,7 @@ class MainWindow(QMainWindow):
         try:
             self.engine = VideoPipelineEngine(
                 videos, out_dir, config,
-                on_finish_callback=self.on_pipeline_done,
+                on_finish_callback=lambda: QTimer.singleShot(0, self.on_pipeline_done),
                 on_video_progress=self._on_video_progress,
             )
             self.engine.start()
