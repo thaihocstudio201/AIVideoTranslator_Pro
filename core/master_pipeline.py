@@ -645,15 +645,60 @@ class VideoPipelineEngine:
         """
         Orchestrator: thử GPU fast path trước (FFmpeg+ASS+NVENC/AMF/libx264),
         fallback về OpenCV+PIL nếu GPU thất bại (đảm bảo tiếng Việt).
+        Luôn đảm bảo output là H.264/yuv420p để tương thích mọi player.
         """
         blur_on = visuals.get("blur_enabled", False)
         sub_on  = os.path.isfile(srt_path)
         if not blur_on and not sub_on:
+            self._ensure_h264_compat(video_path)
             return
         if self._apply_visuals_gpu(video_path, visuals, srt_path):
             return
         sys_log.warning("  ⚠️ GPU render thất bại → fallback OpenCV+PIL")
         self._apply_visuals_opencv(video_path, visuals, srt_path)
+
+    def _ensure_h264_compat(self, video_path: str) -> None:
+        """Re-encode sang H.264/yuv420p nếu codec gốc không phải H.264.
+        Đảm bảo Windows Media Player, QuickTime, v.v. đọc được."""
+        try:
+            r = subprocess.run(
+                ['ffprobe', '-v', 'error', '-select_streams', 'v:0',
+                 '-show_entries', 'stream=codec_name', '-of', 'csv=p=0', video_path],
+                capture_output=True, text=True, timeout=10,
+                startupinfo=_mk_si(), creationflags=_mk_cflags()
+            )
+            codec = r.stdout.strip().lower()
+        except Exception:
+            codec = ""
+
+        if codec in ('h264', 'avc', ''):
+            return  # Đã là H.264 hoặc không probe được → bỏ qua
+
+        sys_log.info(f"  ↳ Compat encode: {codec.upper()} → H.264 (tương thích Windows)...")
+        enc = self._get_video_encoder()
+        if enc == "h264_nvenc":
+            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22', '-pix_fmt', 'yuv420p']
+        elif enc == "h264_amf":
+            enc_args = ['-c:v', 'h264_amf', '-quality', 'balanced',
+                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22', '-pix_fmt', 'yuv420p']
+        else:
+            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22', '-pix_fmt', 'yuv420p']
+
+        tmp_out = video_path + ".tmp_compat.mp4"
+        ok = self._run_cmd_list(
+            ['ffmpeg', '-i', video_path, '-map', '0:v', '-map', '0:a?',
+             *enc_args, '-c:a', 'copy', '-y', tmp_out],
+            "Compat encode H.264"
+        )
+        if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
+            os.replace(tmp_out, video_path)
+            sys_log.info("  ✅ Compat encode OK → H.264/yuv420p")
+        else:
+            try:
+                if os.path.exists(tmp_out):
+                    os.remove(tmp_out)
+            except OSError:
+                pass
 
     def _apply_visuals_gpu(self, video_path: str, visuals: dict,
                            srt_path: str) -> bool:
@@ -1866,16 +1911,19 @@ class VideoPipelineEngine:
             sys_log.error(f"❌ Lỗi lưu SRT: {e}")
 
     def _log_srt_comparison(self, segments, video_idx):
-        sys_log.info(f"\n{'='*120}")
+        def _trunc(s: str, n: int) -> str:
+            return s[:n - 1] + '…' if len(s) > n else s
+
+        sys_log.info(f"\n{'='*140}")
         sys_log.info(f"📋 SO SÁNH SRT — VIDEO {video_idx}")
-        sys_log.info(f"{'ID':<5} {'THỜI GIAN':<26} {'GỐC':<48} | {'ĐÃ DỊCH':<48}")
-        sys_log.info("-" * 120)
+        sys_log.info(f"{'ID':<5} {'THỜI GIAN':<26} {'GỐC':<60} | {'ĐÃ DỊCH':<60}")
+        sys_log.info("-" * 140)
         for seg in segments[:50]:
-            orig  = (seg.get('original_text') or '')[:46]
-            trans = seg.get('text', '')[:46]
+            orig  = _trunc(seg.get('original_text') or '', 60)
+            trans = _trunc(seg.get('text', ''), 60)
             tstr  = f"{self._format_time(seg['start'])} → {self._format_time(seg['end'])}"
-            sys_log.info(f"{seg.get('id','-'):<5} {tstr:<26} {orig:<48} | {trans:<48}")
-        sys_log.info("=" * 120 + "\n")
+            sys_log.info(f"{seg.get('id','-'):<5} {tstr:<26} {orig:<61} | {trans:<61}")
+        sys_log.info("=" * 140 + "\n")
 
     def _format_time(self, seconds: float) -> str:
         td = time.gmtime(seconds)
