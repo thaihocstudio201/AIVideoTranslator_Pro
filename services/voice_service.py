@@ -38,8 +38,24 @@ EDGE_TTS_VOICES = {
 }
 
 
+_instance: "Optional[VoiceService]" = None
+
+
 class VoiceService:
+    """Singleton — gọi VoiceService() nhiều lần vẫn trả về cùng 1 instance."""
+
+    def __new__(cls):
+        global _instance
+        if _instance is None:
+            _instance = super().__new__(cls)
+            _instance._initialized = False
+        return _instance
+
     def __init__(self):
+        if self._initialized:
+            return
+        self._initialized = True
+
         self.tts_model: Any    = None
         self.current_voice_data: Any = None
         self.current_voice_name: str = "default"
