@@ -658,21 +658,23 @@ class VideoPipelineEngine:
         self._apply_visuals_opencv(video_path, visuals, srt_path)
 
     def _ensure_h264_compat(self, video_path: str) -> None:
-        """Re-encode sang H.264/yuv420p nếu codec gốc không phải H.264.
-        Đảm bảo Windows Media Player, QuickTime, v.v. đọc được."""
+        """Re-encode sang H.264/yuv420p để đảm bảo tương thích mọi player.
+        Luôn chạy khi không có visuals — preset ultrafast nên rất nhanh."""
+        # Kiểm tra codec trước; nếu đã là H.264/yuv420p thì bỏ qua để tiết kiệm thời gian
         try:
             r = subprocess.run(
                 ['ffprobe', '-v', 'error', '-select_streams', 'v:0',
-                 '-show_entries', 'stream=codec_name', '-of', 'csv=p=0', video_path],
+                 '-show_entries', 'stream=codec_name,pix_fmt', '-of', 'csv=p=0', video_path],
                 capture_output=True, text=True, timeout=10,
                 startupinfo=_mk_si(), creationflags=_mk_cflags()
             )
-            codec = r.stdout.strip().lower()
+            info = r.stdout.strip().lower()
         except Exception:
-            codec = ""
+            info = ""
 
-        if codec in ('h264', 'avc', ''):
-            return  # Đã là H.264 hoặc không probe được → bỏ qua
+        # Bỏ qua nếu đã là H.264 yuv420p (tương thích hoàn toàn)
+        if 'h264' in info and 'yuv420p' in info:
+            return
 
         sys_log.info(f"  ↳ Compat encode: {codec.upper()} → H.264 (tương thích Windows)...")
         enc = self._get_video_encoder()
@@ -1566,7 +1568,8 @@ class VideoPipelineEngine:
                 f'[3:a]volume={vol_ai}[dub];'
                 f'[bg][dub]amix=inputs=2:duration=first:normalize=0[final]',
                 '-map', '0:v', '-map', '[final]',
-                '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', blk_mixed,
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', blk_mixed,
             ]
         else:
             mix_cmd = [
@@ -1575,7 +1578,8 @@ class VideoPipelineEngine:
                 f'[1:a]volume={vol_orig}[orig];[2:a]volume={vol_ai}[dub];'
                 f'[orig][dub]amix=inputs=2:duration=first:normalize=0[mix]',
                 '-map', '0:v', '-map', '[mix]',
-                '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', blk_mixed,
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', blk_mixed,
             ]
         if not self._run_cmd_list(mix_cmd, f"Mix audio block {blk_idx}"):
             return False
@@ -1861,7 +1865,8 @@ class VideoPipelineEngine:
                 f'[3:a]volume={vol_ai}[dub_vol];'
                 f'[bg][dub_vol]amix=inputs=2:duration=first:normalize=0[final]',
                 '-map', '0:v', '-map', '[final]',
-                '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', final_out,
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', final_out,
             ]
         else:
             mix_cmd = [
@@ -1870,7 +1875,8 @@ class VideoPipelineEngine:
                 f'[1:a]volume={vol_orig}[orig];[2:a]volume={vol_ai}[dub];'
                 f'[orig][dub]amix=inputs=2:duration=first:normalize=0[mix]',
                 '-map', '0:v', '-map', '[mix]',
-                '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', final_out,
+                '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                '-c:a', 'aac', '-b:a', '192k', '-shortest', '-y', final_out,
             ]
 
         if self._run_cmd_list(mix_cmd, "Lỗi Render cuối"):
