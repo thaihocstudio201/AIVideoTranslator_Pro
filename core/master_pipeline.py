@@ -621,8 +621,9 @@ class VideoPipelineEngine:
         cmd_list += [
             "-filter_complex", filter_complex,
             "-map", "[outv]", "-map", "[outa]",
-            "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "22", "-pix_fmt", "yuv420p",
             "-c:a", "aac", "-b:a", "192k",
+            "-movflags", "+faststart",
             "-y", tmp_out,
         ]
 
@@ -1375,9 +1376,11 @@ class VideoPipelineEngine:
         tmp_out = video_path + ".tmp_cr.mp4"
 
         if h265_on:
-            codec_v_args = ['-c:v', 'libx265', '-preset', 'fast', '-crf', '23']
+            codec_v_args = ['-c:v', 'libx265', '-preset', 'fast', '-crf', '23',
+                            '-pix_fmt', 'yuv420p']
         elif has_filter or gop_on:
-            codec_v_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22']
+            codec_v_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22',
+                            '-pix_fmt', 'yuv420p']
             if gop_on:
                 codec_v_args += ['-g', '30']
         else:
@@ -1437,7 +1440,8 @@ class VideoPipelineEngine:
             r = subprocess.run(
                 ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
                  '-of', 'csv=p=0', video_path],
-                capture_output=True, text=True, timeout=10
+                capture_output=True, text=True, timeout=10,
+                startupinfo=_mk_si(), creationflags=_mk_cflags()
             )
             return float(r.stdout.strip())
         except Exception:
@@ -1472,10 +1476,12 @@ class VideoPipelineEngine:
         try:
             with open(concat_lst, 'w', encoding='utf-8') as f:
                 for p in done_blocks:
-                    f.write(f"file '{p.replace(chr(92), '/')}'\n")
+                    # forward slash + escape single quotes for concat demuxer format
+                    escaped = p.replace(chr(92), '/').replace("'", "\\'")
+                    f.write(f"file '{escaped}'\n")
             r = subprocess.run(
                 ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', concat_lst,
-                 '-c', 'copy', '-y', output_path],
+                 '-c', 'copy', '-movflags', '+faststart', '-y', output_path],
                 capture_output=True, text=True, encoding='utf-8', errors='replace',
                 startupinfo=_mk_si(), creationflags=_mk_cflags()
             )
@@ -1574,6 +1580,8 @@ class VideoPipelineEngine:
             seg['id'] = i + 1
             seg['original_text'] = seg['text']
 
+        self._check_control()   # checkpoint sau Whisper
+
         # Trạm 2a: Dịch (với global_ctx từ Phase 1)
         segments, ok = self._translate_with_verification(
             segments, target_lang, source_lang, ai_platform, global_ctx
@@ -1583,11 +1591,15 @@ class VideoPipelineEngine:
         srt_vi = os.path.join(blk_temp, "sub_vi.srt")
         self._save_translated_srt(segments, srt_vi)
 
+        self._check_control()   # checkpoint sau dịch
+
         # Trạm 2b: TTS
         audio_goc_seg = AudioSegment.from_file(audio_goc)
         dub_canvas    = self._create_tts_with_retry(segments, audio_goc_seg, blk_temp, voice_param)
         audio_dub     = os.path.join(blk_temp, "dub_final.wav")
         dub_canvas.export(audio_dub, format="wav")
+
+        self._check_control()   # checkpoint sau TTS
 
         # Trạm 2c: Mix audio + ghép video
         vol_ai   = self.settings.get('vol_ai',  120) / 100.0
