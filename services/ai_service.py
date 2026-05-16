@@ -235,7 +235,15 @@ class AIService:
                     headers=headers, json=payload, timeout=120,
                 )
                 if resp.status_code == 200:
-                    result = resp.json()["choices"][0]["message"]["content"]
+                    data = resp.json()
+                    choices = data.get("choices") or []
+                    if not choices:
+                        sys_log.warning(f"  [!] {platform} Key #{idx} trả về choices rỗng → thử key tiếp")
+                        continue
+                    result = choices[0].get("message", {}).get("content", "")
+                    if not result:
+                        sys_log.warning(f"  [!] {platform} Key #{idx} trả về content rỗng → thử key tiếp")
+                        continue
                     self._parse_translation(result, segments)
                     sys_log.info(f"  ✅ [{platform.upper()}] dịch thành công")
                     return segments, True

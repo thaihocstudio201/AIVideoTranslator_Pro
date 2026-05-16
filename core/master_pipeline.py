@@ -836,7 +836,8 @@ class VideoPipelineEngine:
         proc = subprocess.Popen(ff_cmd, stdin=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
                                 startupinfo=_mk_si(), creationflags=_mk_cflags())
-        assert proc.stdin is not None and proc.stderr is not None
+        if proc.stdin is None or proc.stderr is None:
+            raise RuntimeError("Không mở được pipe stdin/stderr cho FFmpeg OpenCV render")
 
         frame_idx = 0
         pipe_ok   = True
@@ -938,7 +939,8 @@ class VideoPipelineEngine:
                            f"OutlineColour={_hex_bgr(visuals.get('sub_border_color_hex','#000000'))},"
                            f"BorderStyle={bstyle},Outline={outline_w},Shadow={shadow_v},"
                            f"Alignment={align},MarginV={margin_v}")
-            srt_filt   = srt_path.replace("\\", "/")
+            # FFmpeg subtitles filter: escape backslash trước, rồi escape single-quote
+            srt_filt   = srt_path.replace("\\", "/").replace("'", "\\'")
             sub_filter = f"subtitles='{srt_filt}':force_style='{force_style}'"
 
         if blur_on and sub_on:
