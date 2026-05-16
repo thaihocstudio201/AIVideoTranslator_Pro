@@ -652,7 +652,15 @@ class VideoPipelineEngine:
         if not blur_on and not sub_on:
             self._ensure_h264_compat(video_path)
             return
-        if self._apply_visuals_gpu(video_path, visuals, srt_path):
+        gpu_ok, sub_handled = self._apply_visuals_gpu(video_path, visuals, srt_path)
+        if gpu_ok and sub_handled:
+            return
+        if gpu_ok and not sub_handled and sub_on:
+            # GPU xử lý blur OK nhưng subtitle filter lỗi (thiếu libass)
+            # → OpenCV chỉ hardsub, không blur lại
+            sys_log.info("  ↳ GPU không xử lý subtitle (thiếu libass) → OpenCV hardsub only")
+            no_blur = {**visuals, "blur_enabled": False}
+            self._apply_visuals_opencv(video_path, no_blur, srt_path)
             return
         sys_log.warning("  ⚠️ GPU render thất bại → fallback OpenCV+PIL")
         self._apply_visuals_opencv(video_path, visuals, srt_path)
@@ -703,15 +711,19 @@ class VideoPipelineEngine:
                 pass
 
     def _apply_visuals_gpu(self, video_path: str, visuals: dict,
-                           srt_path: str) -> bool:
+                           srt_path: str) -> "tuple[bool, bool]":
         """
         Fast path: FFmpeg + ASS subtitle filter + GPU encoder chain.
-        Thử h264_nvenc → h264_amf → libx264. Trả về True nếu thành công.
+        Thử h264_nvenc → h264_amf → libx264.
+        Trả về (gpu_ok, sub_handled):
+          (True,  True)  → blur + subtitle đều xong
+          (True,  False) → chỉ blur xong, subtitle chưa render (thiếu libass)
+          (False, False) → hoàn toàn thất bại, cần fallback OpenCV
         """
         blur_on = visuals.get("blur_enabled", False)
         sub_on  = os.path.isfile(srt_path)
         if not blur_on and not sub_on:
-            return True
+            return True, True
 
         tmp_dir  = os.path.dirname(video_path)
         ass_path = os.path.join(tmp_dir, "_tmp_sub.ass")
@@ -731,34 +743,9 @@ class VideoPipelineEngine:
             bx = min(bx, 1.0 - bw); by = min(by, 1.0 - bh)
             return bx, by, bw, bh, bs
 
-        # Escape Windows path for ASS/subtitles filter: C:/path → C\:/path
+        # Escape Windows path for ASS filter: C:\path → C\:/path
         def _esc_ass(p: str) -> str:
             return p.replace("\\", "/").replace(":", "\\:")
-
-        if blur_on and sub_on:
-            bx, by, bw, bh, bs = _blur_params()
-            ass_fwd = _esc_ass(ass_path)
-            fc = (
-                f"[0:v]split[v_main][v_blur_src];"
-                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
-                f"boxblur={bs}:10[v_b_only];"
-                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f}[v_blurred];"
-                f"[v_blurred]subtitles='{ass_fwd}',format=yuv420p[v_final]"
-            )
-            label = "Blur+ASS"
-        elif blur_on:
-            bx, by, bw, bh, bs = _blur_params()
-            fc = (
-                f"[0:v]split[v_main][v_blur_src];"
-                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
-                f"boxblur={bs}:10[v_b_only];"
-                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f},format=yuv420p[v_final]"
-            )
-            label = "Blur"
-        else:
-            ass_fwd = _esc_ass(ass_path)
-            fc = f"[0:v]subtitles='{ass_fwd}',format=yuv420p[v_final]"
-            label = "ASS"
 
         enc = self._get_video_encoder()
         if enc == "h264_nvenc":
@@ -775,34 +762,78 @@ class VideoPipelineEngine:
                         '-pix_fmt', 'yuv420p']
             hw_args  = []
 
-        tmp_out = video_path + ".tmp_gpu.mp4"
-        sys_log.info(f"  ↳ GPU render [{enc}] {label}...")
-        ok = self._run_cmd_list(
-            ['ffmpeg', *hw_args, '-i', video_path,
-             '-filter_complex', fc,
-             '-map', '[v_final]', '-map', '0:a?',
-             *enc_args, '-c:a', 'copy', '-y', tmp_out],
-            f"GPU {label}"
-        )
-
-        if sub_on and os.path.exists(ass_path):
+        def _run_gpu(fc: str, label: str) -> bool:
+            tmp_out = video_path + ".tmp_gpu.mp4"
+            sys_log.info(f"  ↳ GPU render [{enc}] {label}...")
+            ok = self._run_cmd_list(
+                ['ffmpeg', *hw_args, '-i', video_path,
+                 '-filter_complex', fc,
+                 '-map', '[v_final]', '-map', '0:a?',
+                 *enc_args, '-c:a', 'copy',
+                 '-movflags', '+faststart', '-y', tmp_out],
+                f"GPU {label}"
+            )
+            if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
+                os.replace(tmp_out, video_path)
+                sys_log.info(f"  ✅ GPU {label} OK [{enc}]")
+                return True
             try:
-                os.remove(ass_path)
+                if os.path.exists(tmp_out):
+                    os.remove(tmp_out)
             except OSError:
                 pass
+            sys_log.warning(f"  ⚠️ GPU {label} thất bại [{enc}]")
+            return False
 
-        if ok and os.path.exists(tmp_out) and os.path.getsize(tmp_out) > 1024:
-            os.replace(tmp_out, video_path)
-            sys_log.info(f"  ✅ GPU {label} OK [{enc}]")
-            return True
+        def _blur_fc() -> str:
+            bx, by, bw, bh, bs = _blur_params()
+            return (
+                f"[0:v]split[v_main][v_blur_src];"
+                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
+                f"boxblur={bs}:10[v_b_only];"
+                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f},format=yuv420p[v_final]"
+            )
 
-        try:
-            if os.path.exists(tmp_out):
-                os.remove(tmp_out)
-        except OSError:
-            pass
-        sys_log.warning(f"  ⚠️ GPU {label} thất bại [{enc}]")
-        return False
+        def _cleanup_ass():
+            if os.path.exists(ass_path):
+                try:
+                    os.remove(ass_path)
+                except OSError:
+                    pass
+
+        if blur_on and sub_on:
+            bx, by, bw, bh, bs = _blur_params()
+            ass_fwd = _esc_ass(ass_path)
+            fc_full = (
+                f"[0:v]split[v_main][v_blur_src];"
+                f"[v_blur_src]crop=iw*{bw:.4f}:ih*{bh:.4f}:iw*{bx:.4f}:ih*{by:.4f},"
+                f"boxblur={bs}:10[v_b_only];"
+                f"[v_main][v_b_only]overlay=W*{bx:.4f}:H*{by:.4f}[v_blurred];"
+                f"[v_blurred]subtitles='{ass_fwd}',format=yuv420p[v_final]"
+            )
+            if _run_gpu(fc_full, "Blur+ASS"):
+                _cleanup_ass()
+                return True, True
+            # subtitles filter thất bại (thường do thiếu libass) → thử blur-only
+            sys_log.info("  ↳ Blur+ASS thất bại → thử GPU Blur-only, subtitle sẽ do OpenCV xử lý")
+            _cleanup_ass()
+            if _run_gpu(_blur_fc(), "Blur"):
+                return True, False  # blur OK, subtitle chưa xử lý
+            return False, False
+
+        elif blur_on:
+            ok = _run_gpu(_blur_fc(), "Blur")
+            return ok, True  # không có subtitle nên sub_handled=True
+
+        else:  # sub_on only
+            ass_fwd = _esc_ass(ass_path)
+            fc_sub = f"[0:v]subtitles='{ass_fwd}',format=yuv420p[v_final]"
+            ok = _run_gpu(fc_sub, "ASS")
+            _cleanup_ass()
+            if ok:
+                return True, True
+            # subtitle filter thất bại (thiếu libass) → báo caller dùng OpenCV
+            return False, False
 
     # ── VISUALS: OpenCV frame-by-frame + PIL (fallback) ────────────
     def _apply_visuals_opencv(self, video_path: str, visuals: dict,
@@ -863,14 +894,17 @@ class VideoPipelineEngine:
         # Pipe frames → FFmpeg (H.264 encode + audio copy from original)
         enc = self._get_video_encoder()
         if enc == "h264_nvenc":
-            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22']
+            enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22',
+                        '-pix_fmt', 'yuv420p']
         elif enc == "h264_amf":
             enc_args = ['-c:v', 'h264_amf', '-quality', 'balanced',
-                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22']
+                        '-rc', 'cqp', '-qp_i', '22', '-qp_p', '22',
+                        '-pix_fmt', 'yuv420p']
         else:
-            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22']
+            enc_args = ['-c:v', 'libx264', '-preset', 'fast', '-crf', '22',
+                        '-pix_fmt', 'yuv420p']
         ff_cmd = [
-            'ffmpeg', '-y',
+            'ffmpeg',
             '-f', 'rawvideo', '-pixel_format', 'bgr24',
             '-video_size', f'{W}x{H}', '-framerate', str(fps),
             '-i', 'pipe:0',
@@ -878,6 +912,8 @@ class VideoPipelineEngine:
             *enc_args,
             '-c:a', 'copy',
             '-map', '0:v:0', '-map', '1:a?',
+            '-movflags', '+faststart',
+            '-shortest',
             '-y', tmp_out,
         ]
         proc = subprocess.Popen(ff_cmd, stdin=subprocess.PIPE,
