@@ -98,7 +98,8 @@ class VideoPipelineEngine:
                     ["ffmpeg", "-hide_banner", "-f", "lavfi",
                      "-i", "color=c=black:s=128x128:r=25:d=0.5",
                      "-c:v", codec, "-f", "null", os.devnull],
-                    capture_output=True, timeout=15
+                    capture_output=True, timeout=15,
+                    startupinfo=_mk_si(), creationflags=_mk_cflags()
                 )
                 if r.returncode == 0:
                     cls._HW_ENCODER = codec
@@ -1080,18 +1081,30 @@ class VideoPipelineEngine:
     @staticmethod
     def _find_font_pil(font_name: str, size: int):
         from PIL import ImageFont
+        import glob
+
+        # Tên file thông dụng từ font_name (ví dụ "Arial" → arial.ttf, arialuni.ttf...)
+        base = font_name.replace(" ", "")
+        candidates = [
+            f"{font_name}.ttf", f"{font_name}.TTF",
+            f"{base}.ttf",      f"{base}.TTF",
+            f"{base.lower()}.ttf",
+            f"{base}bd.ttf",    f"{base}b.ttf",   # bold variants
+            f"{base}uni.ttf",                      # unicode variant
+        ]
+
         dirs = [
             "C:/Windows/Fonts",
+            os.path.expanduser("~/AppData/Local/Microsoft/Windows/Fonts"),
             "/usr/share/fonts/truetype",
+            "/usr/share/fonts",
             "/System/Library/Fonts",
+            "/Library/Fonts",
         ]
-        candidates = [
-            f"{font_name}.ttf",
-            f"{font_name.lower()}.ttf",
-            f"{font_name.replace(' ', '')}.ttf",
-            f"{font_name.replace(' ', '').lower()}.ttf",
-        ]
+
         for d in dirs:
+            if not os.path.isdir(d):
+                continue
             for c in candidates:
                 p = os.path.join(d, c)
                 if os.path.isfile(p):
@@ -1099,9 +1112,31 @@ class VideoPipelineEngine:
                         return ImageFont.truetype(p, size)
                     except Exception:
                         pass
+            # Tìm bằng glob (case-insensitive trên Windows)
+            for pat in (f"{base}*.ttf", f"{base.lower()}*.ttf"):
+                for p in glob.glob(os.path.join(d, pat)):
+                    try:
+                        return ImageFont.truetype(p, size)
+                    except Exception:
+                        pass
+
+        # Thử load trực tiếp (hệ thống có thể tìm được)
         try:
             return ImageFont.truetype(font_name, size)
         except Exception:
+            pass
+
+        # Fallback: tìm bất kỳ .ttf trong Windows Fonts
+        for p in glob.glob("C:/Windows/Fonts/arial*.ttf") + glob.glob("C:/Windows/Fonts/Arial*.ttf"):
+            try:
+                return ImageFont.truetype(p, size)
+            except Exception:
+                pass
+
+        # Last resort: bitmap default (rất nhỏ — chỉ khi không có font nào)
+        try:
+            return ImageFont.load_default(size=size)   # Pillow ≥ 10.1
+        except TypeError:
             return ImageFont.load_default()
 
     @staticmethod
@@ -1125,6 +1160,34 @@ class VideoPipelineEngine:
             cy = H - int(H * margin_y) - th
         return cx, cy
 
+    @staticmethod
+    def _measure_text_pil(draw, text: str, font) -> "tuple[int, int]":
+        """Đo kích thước text (tw, th) tương thích Pillow 8–11."""
+        try:
+            bbox = draw.textbbox((0, 0), text, font=font)
+            return bbox[2] - bbox[0], bbox[3] - bbox[1]
+        except AttributeError:
+            return draw.textsize(text, font=font)  # type: ignore[attr-defined]
+
+    def _wrap_text_pil(self, draw, text: str, font, max_width: int) -> str:
+        """Ngắt dòng text cho vừa max_width pixel."""
+        words = text.split()
+        if not words:
+            return text
+        lines: list = []
+        current: list = []
+        for word in words:
+            test = " ".join(current + [word])
+            w, _ = self._measure_text_pil(draw, test, font)
+            if w <= max_width or not current:
+                current.append(word)
+            else:
+                lines.append(" ".join(current))
+                current = [word]
+        if current:
+            lines.append(" ".join(current))
+        return "\n".join(lines)
+
     def _draw_sub_pil(self, frame, text: str, visuals: dict, W: int, H: int):
         """Vẽ phụ đề bằng PIL — hỗ trợ Unicode tiếng Việt đầy đủ."""
         import numpy as np
@@ -1132,31 +1195,38 @@ class VideoPipelineEngine:
         from PIL import Image, ImageDraw
 
         font_name    = visuals.get("sub_font", "Arial")
-        font_size    = max(12, visuals.get("sub_size", 24))
+        # Scale font giống _generate_ass: sub_size * H/1080 * 1.4
+        raw_size     = visuals.get("sub_size", 24)
+        font_size    = max(14, int(raw_size * H / 1080 * 1.4))
         color_hex    = visuals.get("sub_color_hex", "#FFFFFF")
         border_hex   = visuals.get("sub_border_color_hex", "#000000")
-        border_w     = visuals.get("sub_border_width", 2)
+        border_w     = int(visuals.get("sub_border_width", 2))
         anchor       = visuals.get("sub_anchor", "bottom-center")
         margin_y_pct = float(visuals.get("sub_margin_y_pct", 0.10))
         margin_x_pct = float(visuals.get("sub_margin_x_pct", 0.03))
+        max_text_w   = int(W * (1.0 - 2 * margin_x_pct))
 
         font = self._find_font_pil(font_name, font_size)
         img  = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
         draw = ImageDraw.Draw(img)
 
-        try:
-            bbox = draw.textbbox((0, 0), text, font=font)
-            tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-        except AttributeError:
-            tw, th = draw.textsize(text, font=font)  # type: ignore[attr-defined]
+        # Wrap text để không tràn frame
+        text = self._wrap_text_pil(draw, text, font, max_text_w)
+
+        tw, th = self._measure_text_pil(draw, text, font)
 
         cx, cy = self._anchor_sub_pos(anchor, margin_y_pct, margin_x_pct, int(tw), int(th), W, H)
+        # Clamp vào vùng an toàn
+        cx = max(0, min(cx, W - tw))
+        cy = max(0, min(cy, H - th))
 
+        # Vẽ viền bằng offset — 8 hướng thay vì vòng lặp O(4w²)
         if border_w > 0:
-            for ddx in range(-border_w, border_w + 1):
-                for ddy in range(-border_w, border_w + 1):
-                    if ddx or ddy:
-                        draw.text((cx + ddx, cy + ddy), text, font=font, fill=border_hex)
+            for ddx, ddy in [(-border_w, 0), (border_w, 0),
+                             (0, -border_w), (0, border_w),
+                             (-border_w, -border_w), (border_w, -border_w),
+                             (-border_w, border_w), (border_w, border_w)]:
+                draw.text((cx + ddx, cy + ddy), text, font=font, fill=border_hex)
         draw.text((cx, cy), text, font=font, fill=color_hex)
         return cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
