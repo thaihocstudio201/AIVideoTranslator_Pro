@@ -1548,6 +1548,63 @@ class VideoPipelineEngine:
             sys_log.warning("⚠️ Lách bản quyền thất bại — giữ nguyên video")
 
     # ── BLOCK PIPELINE (video > 30 phút) ──────────────────────
+
+    def _translate_filename(self, raw_name: str) -> str:
+        """
+        Dịch tên file sang ngôn ngữ đích nếu tên chứa ký tự ngoài Latin
+        (ví dụ: tiếng Trung, Nhật, Hàn, Ả Rập...).
+        Kết quả được làm sạch cho filesystem. Fallback về tên gốc nếu lỗi.
+        """
+        # Phát hiện: có ký tự ngoài Latin Extended (> U+024F)?
+        if not any(ord(c) > 0x024F for c in raw_name):
+            return raw_name  # Đã là Latin/ASCII — không cần dịch
+
+        target_lang = self.settings.get('target_lang', 'Vietnamese')
+        ai_platform = self.settings.get('ai_platform', 'ollama')
+        model       = self.settings.get('default_model', 'qwen2.5:14b')
+
+        translated = ""
+
+        # Ưu tiên Ollama (local, nhanh, không cần API key)
+        if ai_platform == 'ollama' or not translated:
+            try:
+                import requests as _req
+                resp = _req.post(
+                    "http://localhost:11434/api/chat",
+                    json={
+                        "model": model,
+                        "messages": [
+                            {"role": "system", "content":
+                             f"Dịch tiêu đề video sang {target_lang}. "
+                             "Chỉ trả về tiêu đề đã dịch, ngắn gọn (tối đa 12 từ), "
+                             "KHÔNG giải thích, KHÔNG ngoặc, KHÔNG ký tự đặc biệt."},
+                            {"role": "user", "content": raw_name},
+                        ],
+                        "stream": False,
+                        "options": {"temperature": 0.1, "num_ctx": 256},
+                    },
+                    timeout=(5, 20),
+                )
+                if resp.status_code == 200:
+                    translated = resp.json().get("message", {}).get("content", "").strip()
+            except Exception as e:
+                sys_log.warning(f"  ⚠️ Không dịch được tên file qua Ollama: {e}")
+
+        if not translated:
+            sys_log.warning(f"  ⚠️ Dịch tên file thất bại → giữ nguyên: '{raw_name}'")
+            return raw_name
+
+        # Làm sạch cho filesystem: bỏ ký tự cấm, giới hạn độ dài
+        translated = re.sub(r'[<>:"/\\|?*\x00-\x1f]', '', translated)
+        translated = re.sub(r'\s+', ' ', translated).strip()
+        translated = translated[:120]  # max 120 ký tự
+
+        if not translated:
+            return raw_name
+
+        sys_log.info(f"  ↳ Tên file: '{raw_name}' → '{translated}'")
+        return translated
+
     @staticmethod
     def _probe_video_duration(video_path: str) -> float:
         """Trả về thời lượng video (giây) bằng ffprobe."""
@@ -1762,7 +1819,9 @@ class VideoPipelineEngine:
         Phase 0: Split (stream-copy) → Phase 1: Global Context →
         Phase 2: Assembly Line (với checkpoint kháng lỗi) → Phase 3: Grand Assembly (concat).
         """
-        name_clean = re.sub(r'[^\w\s-]', '', os.path.splitext(os.path.basename(vid_path))[0]).strip()
+        raw_name   = os.path.splitext(os.path.basename(vid_path))[0]
+        raw_name   = self._translate_filename(raw_name)
+        name_clean = re.sub(r'[^\w\s\-]', '', raw_name).strip() or "video"
         work_dir   = os.path.join(self.out_dir, f"blocks_{vid_idx}_{name_clean}")
         ckpt       = CheckpointManager(vid_path, self.out_dir)
 
@@ -1924,7 +1983,9 @@ class VideoPipelineEngine:
     def _run_single_video(self, vid_path: str, idx: int):
         """Pipeline cho video ngắn (≤ BLOCK_THRESHOLD_SEC) với CheckpointManager."""
         base_name  = os.path.basename(vid_path)
-        name_clean = re.sub(r'[^\w\s-]', '', os.path.splitext(base_name)[0]).strip()
+        raw_name   = os.path.splitext(base_name)[0]
+        raw_name   = self._translate_filename(raw_name)
+        name_clean = re.sub(r'[^\w\s\-]', '', raw_name).strip() or "video"
         temp_dir   = os.path.join(self.out_dir, f"temp_{idx}_{name_clean}")
         os.makedirs(temp_dir, exist_ok=True)
         ckpt       = CheckpointManager(vid_path, self.out_dir)
