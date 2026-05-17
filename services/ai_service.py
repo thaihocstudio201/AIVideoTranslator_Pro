@@ -422,7 +422,7 @@ class AIService:
         Fallback về text gốc nếu hết retry → đảm bảo timeline SRT không bị mất.
         """
         expected = len(chunk)
-        min_ok   = max(1, expected - 1)   # cho phép thiếu ≤1 dòng
+        min_ok   = max(1, expected - 1)   # cho phép thiếu ≤1 dòng (chỉ ở lần retry cuối)
 
         for attempt in range(1, self._OLLAMA_CHUNK_RETRIES + 1):
             # Mỗi retry tăng thêm num_ctx để tránh truncate
@@ -473,10 +473,16 @@ class AIService:
             # ── Checkpoint 1+2: định dạng & toàn vẹn ID ──────────────────────
             parsed = self._parse_translation(clean_text, chunk)
 
-            if parsed >= min_ok:
-                if parsed < expected:
-                    missing = expected - parsed
-                    sys_log.warning(f"  ⚠️ {label}: thiếu {missing} đoạn (chấp nhận được)")
+            if parsed >= expected:
+                # Tất cả đoạn đã dịch xong
+                return True
+
+            is_last_attempt = (attempt == self._OLLAMA_CHUNK_RETRIES)
+            if is_last_attempt and parsed >= min_ok:
+                # Lần cuối: chấp nhận thiếu ≤1 đoạn — đoạn sót sẽ được
+                # _translate_with_verification bắt và retry riêng
+                missing = expected - parsed
+                sys_log.warning(f"  ⚠️ {label}: thiếu {missing} đoạn (chấp nhận ở lần cuối)")
                 return True
 
             sys_log.warning(
