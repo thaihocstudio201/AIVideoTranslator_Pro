@@ -1900,8 +1900,12 @@ class VideoPipelineEngine:
         ckpt       = CheckpointManager(vid_path, self.out_dir)
 
         # Bước 1: Tách audio gốc
-        audio_goc_path = ckpt.get_temp_file("audio_goc") or os.path.join(temp_dir, "goc.wav")
-        if not ckpt.is_stage_done("audio_extracted"):
+        # Luôn dùng path trong temp_dir hiện tại (không dùng path lưu trong checkpoint vì
+        # output dir có thể thay đổi giữa các lần chạy)
+        audio_goc_path = os.path.join(temp_dir, "goc.wav")
+        if not ckpt.is_stage_done("audio_extracted") or not os.path.exists(audio_goc_path):
+            if ckpt.is_stage_done("audio_extracted") and not os.path.exists(audio_goc_path):
+                sys_log.warning("  ⚠️ Audio gốc không còn tồn tại → tách lại từ video gốc")
             ok = self._run_cmd_list(
                 ['ffmpeg', '-i', vid_path, '-vn', '-acodec', 'pcm_s16le',
                  '-ar', '44100', '-ac', '2', '-y', audio_goc_path],
@@ -1970,6 +1974,13 @@ class VideoPipelineEngine:
         # Bước 4: TTS + Retry
         if not ckpt.is_stage_done("tts_done"):
             sys_log.info(f"  ↳ Tạo voice ({target_lang})...")
+            if not os.path.exists(audio_goc_path):
+                sys_log.warning("  ⚠️ Audio gốc mất trước bước TTS → tách lại")
+                self._run_cmd_list(
+                    ['ffmpeg', '-i', vid_path, '-vn', '-acodec', 'pcm_s16le',
+                     '-ar', '44100', '-ac', '2', '-y', audio_goc_path],
+                    "Tách lại audio gốc (TTS)"
+                )
             audio_goc_seg  = AudioSegment.from_file(audio_goc_path)
             voice_param    = self._get_voice_param()
             dub_canvas     = self._create_tts_with_retry(segments, audio_goc_seg, temp_dir, voice_param)
@@ -1978,8 +1989,23 @@ class VideoPipelineEngine:
             ckpt.register_temp_file("audio_dub", audio_dub_path)
             ckpt.advance_stage("tts_done")
         else:
-            audio_dub_path = ckpt.get_temp_file("audio_dub") or os.path.join(temp_dir, "dub_final.wav")
-            voice_param    = self._get_voice_param()
+            audio_dub_path = os.path.join(temp_dir, "dub_final.wav")
+            if not os.path.exists(audio_dub_path):
+                # Stale checkpoint — dub file was deleted, re-run TTS
+                sys_log.warning("  ⚠️ dub_final.wav không còn tồn tại → thực hiện lại TTS")
+                if not os.path.exists(audio_goc_path):
+                    self._run_cmd_list(
+                        ['ffmpeg', '-i', vid_path, '-vn', '-acodec', 'pcm_s16le',
+                         '-ar', '44100', '-ac', '2', '-y', audio_goc_path],
+                        "Tách lại audio gốc (TTS fallback)"
+                    )
+                audio_goc_seg  = AudioSegment.from_file(audio_goc_path)
+                voice_param    = self._get_voice_param()
+                dub_canvas     = self._create_tts_with_retry(segments, audio_goc_seg, temp_dir, voice_param)
+                dub_canvas.export(audio_dub_path, format="wav")
+                ckpt.register_temp_file("audio_dub", audio_dub_path)
+            else:
+                voice_param = self._get_voice_param()
             sys_log.info("  ⏭️  Bỏ qua TTS (checkpoint)")
 
         self._check_control()   # checkpoint sau TTS
