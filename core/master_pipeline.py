@@ -908,6 +908,13 @@ class VideoPipelineEngine:
         tmp_out = video_path + ".tmp_vis.mp4"
         sys_log.info(f"  ↳ [OpenCV] {label} | {W}x{H} @{fps:.2f}fps | {total} frames")
 
+        # Pre-load font once (not per-frame) to avoid O(N) disk lookups
+        pil_font = None
+        if PIL_OK and sub_on and srt_segs:
+            raw_size  = visuals.get("sub_size", 24)
+            font_size = max(14, int(raw_size * H / 1080 * 1.4))
+            pil_font  = self._find_font_pil(visuals.get("sub_font", "Arial"), font_size)
+
         # Pipe frames → FFmpeg (H.264 encode + audio copy from original)
         enc = self._get_video_encoder()
         if enc == "h264_nvenc":
@@ -939,6 +946,20 @@ class VideoPipelineEngine:
         if proc.stdin is None or proc.stderr is None:
             raise RuntimeError("Không mở được pipe stdin/stderr cho FFmpeg OpenCV render")
 
+        # Drain FFmpeg stderr in background thread to prevent pipe-buffer deadlock.
+        # Without this, FFmpeg blocks writing progress logs → stops reading stdin →
+        # stdin pipe fills → proc.stdin.write() hangs forever.
+        import threading
+        stderr_chunks: list = []
+        def _drain_stderr():
+            try:
+                for chunk in iter(lambda: proc.stderr.read(4096), b''):
+                    stderr_chunks.append(chunk)
+            except Exception:
+                pass
+        drain_thread = threading.Thread(target=_drain_stderr, daemon=True)
+        drain_thread.start()
+
         frame_idx = 0
         pipe_ok   = True
         try:
@@ -959,7 +980,8 @@ class VideoPipelineEngine:
                     text = self._get_sub_at_time(srt_segs, t_sec)
                     if text:
                         if PIL_OK:
-                            frame = self._draw_sub_pil(frame, text, visuals, W, H)
+                            frame = self._draw_sub_pil(frame, text, visuals, W, H,
+                                                       preloaded_font=pil_font)
                         else:
                             frame = self._draw_sub_cv2(frame, text, visuals, W, H)
 
@@ -974,16 +996,22 @@ class VideoPipelineEngine:
                 if frame_idx % 500 == 0:
                     pct = frame_idx / total * 100 if total else 0
                     sys_log.info(f"    → {frame_idx}/{total} frames ({pct:.0f}%)")
+                    try:
+                        self._check_control()
+                    except Exception:
+                        pipe_ok = False
+                        break
         finally:
             cap.release()
 
-        # Close stdin (signals EOF to FFmpeg), then drain stderr, then wait
+        # Close stdin (EOF signal to FFmpeg), wait for drain thread, then wait for process
         try:
             proc.stdin.close()
         except OSError:
             pass
-        stderr_b = proc.stderr.read()
+        drain_thread.join(timeout=60)
         proc.wait()
+        stderr_b = b''.join(stderr_chunks)
         ok = (proc.returncode == 0) and pipe_ok
         if not ok:
             sys_log.error(f"  [!] FFmpeg encode lỗi: {stderr_b[-400:].decode('utf-8','replace')}")
@@ -1188,7 +1216,8 @@ class VideoPipelineEngine:
             lines.append(" ".join(current))
         return "\n".join(lines)
 
-    def _draw_sub_pil(self, frame, text: str, visuals: dict, W: int, H: int):
+    def _draw_sub_pil(self, frame, text: str, visuals: dict, W: int, H: int,
+                      preloaded_font=None):
         """Vẽ phụ đề bằng PIL — hỗ trợ Unicode tiếng Việt đầy đủ."""
         import numpy as np
         import cv2
@@ -1206,7 +1235,7 @@ class VideoPipelineEngine:
         margin_x_pct = float(visuals.get("sub_margin_x_pct", 0.03))
         max_text_w   = int(W * (1.0 - 2 * margin_x_pct))
 
-        font = self._find_font_pil(font_name, font_size)
+        font = preloaded_font if preloaded_font is not None else self._find_font_pil(font_name, font_size)
         img  = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
         draw = ImageDraw.Draw(img)
 
