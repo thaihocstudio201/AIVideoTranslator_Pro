@@ -1497,36 +1497,40 @@ class VideoPipelineEngine:
     def _build_global_ctx_from_blocks(self, blocks: list, work_dir: str) -> str:
         """
         Whisper 2 phút đầu của 3 block mẫu (đầu/giữa/cuối) → LLM tạo Global Context.
-        Giải phóng VRAM sau mỗi Whisper call.
+        Load model một lần duy nhất cho cả 3 block để tránh CUDA teardown/reinit crash.
         """
         n           = len(blocks)
         sample_idx  = sorted({0, n // 2, n - 1})
         whisper_dev = "cuda" if torch.cuda.is_available() else "cpu"
+        whisper_sz  = self.settings.get("whisper_model", "base")
         all_segs: list = []
         os.makedirs(work_dir, exist_ok=True)
 
-        for bi in sample_idx:
-            audio_tmp = os.path.join(work_dir, f"ctx_a{bi}.wav")
-            srt_tmp   = os.path.join(work_dir, f"ctx_{bi}.srt")
-            ok = self._run_cmd_list(
-                ['ffmpeg', '-i', blocks[bi], '-vn', '-acodec', 'pcm_s16le',
-                 '-ar', '44100', '-ac', '2', '-t', '120', '-y', audio_tmp],
-                f"Context audio block {bi}"
-            )
-            if not ok or not os.path.exists(audio_tmp):
-                continue
-            self.ai.reload_model(model_size=self.settings.get("whisper_model", "base"),
-                                   device=whisper_dev)
-            segs = self.ai.transcribe_and_get_segments(audio_tmp, srt_tmp)
-            self.ai.unload_model()
-            if segs:
-                offset = len(all_segs)
-                for j, s in enumerate(segs):
-                    all_segs.append({**s, 'id': offset + j + 1})
-            try:
-                os.remove(audio_tmp)
-            except OSError:
-                pass
+        # Load Whisper một lần → chạy cả 3 block → unload một lần
+        # Giảm CUDA teardown/reinit từ 3× xuống 1× → tránh CUDA destructor crash
+        self.ai.reload_model(model_size=whisper_sz, device=whisper_dev)
+        try:
+            for bi in sample_idx:
+                audio_tmp = os.path.join(work_dir, f"ctx_a{bi}.wav")
+                srt_tmp   = os.path.join(work_dir, f"ctx_{bi}.srt")
+                ok = self._run_cmd_list(
+                    ['ffmpeg', '-i', blocks[bi], '-vn', '-acodec', 'pcm_s16le',
+                     '-ar', '44100', '-ac', '2', '-t', '120', '-y', audio_tmp],
+                    f"Context audio block {bi}"
+                )
+                if not ok or not os.path.exists(audio_tmp):
+                    continue
+                segs = self.ai.transcribe_and_get_segments(audio_tmp, srt_tmp)
+                if segs:
+                    offset = len(all_segs)
+                    for j, s in enumerate(segs):
+                        all_segs.append({**s, 'id': offset + j + 1})
+                try:
+                    os.remove(audio_tmp)
+                except OSError:
+                    pass
+        finally:
+            self.ai.unload_model()   # unload một lần duy nhất dù có lỗi hay không
 
         if not all_segs:
             return ""
@@ -1675,7 +1679,11 @@ class VideoPipelineEngine:
         else:
             sys_log.info("  ↳ Phase 1: Trích xuất Global Context từ 3 block mẫu...")
             os.makedirs(work_dir, exist_ok=True)
-            global_ctx = self._build_global_ctx_from_blocks(blocks, work_dir)
+            try:
+                global_ctx = self._build_global_ctx_from_blocks(blocks, work_dir)
+            except Exception as e:
+                sys_log.warning(f"  ⚠️ Phase 1 lỗi: {e} → bỏ qua global context, tiếp tục")
+                global_ctx = ""
             if global_ctx:
                 with open(ctx_path, 'w', encoding='utf-8') as f:
                     f.write(global_ctx)
@@ -1776,19 +1784,24 @@ class VideoPipelineEngine:
                 except _PipelineStopRequest:
                     self._emit_video_progress(idx, base_name, "stopped")
                     raise
-                except Exception as e:
-                    sys_log.error(f"  ❌ Lỗi xử lý {base_name}: {e}")
+                except BaseException as e:
+                    import traceback as _tb
+                    sys_log.error(
+                        f"  ❌ Lỗi xử lý {base_name}: {type(e).__name__}: {e}\n"
+                        + _tb.format_exc()
+                    )
                     self._emit_video_progress(idx, base_name, "error")
+                    if not isinstance(e, Exception):
+                        raise  # re-raise SystemExit / KeyboardInterrupt
 
             sys_log.info("=" * 70)
             sys_log.info("🎉 HOÀN TẤT TOÀN BỘ QUÁ TRÌNH!")
 
         except _PipelineStopRequest:
             sys_log.info("⏹️  Pipeline đã dừng theo yêu cầu người dùng.")
-        except Exception as e:
-            sys_log.error(f"PIPELINE CRASH: {e}")
-            import traceback
-            sys_log.error(traceback.format_exc())
+        except BaseException as e:
+            import traceback as _tb
+            sys_log.error(f"PIPELINE CRASH: {type(e).__name__}: {e}\n{_tb.format_exc()}")
         finally:
             if self.on_finish:
                 self.on_finish()
