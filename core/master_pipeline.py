@@ -1255,8 +1255,9 @@ class VideoPipelineEngine:
                              (0, -border_w), (0, border_w),
                              (-border_w, -border_w), (border_w, -border_w),
                              (-border_w, border_w), (border_w, border_w)]:
-                draw.text((cx + ddx, cy + ddy), text, font=font, fill=border_hex)
-        draw.text((cx, cy), text, font=font, fill=color_hex)
+                draw.text((cx + ddx, cy + ddy), text, font=font, fill=border_hex,
+                          align="center")
+        draw.text((cx, cy), text, font=font, fill=color_hex, align="center")
         return cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
     @staticmethod

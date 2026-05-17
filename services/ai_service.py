@@ -304,9 +304,11 @@ class AIService:
         user = (
             f"Đọc đoạn thoại {source_lang} sau và lập hồ sơ để hỗ trợ dịch sang {target_lang}.\n\n"
             f"{lines}\n\n"
-            "Trả về ĐÚNG 3 dòng:\n"
+            "Trả về ĐÚNG 4 dòng:\n"
             "THỂ LOẠI: [phim hành động / tình cảm / hài / kinh dị / vlog / show...]\n"
             "NHÂN VẬT: [Tên & vai trò chính, VD: A - thủ lĩnh; B - học sinh]\n"
+            "BẢNG TÊN: [TênGốc→TênViệt-HánViệt, VD: 李明→Lý Minh; 贺书婷→Hạ Thư Đình; "
+            "Zhang Wei→Trương Vĩ — DÙNG âm Hán-Việt chuẩn, GIỮ NHẤT QUÁN toàn video]\n"
             "XƯNG HÔ & GIỌNG: [VD: anh/em ngọt ngào | mày/tao gắt | tôi/bạn lịch sự]"
         )
         try:
@@ -541,7 +543,10 @@ class AIService:
                 "4. Trợ từ (啊/呢/嘛/吧): lược bỏ hoặc đổi sang từ Việt (à/nhỉ/vậy/chứ).\n"
                 "5. Thán từ mạnh (卧槽/妈的): dùng tương đương Việt mạnh (vãi/mẹ kiếp/đéo).\n"
                 "6. Slang mạng TQ: tìm từ giới trẻ Việt tương đương, không dịch thẳng.\n"
-                "7. TUYỆT ĐỐI không dịch máy móc — đọc ngữ cảnh trước khi dịch.\n"
+                "7. Tên nhân vật/địa danh: dùng ÂM HÁN-VIỆT chuẩn theo BẢNG TÊN ở sổ tay. "
+                "Chưa có trong bảng → đọc Hán-Việt (貿→Mậu, 婷→Đình, 张→Trương, 李→Lý). "
+                "KHÔNG phiên âm tùy tiện, KHÔNG đặt tên mới.\n"
+                "8. TUYỆT ĐỐI không dịch máy móc — đọc ngữ cảnh trước khi dịch.\n"
             )
         else:
             parts.append(
@@ -616,8 +621,10 @@ class AIService:
                 "- Thành ngữ 4 chữ (成语): dịch theo NGHĨA & CẢM XÚC, KHÔNG dịch mặt chữ. "
                 "VD: 马到成功→thành công rực rỡ, 一石二鸟→một công đôi việc, "
                 "心有余悸→tim còn đập loạn, 如虎添翼→mạnh như hổ thêm cánh.\n"
-                "- Tên riêng: giữ phiên âm quen thuộc (Lý Tiểu Long, Hàng Châu). "
-                "Tên ít biết → đọc âm Hán-Việt hoặc giữ nguyên, KHÔNG tự ý tạo tên mới.\n"
+                "- Tên nhân vật & địa danh: PHẢI dùng âm Hán-Việt chuẩn theo BẢNG TÊN "
+                "trong sổ tay ngữ cảnh. Tên quen thuộc giữ nguyên (Lý Tiểu Long, Hàng Châu). "
+                "Tên chưa có trong bảng → đọc âm Hán-Việt (KHÔNG phiên âm tùy tiện), "
+                "KHÔNG tự đặt tên mới. VD: 贺→Hạ, 书→Thư, 婷→Đình, 张→Trương, 李→Lý.\n"
                 "- Trợ từ cảm thán (啊/呢/嘛/吧/哦/喂/哎): lược bỏ hoặc thay bằng "
                 "từ Việt tương đương (nhỉ/à/vậy/chứ/ừ/ê/ôi).\n"
                 "- Thán từ mạnh (卧槽/我操/我靠/妈的/他妈): dùng tương đương Việt mạnh "
