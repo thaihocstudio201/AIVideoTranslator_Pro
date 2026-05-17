@@ -644,15 +644,25 @@ class VideoPipelineEngine:
     def _apply_visuals(self, video_path: str, visuals: dict,
                        srt_path: str) -> None:
         """
-        Orchestrator: thử GPU fast path trước (FFmpeg+ASS+NVENC/AMF/libx264),
+        Orchestrator: thử GPU fast path trước (FFmpeg+NVENC/AMF),
         fallback về OpenCV+PIL nếu GPU thất bại (đảm bảo tiếng Việt).
-        Luôn đảm bảo output là H.264/yuv420p để tương thích mọi player.
+        Khi không có GPU encoder (libx264 CPU), bỏ qua filter_complex
+        và dùng OpenCV ngay — tránh lỗi -22 (Invalid argument) trên FFmpeg CPU.
         """
         blur_on = visuals.get("blur_enabled", False)
         sub_on  = os.path.isfile(srt_path)
         if not blur_on and not sub_on:
             self._ensure_h264_compat(video_path)
             return
+
+        enc = self._get_video_encoder()
+        if enc == "libx264":
+            # Không có GPU encoder → filter_complex path không đáng tin cậy trên
+            # Windows FFmpeg CPU build → dùng OpenCV+PIL ngay (chất lượng như nhau)
+            sys_log.info("  ↳ Không có GPU encoder → OpenCV path trực tiếp")
+            self._apply_visuals_opencv(video_path, visuals, srt_path)
+            return
+
         gpu_ok, sub_handled = self._apply_visuals_gpu(video_path, visuals, srt_path)
         if gpu_ok and sub_handled:
             return
@@ -729,8 +739,8 @@ class VideoPipelineEngine:
         tmp_dir  = os.path.dirname(video_path)
         ass_path = os.path.join(tmp_dir, "_tmp_sub.ass")
 
+        vw, vh = self._probe_video_size(video_path)
         if sub_on:
-            vw, vh = self._probe_video_size(video_path)
             self._generate_ass(srt_path, ass_path, visuals, vw, vh)
             if not os.path.exists(ass_path):
                 sub_on = False
@@ -740,8 +750,13 @@ class VideoPipelineEngine:
             by = max(0.0,  visuals.get("blur_y", 900)  / 1080)
             bw = max(0.01, visuals.get("blur_w", 400)  / 1920)
             bh = max(0.01, visuals.get("blur_h",  60)  / 1080)
-            bs = visuals.get("blur_strength", 20)
+            bs = int(visuals.get("blur_strength", 20))
             bx = min(bx, 1.0 - bw); by = min(by, 1.0 - bh)
+            # boxblur radius phải < crop_dimension/2, không thì FFmpeg trả -22
+            crop_w_px = max(4, int(bw * vw))
+            crop_h_px = max(4, int(bh * vh))
+            max_r = max(1, min(crop_w_px, crop_h_px) // 2 - 1)
+            bs = min(bs, max_r)
             return bx, by, bw, bh, bs
 
         # Escape Windows path for ASS filter: C:\path → C\:/path
