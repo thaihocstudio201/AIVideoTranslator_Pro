@@ -266,14 +266,26 @@ class VoiceService:
     # ═══════════════════════════════════════════════════════════
     # ENGINE: Edge-TTS (giọng Việt chuẩn, tự nhiên nhất)
     # ═══════════════════════════════════════════════════════════
+    _EDGE_TTS_TIMEOUT = 40  # giây — Edge-TTS timeout mỗi đoạn
+
     def _run_edge_tts(self, text: str, voice_id: str, output_path: str,
                       strict: bool = False) -> bool:
+        # Kiểm tra text trước: Edge-TTS trả "No audio received" với text quá ngắn
+        clean = text.strip()
+        if len(clean) < 2:
+            sys_log.warning(f"  ⚠️ Edge-TTS: text quá ngắn '{clean}' → bỏ qua")
+            return False
+
         try:
             import edge_tts  # type: ignore
 
             async def _synthesize():
-                communicate = edge_tts.Communicate(text=text.strip(), voice=voice_id, rate="-5%")
-                await communicate.save(output_path)
+                communicate = edge_tts.Communicate(text=clean, voice=voice_id, rate="-5%")
+                # wait_for đảm bảo không treo vô hạn khi Edge-TTS server không phản hồi
+                await asyncio.wait_for(
+                    communicate.save(output_path),
+                    timeout=self._EDGE_TTS_TIMEOUT
+                )
 
             # Chạy async trong sync context — dùng asyncio.run() luôn an toàn trên Python 3.10+
             try:
@@ -282,14 +294,24 @@ class VoiceService:
                 # Fallback khi đã có event loop chạy (e.g. Jupyter / embedded Qt loop)
                 import concurrent.futures
                 with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-                    pool.submit(asyncio.run, _synthesize()).result(timeout=30)
+                    pool.submit(asyncio.run, _synthesize()).result(
+                        timeout=self._EDGE_TTS_TIMEOUT + 5
+                    )
 
             if os.path.exists(output_path) and os.path.getsize(output_path) > 1024:
                 self.current_voice_name = voice_id
                 sys_log.info(f"  ✅ Edge-TTS [{voice_id}] → {os.path.basename(output_path)}")
                 return True
+
+            # File tồn tại nhưng rỗng → "No audio received" thầm lặng
+            sys_log.warning(f"  ⚠️ Edge-TTS: file đầu ra rỗng cho [{clean[:40]}]")
             return False
 
+        except asyncio.TimeoutError:
+            sys_log.warning(
+                f"  ⚠️ Edge-TTS timeout ({self._EDGE_TTS_TIMEOUT}s) [{clean[:40]}] → bỏ qua"
+            )
+            return False
         except Exception as e:
             if strict:
                 sys_log.warning(f"  ⚠️ Edge-TTS lỗi (strict): {e} → đánh dấu thất bại, giữ nguyên giọng")
