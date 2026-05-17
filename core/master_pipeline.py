@@ -1736,6 +1736,7 @@ class VideoPipelineEngine:
         music_path = vocals_path = None
         if use_advanced:
             music_path, vocals_path = self._separate_with_demucs(audio_goc, blk_temp)
+        self._check_control()   # checkpoint sau Demucs
 
         # Trạm 1c: Whisper → giải phóng VRAM ngay
         whisper_dev   = "cuda" if torch.cuda.is_available() else "cpu"
@@ -1819,26 +1820,40 @@ class VideoPipelineEngine:
         Phase 0: Split (stream-copy) → Phase 1: Global Context →
         Phase 2: Assembly Line (với checkpoint kháng lỗi) → Phase 3: Grand Assembly (concat).
         """
-        raw_name   = os.path.splitext(os.path.basename(vid_path))[0]
-        raw_name   = self._translate_filename(raw_name)
-        name_clean = re.sub(r'[^\w\s\-]', '', raw_name).strip() or "video"
-        work_dir   = os.path.join(self.out_dir, f"blocks_{vid_idx}_{name_clean}")
-        ckpt       = CheckpointManager(vid_path, self.out_dir)
+        raw_stem    = os.path.splitext(os.path.basename(vid_path))[0]
+        # stable_name: dùng cho work_dir — phải ổn định qua mọi lần resume
+        stable_name = re.sub(r'[^\w\-]', '_', raw_stem).strip('_')[:60] or "video"
+        work_dir    = os.path.join(self.out_dir, f"blocks_{vid_idx}_{stable_name}")
+        os.makedirs(work_dir, exist_ok=True)
+        ckpt        = CheckpointManager(vid_path, self.out_dir)
+
+        # name_clean: dùng cho tên file output — dịch sang ngôn ngữ đích
+        translated  = self._translate_filename(raw_stem)
+        name_clean  = re.sub(r'[^\w\s\-]', '', translated).strip() or stable_name
 
         # Phase 0: Split ────────────────────────────────────────────────
-        blocks_dir  = os.path.join(work_dir, "split")
-        blocks_json = ckpt.get_temp_file("blocks_list")
+        blocks_dir       = os.path.join(work_dir, "split")
+        blocks_list_file = os.path.join(work_dir, "blocks_list.json")
 
-        if blocks_json:
-            blocks = [b for b in json.loads(blocks_json) if os.path.exists(b)]
-            sys_log.info(f"  📂 Resume: {len(blocks)} blocks đã split")
+        if os.path.exists(blocks_list_file):
+            with open(blocks_list_file, 'r', encoding='utf-8') as _f:
+                _all = json.load(_f)
+            blocks = [b for b in _all if os.path.exists(b)]
+            if blocks:
+                sys_log.info(f"  📂 Resume Phase 0: {len(blocks)}/{len(_all)} blocks còn tồn tại")
+            else:
+                sys_log.warning("  ⚠️ Tất cả blocks đã mất — chia lại từ đầu")
         else:
+            blocks = []
+
+        if not blocks:
             sys_log.info("  ↳ Phase 0: Chia video thành blocks (stream-copy)...")
             blocks = self._split_video_to_blocks(vid_path, blocks_dir)
             if not blocks:
                 sys_log.error("❌ Không chia được video — bỏ qua")
                 return
-            ckpt.register_temp_file("blocks_list", json.dumps(blocks))
+            with open(blocks_list_file, 'w', encoding='utf-8') as _f:
+                json.dump(blocks, _f, ensure_ascii=False)
 
         n = len(blocks)
         sys_log.info(f"  📦 {n} blocks × {BLOCK_DURATION_SEC // 60} phút")
@@ -1879,9 +1894,11 @@ class VideoPipelineEngine:
             blk_done = os.path.join(work_dir, f"{blk_name}_done.mp4")
             ckpt_key = f"done_{blk_name}"
 
-            if ckpt.get_temp_file(ckpt_key) and os.path.exists(blk_done):
+            # Dùng stored path (get_temp_file đã kiểm tra os.path.exists nội bộ)
+            stored_done = ckpt.get_temp_file(ckpt_key)
+            if stored_done:
                 sys_log.info(f"  ⏭️  [{bi+1}/{n}] {blk_name} đã xong → bỏ qua")
-                done_blocks.append(blk_done)
+                done_blocks.append(stored_done)
                 continue
 
             sys_log.info(f"\n  🔨 [{bi+1}/{n}] {blk_name}...")
@@ -1982,11 +1999,14 @@ class VideoPipelineEngine:
 
     def _run_single_video(self, vid_path: str, idx: int):
         """Pipeline cho video ngắn (≤ BLOCK_THRESHOLD_SEC) với CheckpointManager."""
-        base_name  = os.path.basename(vid_path)
-        raw_name   = os.path.splitext(base_name)[0]
-        raw_name   = self._translate_filename(raw_name)
-        name_clean = re.sub(r'[^\w\s\-]', '', raw_name).strip() or "video"
-        temp_dir   = os.path.join(self.out_dir, f"temp_{idx}_{name_clean}")
+        base_name   = os.path.basename(vid_path)
+        raw_stem    = os.path.splitext(base_name)[0]
+        # stable_name cho temp_dir — ổn định qua mọi lần resume (không dịch)
+        stable_name = re.sub(r'[^\w\-]', '_', raw_stem).strip('_')[:60] or "video"
+        temp_dir    = os.path.join(self.out_dir, f"temp_{idx}_{stable_name}")
+        # name_clean cho SRT + output file — dịch sang ngôn ngữ đích
+        translated  = self._translate_filename(raw_stem)
+        name_clean  = re.sub(r'[^\w\s\-]', '', translated).strip() or stable_name
         os.makedirs(temp_dir, exist_ok=True)
         ckpt       = CheckpointManager(vid_path, self.out_dir)
 
