@@ -336,17 +336,30 @@ class AIService:
 
     def unload_model(self):
         """Giải phóng Whisper model khỏi VRAM/RAM ngay sau khi dùng xong."""
-        if self.model is not None:
-            import gc
-            del self.model
-            self.model = None
-            try:
-                import torch
+        if self.model is None:
+            return
+        import gc
+        try:
+            import torch
+            # empty_cache TRƯỚC khi xóa model — giảm áp lực CUDA context cleanup
+            if torch.cuda.is_available():
+                torch.cuda.synchronize()   # đảm bảo mọi CUDA op đã hoàn tất
                 torch.cuda.empty_cache()
-            except Exception:
-                pass
-            gc.collect()
-            sys_log.info("  🗑️ Whisper: đã giải phóng VRAM")
+        except Exception:
+            pass
+        gc.collect()              # kích hoạt GC Python trước khi del C++ object
+        try:
+            self.model = None     # bỏ reference; Python GC sẽ gọi C++ destructor
+        except Exception:
+            pass
+        gc.collect()              # đảm bảo destructor đã chạy
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
+        sys_log.info("  🗑️ Whisper: đã giải phóng VRAM")
 
     def reload_model(self, model_size: str = "base", device: str = "cpu"):
         """Nạp lại Whisper sau khi unload (dùng trong block pipeline)."""
