@@ -278,9 +278,28 @@ class MainWindow(QMainWindow):
 
     def on_pipeline_done(self):
         self.is_running = False
+
+        # Đếm kết quả từ danh sách video (items đã được cập nhật trước callback này)
+        if hasattr(self.tab_dubbing, 'list_videos'):
+            lw     = self.tab_dubbing.list_videos
+            total  = lw.count()
+            ok_n   = sum(1 for i in range(total) if lw.item(i) and lw.item(i).text().startswith("✅ "))
+            err_n  = sum(1 for i in range(total) if lw.item(i) and lw.item(i).text().startswith("❌ "))
+            if err_n:
+                final_label = f"✅ {ok_n} OK  ❌ {err_n} lỗi — Nhấn để chạy lại"
+            else:
+                final_label = f"✅ HOÀN TẤT {ok_n}/{total} — Nhấn để chạy mới"
+        else:
+            final_label = "🚀 KHỞI ĐỘNG DUBBING"
+
         if hasattr(self.tab_dubbing, 'btn_run'):
             self.tab_dubbing.btn_run.setEnabled(True)
-            self.tab_dubbing.btn_run.setText("🚀 KHỞI ĐỘNG DUBBING")
+            self.tab_dubbing.btn_run.setText(final_label)
+            # Sau 5 giây tự reset về label mặc định
+            QTimer.singleShot(5000, lambda: (
+                self.tab_dubbing.btn_run.setText("🚀 KHỞI ĐỘNG DUBBING")
+                if not self.is_running else None
+            ))
         if hasattr(self.tab_dubbing, 'btn_pause'):
             self.tab_dubbing.btn_pause.setEnabled(False)
             self.tab_dubbing.btn_pause.setText("⏸️  TẠM DỪNG")
