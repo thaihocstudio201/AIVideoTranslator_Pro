@@ -1124,8 +1124,11 @@ class VideoPipelineEngine:
 
     @staticmethod
     def _get_sub_at_time(segs: list, t_sec: float) -> str:
+        # Segments are sorted by start time — early exit when past current time
         for seg in segs:
-            if seg["start"] <= t_sec <= seg["end"]:
+            if t_sec < seg["start"]:
+                break   # all subsequent segments start even later
+            if t_sec <= seg["end"]:
                 return seg["text"].replace("\n", " ").strip()
         return ""
 
@@ -1185,6 +1188,10 @@ class VideoPipelineEngine:
                 pass
 
         # Last resort: bitmap default (rất nhỏ — chỉ khi không có font nào)
+        sys_log.warning(
+            f"  ⚠️ Không tìm được font '{font_name}' → dùng default bitmap "
+            f"(phụ đề có thể nhỏ/vỡ ký tự). Cài Arial hoặc chọn font khác."
+        )
         try:
             return ImageFont.load_default(size=size)   # Pillow ≥ 10.1
         except TypeError:
@@ -1266,8 +1273,9 @@ class VideoPipelineEngine:
         text = self._wrap_text_pil(draw, text, font, max_text_w)
 
         tw, th = self._measure_text_pil(draw, text, font)
+        tw, th = int(tw), int(th)
 
-        cx, cy = self._anchor_sub_pos(anchor, margin_y_pct, margin_x_pct, int(tw), int(th), W, H)
+        cx, cy = self._anchor_sub_pos(anchor, margin_y_pct, margin_x_pct, tw, th, W, H)
         # Clamp vào vùng an toàn
         cx = max(0, min(cx, W - tw))
         cy = max(0, min(cy, H - th))
@@ -1382,6 +1390,7 @@ class VideoPipelineEngine:
                         "text":  "\n".join(lines[2:]),
                     })
                 except (ValueError, IndexError):
+                    sys_log.warning(f"  ⚠️ SRT block lỗi định dạng (bỏ qua): {lines[:2]}")
                     continue
         except Exception as ex:
             sys_log.warning(f"Parse SRT: {ex}")
