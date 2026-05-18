@@ -193,17 +193,22 @@ class VideoPipelineEngine:
         threading.Thread(target=self._run_engine, daemon=True).start()
 
     # ── helpers ────────────────────────────────────────────────
-    def _run_cmd_list(self, cmd: list, error_msg: str = "Lỗi") -> bool:
+    def _run_cmd_list(self, cmd: list, error_msg: str = "Lỗi", timeout: int = 3600) -> bool:
         """Chạy FFmpeg với danh sách tham số (không qua shell) — tránh lỗi escape trên Windows."""
-        proc = subprocess.run(
-            cmd, capture_output=True, text=True,
-            encoding='utf-8', errors='replace',
-            startupinfo=_mk_si(), creationflags=_mk_cflags()
-        )
-        if proc.returncode != 0:
-            sys_log.error(f"{error_msg}: {proc.stderr[-400:]}")
+        try:
+            proc = subprocess.run(
+                cmd, capture_output=True, text=True,
+                encoding='utf-8', errors='replace',
+                timeout=timeout,
+                startupinfo=_mk_si(), creationflags=_mk_cflags()
+            )
+            if proc.returncode != 0:
+                sys_log.error(f"{error_msg}: {proc.stderr[-400:]}")
+                return False
+            return True
+        except subprocess.TimeoutExpired:
+            sys_log.error(f"{error_msg}: timeout ({timeout}s) — FFmpeg không phản hồi")
             return False
-        return True
 
     def _get_voice_param(self) -> Optional[str]:
         return self.settings.get("voice_profile")
@@ -483,84 +488,98 @@ class VideoPipelineEngine:
 
     def _separate_with_demucs(self, audio_path: str, temp_dir: str) -> Tuple[Optional[str], Optional[str]]:
         sys_log.info("  ↳ Tách nhạc nền bằng Demucs...")
-        device     = "cuda" if torch.cuda.is_available() else "cpu"
+        devices    = ["cuda", "cpu"] if torch.cuda.is_available() else ["cpu"]
         output_dir = os.path.join(temp_dir, "demucs")
         os.makedirs(output_dir, exist_ok=True)
         base       = os.path.splitext(os.path.basename(audio_path))[0]
 
-        for fmt_name, fmt_flag, fmt_ext in self._DEMUCS_FORMATS:
-            sys_log.info(f"  ↳ Demucs thử format [{fmt_name.upper()}] trên {device.upper()}...")
-            cmd_list = [
-                sys.executable, '-m', 'demucs',
-                '--two-stems=vocals', '-n', 'htdemucs',
-                '--device', device, '-o', output_dir, audio_path,
-            ]
-            if fmt_flag:
-                cmd_list.insert(cmd_list.index('-o'), fmt_flag)
-
-            try:
-                result = subprocess.run(
-                    cmd_list, capture_output=True, text=True,
-                    timeout=600,
-                    encoding="utf-8", errors="replace",
-                    startupinfo=_mk_si(), creationflags=_mk_cflags(),
-                    env={**os.environ,
-                         "TORCHAUDIO_USE_BACKEND_DISPATCHER": "1",
-                         "PYTHONUTF8": "1",
-                         "PYTHONIOENCODING": "utf-8"}
-                )
-
-                # Lọc stderr noise (torchcodec, v.v.)
-                stderr_lines = result.stderr.splitlines() if result.stderr else []
-                real_errors  = [
-                    ln for ln in stderr_lines
-                    if not any(p in ln for p in self._STDERR_IGNORE)
+        for device in devices:
+            for fmt_name, fmt_flag, fmt_ext in self._DEMUCS_FORMATS:
+                sys_log.info(f"  ↳ Demucs [{fmt_name.upper()}] trên {device.upper()}...")
+                cmd_list = [
+                    sys.executable, '-m', 'demucs',
+                    '--two-stems=vocals', '-n', 'htdemucs',
+                    '--device', device, '-o', output_dir, audio_path,
                 ]
+                if fmt_flag:
+                    cmd_list.insert(cmd_list.index('-o'), fmt_flag)
 
-                if real_errors:
-                    # Kiểm tra xem lỗi có liên quan torchaudio save không
-                    has_save_err = any("save" in ln or "ImportError" in ln or "raise" in ln
-                                       for ln in real_errors)
-                    if has_save_err and fmt_name != "wav":
-                        sys_log.warning(f"  ↳ Format {fmt_name} lỗi save → thử format tiếp theo...")
+                try:
+                    result = subprocess.run(
+                        cmd_list, capture_output=True, text=True,
+                        timeout=600,
+                        encoding="utf-8", errors="replace",
+                        startupinfo=_mk_si(), creationflags=_mk_cflags(),
+                        env={**os.environ,
+                             "TORCHAUDIO_USE_BACKEND_DISPATCHER": "1",
+                             "PYTHONUTF8": "1",
+                             "PYTHONIOENCODING": "utf-8"}
+                    )
+
+                    # Lọc stderr noise (torchcodec, v.v.)
+                    stderr_lines = result.stderr.splitlines() if result.stderr else []
+                    real_errors  = [
+                        ln for ln in stderr_lines
+                        if not any(p in ln for p in self._STDERR_IGNORE)
+                    ]
+
+                    if real_errors:
+                        has_save_err = any("save" in ln or "ImportError" in ln or "raise" in ln
+                                           for ln in real_errors)
+                        # Detect CUDA OOM/device errors
+                        has_cuda_err = any(
+                            kw in ln.lower()
+                            for ln in real_errors
+                            for kw in ("out of memory", "cuda error", "device-side assert",
+                                       "cudaerror", "gpu", "no kernel image")
+                        )
+                        if has_cuda_err and device == "cuda":
+                            sys_log.warning(f"  ↳ Demucs CUDA lỗi [{fmt_name}] → thử CPU...")
+                            break  # break format loop → try CPU device
+                        if has_save_err and fmt_name != "wav":
+                            sys_log.warning(f"  ↳ Format {fmt_name} lỗi save → thử format tiếp theo...")
+                            continue
+                        sys_log.warning(f"Demucs [{fmt_name}] stderr: {chr(10).join(real_errors[-8:])}")
+
+                    # Tìm file output — Demucs chuẩn lưu tại: output_dir/htdemucs/{base}/
+                    folder = os.path.join(output_dir, "htdemucs", base)
+                    m = os.path.join(folder, f"no_vocals{fmt_ext}")
+                    v = os.path.join(folder, f"vocals{fmt_ext}")
+                    if not os.path.exists(m):
+                        m = os.path.join(folder, "no_vocals.wav")
+                    if not os.path.exists(v):
+                        v = os.path.join(folder, "vocals.wav")
+
+                    if not os.path.exists(m) or not os.path.exists(v):
+                        sys_log.warning(f"  ↳ Không tìm thấy output [{fmt_name}] → thử format tiếp...")
                         continue
-                    sys_log.warning(f"Demucs [{fmt_name}] stderr: {chr(10).join(real_errors[-8:])}")
 
-                # Tìm file output — Demucs chuẩn lưu tại: output_dir/htdemucs/{base}/
-                music_raw  = None
-                vocals_raw = None
-                folder = os.path.join(output_dir, "htdemucs", base)
-                m = os.path.join(folder, f"no_vocals{fmt_ext}")
-                v = os.path.join(folder, f"vocals{fmt_ext}")
-                if not os.path.exists(m):
-                    m = os.path.join(folder, "no_vocals.wav")
-                if not os.path.exists(v):
-                    v = os.path.join(folder, "vocals.wav")
-                if os.path.exists(m) and os.path.exists(v):
-                    music_raw, vocals_raw = m, v
+                    # Convert sang WAV chuẩn bằng pydub (không phụ thuộc torchaudio)
+                    music_wav  = os.path.join(output_dir, "no_vocals_final.wav")
+                    vocals_wav = os.path.join(output_dir, "vocals_final.wav")
+                    AudioSegment.from_file(m).export(music_wav,  format="wav")
+                    AudioSegment.from_file(v).export(vocals_wav, format="wav")
 
-                if not music_raw or not vocals_raw:
-                    sys_log.warning(f"  ↳ Không tìm thấy output [{fmt_name}] → thử format tiếp...")
+                    sys_log.info(f"✅ Demucs OK! (format={fmt_name}, device={device})")
+                    return music_wav, vocals_wav
+
+                except subprocess.TimeoutExpired:
+                    sys_log.error(f"Demucs timeout [{fmt_name}] (>10 phút) → thử device tiếp")
+                    break  # break format loop → try next device
+                except FileNotFoundError:
+                    sys_log.warning("Demucs chưa cài: pip install demucs")
+                    return self._ffmpeg_vocal_separation(audio_path, output_dir)
+                except Exception as e:
+                    is_cuda_err = any(
+                        kw in str(e).lower()
+                        for kw in ("out of memory", "cuda", "gpu", "device")
+                    )
+                    sys_log.warning(f"Demucs [{fmt_name}] {device} exception: {e}")
+                    if is_cuda_err and device == "cuda":
+                        sys_log.info("  ↳ GPU exception → thử CPU...")
+                        break  # break format loop → try CPU
                     continue
-
-                # Convert sang WAV chuẩn bằng pydub (không phụ thuộc torchaudio)
-                music_wav  = os.path.join(output_dir, "no_vocals_final.wav")
-                vocals_wav = os.path.join(output_dir, "vocals_final.wav")
-                AudioSegment.from_file(music_raw).export(music_wav,  format="wav")
-                AudioSegment.from_file(vocals_raw).export(vocals_wav, format="wav")
-
-                sys_log.info(f"✅ Demucs OK! (format={fmt_name}, device={device})")
-                return music_wav, vocals_wav
-
-            except subprocess.TimeoutExpired:
-                sys_log.error(f"Demucs timeout [{fmt_name}] (>10 phút)")
-                break
-            except FileNotFoundError:
-                sys_log.warning("Demucs chưa cài: pip install demucs")
-                break
-            except Exception as e:
-                sys_log.warning(f"Demucs [{fmt_name}] exception: {e}")
-                continue
+            # End of format loop — if we reach here (no return), try next device
 
         sys_log.info("⚠️ Fallback: dùng FFmpeg highpass filter thay thế Demucs")
         return self._ffmpeg_vocal_separation(audio_path, output_dir)
@@ -719,7 +738,8 @@ class VideoPipelineEngine:
         if 'h264' in info and 'yuv420p' in info:
             return
 
-        sys_log.info(f"  ↳ Compat encode: {codec.upper()} → H.264 (tương thích Windows)...")
+        current_codec = info.split(',')[0].strip() if info else "unknown"
+        sys_log.info(f"  ↳ Compat encode: {current_codec.upper()} → H.264 (tương thích Windows)...")
         enc = self._get_video_encoder()
         if enc == "h264_nvenc":
             enc_args = ['-c:v', 'h264_nvenc', '-preset', 'p4', '-cq', '22', '-pix_fmt', 'yuv420p']
@@ -1376,8 +1396,10 @@ class VideoPipelineEngine:
     def _parse_srt_file(self, srt_path: str) -> list:
         segs = []
         try:
-            with open(srt_path, "r", encoding="utf-8") as f:
+            with open(srt_path, "r", encoding="utf-8-sig") as f:
                 content = f.read()
+            # Normalize Windows CRLF and remove any BOM
+            content = content.lstrip('﻿').replace('\r\n', '\n').replace('\r', '\n')
             for block in content.strip().split("\n\n"):
                 lines = block.strip().splitlines()
                 if len(lines) < 3:
@@ -1469,6 +1491,9 @@ class VideoPipelineEngine:
         logo_op      = visuals.get("logo_opacity", 80) / 100.0
         logo_w       = int(visuals.get("logo_w", 0))
         logo_h       = int(visuals.get("logo_h", 0))
+        pan_enabled   = visuals.get("pan_enabled", False)
+        pan_direction = visuals.get("pan_direction", "Phải→Trái")
+        aspect_val    = visuals.get("aspect_ratio", "Gốc")
 
         COLOR_PRESETS = {
             "Cinematic": "eq=brightness=0.05:saturation=0.8:contrast=1.1,curves=r='0/0 0.5/0.48 1/1':b='0/0 0.5/0.52 1/1'",
@@ -1485,6 +1510,43 @@ class VideoPipelineEngine:
             "Góc dưới phải":  "main_w-overlay_w-10:main_h-overlay_h-10",
             "Giữa":           "(main_w-overlay_w)/2:(main_h-overlay_h)/2",
         }
+
+        # Pan filter strings — use no-comma expressions to avoid FFmpeg filter chain confusion
+        # Progress = goes 0→1 over 30 seconds then stays at 1 (no comma in expression)
+        # (t/30<1)*(1-t/30) = 1→0 over 30s;  1-(t/30<1)*(1-t/30) = 0→1 over 30s
+        _PAN_FILTERS = {
+            "Phải→Trái": (
+                "scale=iw*1.05:ih*1.05,"
+                "crop=iw/1.05:ih/1.05"
+                ":(iw-iw/1.05)*(t/30<1)*(1-t/30)"
+                ":(ih-ih/1.05)/2"
+            ),
+            "Trái→Phải": (
+                "scale=iw*1.05:ih*1.05,"
+                "crop=iw/1.05:ih/1.05"
+                ":(iw-iw/1.05)*(1-(t/30<1)*(1-t/30))"
+                ":(ih-ih/1.05)/2"
+            ),
+            "Lên→Xuống": (
+                "scale=iw*1.05:ih*1.05,"
+                "crop=iw/1.05:ih/1.05"
+                ":(iw-iw/1.05)/2"
+                ":(ih-ih/1.05)*(1-(t/30<1)*(1-t/30))"
+            ),
+            "Xuống→Lên": (
+                "scale=iw*1.05:ih*1.05,"
+                "crop=iw/1.05:ih/1.05"
+                ":(iw-iw/1.05)/2"
+                ":(ih-ih/1.05)*(t/30<1)*(1-t/30)"
+            ),
+        }
+
+        # Aspect ratio target dimensions (scale+pad to target AR, preserve content)
+        def _parse_aspect_ratio(s: str):
+            m = re.match(r'(\d+):(\d+)', s)
+            if m:
+                return int(m.group(1)), int(m.group(2))
+            return None, None
 
         vf_parts = []
         if flip_h:        vf_parts.append("hflip")
@@ -1505,6 +1567,27 @@ class VideoPipelineEngine:
             vf_parts.append(f"fps={fps_val}")
         if res_on and res_val not in ("Gốc", ""):
             vf_parts.append(f"scale={res_val.replace('x', ':')}:flags=lanczos")
+        # Aspect ratio conversion (scale+pad, preserves content, adds black bars)
+        if aspect_val not in ("Gốc", ""):
+            _aw, _ah = _parse_aspect_ratio(aspect_val)
+            if _aw and _ah:
+                # Base target size on 1080p reference; wider AR → 1920:H, taller → W:1920
+                if _aw >= _ah:
+                    _tw = int(round(1080 * _aw / _ah / 2) * 2)
+                    _th = 1080
+                else:
+                    _tw = 1080
+                    _th = int(round(1080 * _ah / _aw / 2) * 2)
+                vf_parts.append(
+                    f"scale={_tw}:{_th}:force_original_aspect_ratio=decrease,"
+                    f"pad={_tw}:{_th}:(ow-iw)/2:(oh-ih)/2:black"
+                )
+                sys_log.info(f"  ↳ Aspect ratio: {aspect_val} → {_tw}x{_th}")
+        # Pan effect (subtle 5% zoom + directional slow pan over 30s)
+        if pan_enabled:
+            _pan_flt = _PAN_FILTERS.get(pan_direction, _PAN_FILTERS["Phải→Trái"])
+            vf_parts.append(_pan_flt)
+            sys_log.info(f"  ↳ Pan: {pan_direction}")
         if border_on:
             bc = border_col
             vf_parts.append(
