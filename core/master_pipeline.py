@@ -1806,15 +1806,20 @@ class VideoPipelineEngine:
                     # forward slash + escape single quotes for concat demuxer format
                     escaped = p.replace(chr(92), '/').replace("'", "\\'")
                     f.write(f"file '{escaped}'\n")
-            r = subprocess.run(
-                ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', concat_lst,
-                 '-c', 'copy', '-movflags', '+faststart', '-y', output_path],
-                capture_output=True, text=True, encoding='utf-8', errors='replace',
-                startupinfo=_mk_si(), creationflags=_mk_cflags()
-            )
-            if r.returncode != 0:
-                sys_log.error(f"  Concat lỗi: {r.stderr[-300:]}")
-            return r.returncode == 0
+            try:
+                r = subprocess.run(
+                    ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', concat_lst,
+                     '-c', 'copy', '-movflags', '+faststart', '-y', output_path],
+                    capture_output=True, text=True, encoding='utf-8', errors='replace',
+                    timeout=7200,  # 2h — đủ cho concat 36+ blocks
+                    startupinfo=_mk_si(), creationflags=_mk_cflags()
+                )
+                if r.returncode != 0:
+                    sys_log.error(f"  Concat lỗi: {r.stderr[-300:]}")
+                return r.returncode == 0
+            except subprocess.TimeoutExpired:
+                sys_log.error("  Concat timeout (>2h) — FFmpeg không phản hồi")
+                return False
         finally:
             try:
                 os.remove(concat_lst)

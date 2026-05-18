@@ -23,6 +23,7 @@ from ui.preview_panel import PreviewPanel
 from ui.tabs.dubbing_tab import DubbingTab
 from ui.tabs.visuals_tab import VisualsTab
 from ui.tabs.api_tab import ApiManagementTab
+from ui.tabs.license_tab import LicenseTab
 from ui.style_sheets import MAIN_STYLE
 from core.master_pipeline import VideoPipelineEngine
 from utils.custom_logger import sys_log
@@ -54,10 +55,12 @@ class MainWindow(QMainWindow):
         self.tab_dubbing = DubbingTab(self)
         self.tab_visuals = VisualsTab(self)
         self.tab_api     = ApiManagementTab(self)
+        self.tab_license = LicenseTab(self)
 
         self.root_tabs.addTab(self.tab_dubbing, "🚀 TAB 1: ĐIỀU KHIỂN & ĐỘNG CƠ")
         self.root_tabs.addTab(self.tab_visuals, "✂️ TAB 2: XƯỞNG LÁCH BẢN QUYỀN")
         self.root_tabs.addTab(self.tab_api,     "🔐 TAB 3: QUẢN LÝ API")
+        self.root_tabs.addTab(self.tab_license, "🔑 TAB 4: BẢN QUYỀN & CẬP NHẬT")
 
         # Splitter ngang: trái = tabs, phải = preview panel cố định
         splitter = QSplitter(Qt.Orientation.Horizontal)
