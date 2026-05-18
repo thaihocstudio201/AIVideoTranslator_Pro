@@ -15,7 +15,7 @@ from pathlib import Path
 
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QTabWidget,
-    QMessageBox, QColorDialog, QLabel, QFileDialog, QSplitter
+    QMessageBox, QColorDialog, QLabel, QFileDialog, QSplitter, QPushButton
 )
 from PySide6.QtCore import Qt, QTimer
 
@@ -46,6 +46,32 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
         main_layout = QVBoxLayout(self.central_widget)
         main_layout.setContentsMargins(6, 6, 6, 6)
+        main_layout.setSpacing(4)
+
+        # ── Banner cảnh báo license (ẩn khi đã kích hoạt) ──────────
+        self._license_banner = QWidget()
+        self._license_banner.setStyleSheet(
+            "background:#3a0a0a;border:1px solid #cc2222;border-radius:5px;"
+        )
+        _banner_row = QHBoxLayout(self._license_banner)
+        _banner_row.setContentsMargins(10, 6, 10, 6)
+        _banner_lbl = QLabel(
+            "🔒  CHƯA KÍCH HOẠT — Ứng dụng đang bị giới hạn. "
+            "Vào <b>Tab 4: BẢN QUYỀN</b> để nhập License Key hoặc bắt đầu dùng thử 7 ngày."
+        )
+        _banner_lbl.setStyleSheet("color:#ff6b6b;font-size:13px;")
+        _banner_row.addWidget(_banner_lbl, 1)
+        _btn_go_license = QPushButton("🔑 Đến Tab 4")
+        _btn_go_license.setFixedWidth(110)
+        _btn_go_license.setStyleSheet(
+            "background:#cc2222;color:white;font-weight:bold;border-radius:4px;padding:4px;"
+        )
+        _btn_go_license.clicked.connect(
+            lambda: self.root_tabs.setCurrentIndex(3)
+        )
+        _banner_row.addWidget(_btn_go_license)
+        self._license_banner.setVisible(False)
+        main_layout.addWidget(self._license_banner)
 
         # PreviewPanel phải tạo TRƯỚC các tab (tab_dubbing/visuals cần truy cập nó)
         self.preview_panel = PreviewPanel(self)
@@ -72,6 +98,12 @@ class MainWindow(QMainWindow):
 
         # Sync Tab 2 khi chuyển tab
         self.root_tabs.currentChanged.connect(self._on_tab_changed)
+
+        # Kết nối: khi license thay đổi → cập nhật gate
+        self.tab_license.license_changed.connect(self._apply_license_gate)
+
+        # Kiểm tra license sau khi UI hoàn tất (50ms để đảm bảo paint xong)
+        QTimer.singleShot(50, self._apply_license_gate)
 
         sys_log.info("✅ MainWindow đã khởi tạo thành công.")
 
@@ -151,6 +183,20 @@ class MainWindow(QMainWindow):
 
     def start_pipeline(self):
         """KHỞI ĐỘNG DUBBING"""
+        # Kiểm tra license trước khi khởi động
+        try:
+            from security.license_client import LicenseClient
+            if not LicenseClient.get().is_valid():
+                QMessageBox.warning(
+                    self, "🔒 Chưa kích hoạt",
+                    "Bạn cần kích hoạt License hoặc bắt đầu dùng thử.\n\n"
+                    "Vui lòng vào Tab 4: BẢN QUYỀN & CẬP NHẬT để nhập key hoặc dùng thử 7 ngày."
+                )
+                self.root_tabs.setCurrentIndex(3)
+                return
+        except Exception:
+            pass
+
         if self.is_running:
             QMessageBox.warning(self, "Đang chạy", "Hệ thống đang xử lý, vui lòng chờ!")
             return
@@ -312,6 +358,8 @@ class MainWindow(QMainWindow):
         if hasattr(self.tab_dubbing, 'btn_stop'):
             self.tab_dubbing.btn_stop.setEnabled(False)
         sys_log.info("🎉 HOÀN TẤT TOÀN BỘ CHIẾN DỊCH!")
+        # Re-apply gate: nếu chưa có license thì lock lại nút Run sau khi xong
+        QTimer.singleShot(100, self._apply_license_gate)
 
     def _on_tab_changed(self, index: int):
         """Khi chuyển sang Tab 2 (Visuals) → sync video player từ Tab 1."""
@@ -320,6 +368,54 @@ class MainWindow(QMainWindow):
                 self.tab_visuals.sync_from_dubbing_tab()
             except Exception as e:
                 sys_log.warning(f"Sync Tab Visuals: {e}")
+
+    # ===================================================================
+    # LICENSE GATE — khóa/mở chức năng theo trạng thái license
+    # ===================================================================
+    def _apply_license_gate(self):
+        """
+        Kiểm tra trạng thái license và cập nhật UI:
+        - Nếu hợp lệ (valid/trial/grace): bật nút Run, ẩn banner, mở Tab 1-3.
+        - Nếu không hợp lệ: vô hiệu hóa nút Run, hiện banner đỏ, block Tab 1-2.
+        Tab 3 (API) và Tab 4 (License) luôn truy cập được.
+        """
+        try:
+            from security.license_client import LicenseClient
+            licensed = LicenseClient.get().is_valid()
+        except Exception:
+            licensed = False
+
+        self._license_banner.setVisible(not licensed)
+
+        # ── Tab 1: Dubbing ─────────────────────────────────────────
+        for attr in ('btn_run', 'btn_pause', 'btn_stop'):
+            btn = getattr(self.tab_dubbing, attr, None)
+            if btn is None:
+                continue
+            if attr == 'btn_run':
+                if licensed:
+                    btn.setEnabled(True)
+                    if btn.text().startswith("🔒"):
+                        btn.setText("🚀 KHỞI ĐỘNG DUBBING")
+                else:
+                    btn.setEnabled(False)
+                    btn.setText("🔒 CẦN KÍCH HOẠT LICENSE")
+            else:
+                # pause/stop chỉ enable khi đang chạy — giữ nguyên logic cũ
+                if not licensed:
+                    btn.setEnabled(False)
+
+        # ── Tab 1 & 2: dim tab title khi chưa kích hoạt ───────────
+        locked_style  = "color:#666666;"
+        normal_style  = ""
+        for tab_idx in (0, 1):
+            bar = self.root_tabs.tabBar()
+            bar.setTabTextColor(
+                tab_idx,
+                __import__('PySide6.QtGui', fromlist=['QColor']).QColor("#aaaaaa" if not licensed else "#ffffff")
+            )
+
+        sys_log.info(f"🔐 License gate: {'OPEN' if licensed else 'LOCKED'}")
 
 
 if __name__ == "__main__":

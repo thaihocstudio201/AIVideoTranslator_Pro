@@ -72,6 +72,8 @@ class _DownloadThread(QThread):
 # ── Main Tab ──────────────────────────────────────────────────────────────────
 
 class LicenseTab(QWidget):
+    license_changed = Signal()   # phát khi trạng thái license thay đổi
+
     def __init__(self, main_window):
         super().__init__()
         self.main = main_window
@@ -325,6 +327,7 @@ class LicenseTab(QWidget):
             QMessageBox.warning(self, "❌ Kích hoạt thất bại", msg)
             sys_log.warning(f"❌ License lỗi: {msg}")
         self._refresh_license_display()
+        self.license_changed.emit()
 
     def _on_trial(self):
         reply = QMessageBox.question(
@@ -342,6 +345,7 @@ class LicenseTab(QWidget):
                 QMessageBox.warning(self, "Không thể dùng thử",
                                     "Bạn đã sử dụng dùng thử trước đó.")
             self._refresh_license_display()
+            self.license_changed.emit()
 
     def _on_deactivate(self):
         reply = QMessageBox.question(
@@ -354,6 +358,7 @@ class LicenseTab(QWidget):
             LicenseClient.get().deactivate()
             QMessageBox.information(self, "OK", "Đã hủy kích hoạt.")
             self._refresh_license_display()
+            self.license_changed.emit()
 
     # ── Update Actions ─────────────────────────────────────────────
 
