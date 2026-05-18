@@ -5,7 +5,6 @@ Công cụ ADMIN sinh License Key cho AI Video Translator Pro.
 
 Chạy CLI:
     python tools/gen_license.py --hwid ABCD1234EFGH5678IJKL --days 365
-    python tools/gen_license.py --hwid ABCD... --days 30 --plan trial
     python tools/gen_license.py --hwid ABCD... --days 0          (vĩnh viễn)
 
 Chạy GUI (không cần tham số):
@@ -27,6 +26,7 @@ if _ROOT not in sys.path:
 
 # Phải khớp với APP_SECRET trong license_client.py
 APP_SECRET = b"AIVideoTranslatorPro2026_S3cr3t_K3y_x7z"
+
 
 # ─── Core keygen ──────────────────────────────────────────────────────────────
 
@@ -64,7 +64,6 @@ def generate_key(hwid: str, days: int) -> dict:
 def verify_key(key: str, hwid: str) -> bool:
     """Xác minh key có hợp lệ cho HWID không (kiểm tra offline)."""
     try:
-        sys.path.insert(0, _ROOT)
         from security.license_client import LicenseClient
         client = LicenseClient.__new__(LicenseClient)
         client._hwid = hwid.strip().upper().replace("-", "")
@@ -107,158 +106,222 @@ def cli_main():
         print(f"  Xác minh   : {'✅ HỢP LỆ' if ok else '❌ KHÔNG HỢP LỆ'}")
 
 
-# ─── GUI mode ─────────────────────────────────────────────────────────────────
+# ─── GUI mode (PySide6) ───────────────────────────────────────────────────────
 
 def gui_main():
-    import tkinter as tk
-    from tkinter import ttk, messagebox
+    from PySide6.QtWidgets import (
+        QApplication, QWidget, QVBoxLayout, QHBoxLayout,
+        QLabel, QLineEdit, QPushButton, QGroupBox,
+        QRadioButton, QButtonGroup, QMessageBox, QFrame
+    )
+    from PySide6.QtCore import Qt
+    from PySide6.QtGui import QFont, QColor
 
-    root = tk.Tk()
-    root.title("🔑 Admin Keygen — AI Video Translator Pro")
-    root.geometry("560x480")
-    root.configure(bg="#0b0e14")
-    root.resizable(False, False)
+    app = QApplication.instance() or QApplication(sys.argv)
 
-    CYAN   = "#00f2ff"
-    DARK   = "#0b0e14"
-    CARD   = "#161b22"
-    BORDER = "#30363d"
-    WHITE  = "#e6edf3"
-    RED    = "#ff4444"
-    GREEN  = "#00cc66"
+    win = QWidget()
+    win.setWindowTitle("🔑 Admin Keygen — AI Video Translator Pro")
+    win.setFixedSize(600, 500)
+    win.setStyleSheet("""
+        QWidget        { background:#0b0e14; color:#e6edf3; font-family:Arial; font-size:12px; }
+        QGroupBox      { font-weight:bold; font-size:13px; color:#00f2ff;
+                         border:1px solid #30363d; border-radius:6px; margin-top:8px;
+                         padding-top:6px; }
+        QGroupBox::title { subcontrol-origin:margin; left:12px; }
+        QLineEdit      { background:#161b22; color:#00f2ff; border:1px solid #30363d;
+                         border-radius:4px; padding:5px 8px; font-family:Consolas;
+                         font-size:12px; }
+        QLineEdit:focus { border:1px solid #00f2ff; }
+        QPushButton    { border-radius:5px; padding:6px 12px; font-weight:bold; }
+        QPushButton:hover { opacity:0.85; }
+        QRadioButton   { color:#cccccc; spacing:6px; }
+        QRadioButton::indicator { width:14px; height:14px; }
+        QLabel         { color:#cccccc; }
+    """)
 
-    style = ttk.Style()
-    style.theme_use("clam")
+    outer = QVBoxLayout(win)
+    outer.setContentsMargins(16, 16, 16, 16)
+    outer.setSpacing(12)
 
-    def lbl(parent, text, color=WHITE, size=11, bold=False):
-        f = ("Consolas" if ":" in text else "Arial", size, "bold" if bold else "normal")
-        return tk.Label(parent, text=text, bg=DARK, fg=color, font=f)
+    # ── Header ──────────────────────────────────────────────────────
+    hdr = QLabel("🔑  ADMIN KEYGEN  —  AI Video Translator Pro")
+    hdr.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    hdr.setStyleSheet(
+        "background:#1a73e8;color:white;font-size:15px;font-weight:bold;"
+        "border-radius:6px;padding:10px;"
+    )
+    outer.addWidget(hdr)
 
-    def entry(parent, show=None, width=44):
-        e = tk.Entry(parent, bg=CARD, fg=CYAN, insertbackground=CYAN,
-                     relief="flat", bd=1, width=width,
-                     font=("Consolas", 12), show=show or "")
-        e.configure(highlightthickness=1, highlightbackground=BORDER,
-                    highlightcolor=CYAN)
-        return e
+    # ── HWID Input ───────────────────────────────────────────────────
+    g_hwid = QGroupBox("1. HWID máy khách")
+    lo_hwid = QHBoxLayout(g_hwid)
+    hwid_edit = QLineEdit()
+    hwid_edit.setPlaceholderText("Dán HWID của khách vào đây  (VD: ABCD1234EFGH5678IJKL)")
+    hwid_edit.setMinimumHeight(36)
+    lo_hwid.addWidget(hwid_edit, 1)
 
-    def btn(parent, text, cmd, color="#1a73e8", w=14):
-        return tk.Button(parent, text=text, command=cmd, bg=color, fg="white",
-                         relief="flat", cursor="hand2", width=w,
-                         font=("Arial", 11, "bold"), activebackground=color,
-                         activeforeground="white")
+    btn_own = QPushButton("📋 HWID máy này")
+    btn_own.setFixedHeight(36)
+    btn_own.setStyleSheet("background:#333;color:#ccc;")
+    def paste_own_hwid():
+        try:
+            from security.hwid_generator import HardwareAuthenticator
+            hwid_edit.setText(HardwareAuthenticator.generate_hwid())
+        except Exception as e:
+            QMessageBox.warning(win, "Lỗi", str(e))
+    btn_own.clicked.connect(paste_own_hwid)
+    lo_hwid.addWidget(btn_own)
+    outer.addWidget(g_hwid)
 
-    # ── Header ──
-    hdr = tk.Frame(root, bg="#1a73e8", height=50)
-    hdr.pack(fill="x")
-    tk.Label(hdr, text="🔑  ADMIN KEYGEN  —  AI Video Translator Pro",
-             bg="#1a73e8", fg="white", font=("Arial", 14, "bold")).pack(pady=12)
+    # ── Days Selector ────────────────────────────────────────────────
+    g_days = QGroupBox("2. Thời hạn hiệu lực")
+    lo_days = QVBoxLayout(g_days)
 
-    body = tk.Frame(root, bg=DARK, padx=20, pady=12)
-    body.pack(fill="both", expand=True)
+    radio_row = QHBoxLayout()
+    days_group = QButtonGroup(win)
+    days_map = [("30 ngày", 30), ("90 ngày", 90), ("180 ngày", 180),
+                ("1 năm", 365), ("2 năm", 730), ("Vĩnh viễn", 0)]
+    selected_days = [365]
 
-    # HWID input
-    lbl(body, "Mã máy (HWID) của khách hàng:", CYAN, 11, True).pack(anchor="w", pady=(8,2))
-    hwid_var = tk.StringVar()
-    ent_hwid = entry(body)
-    ent_hwid.pack(fill="x", pady=(0,8))
+    for label, val in days_map:
+        rb = QRadioButton(label)
+        rb.setChecked(val == 365)
+        days_group.addButton(rb, val)
+        radio_row.addWidget(rb)
+    lo_days.addLayout(radio_row)
 
-    # Days
-    days_frm = tk.Frame(body, bg=DARK)
-    days_frm.pack(fill="x", pady=4)
-    lbl(days_frm, "Số ngày hiệu lực:", WHITE, 11, True).pack(side="left")
+    custom_row = QHBoxLayout()
+    lbl_custom = QLabel("  Hoặc nhập số ngày tùy ý:")
+    lbl_custom.setStyleSheet("color:#888;font-size:11px;")
+    custom_row.addWidget(lbl_custom)
+    custom_edit = QLineEdit()
+    custom_edit.setPlaceholderText("VD: 60")
+    custom_edit.setFixedWidth(90)
+    custom_edit.setFixedHeight(28)
+    custom_row.addWidget(custom_edit)
+    custom_row.addStretch()
+    lo_days.addLayout(custom_row)
+    outer.addWidget(g_days)
 
-    days_var = tk.IntVar(value=365)
-    for d, label in [(30,"30 ngày"), (90,"90 ngày"), (180,"6 tháng"),
-                     (365,"1 năm"), (730,"2 năm"), (0,"Vĩnh viễn")]:
-        tk.Radiobutton(days_frm, text=label, variable=days_var, value=d,
-                       bg=DARK, fg=WHITE, selectcolor="#1a73e8",
-                       font=("Arial", 10), activebackground=DARK).pack(side="left", padx=6)
+    # ── Result ───────────────────────────────────────────────────────
+    sep = QFrame()
+    sep.setFrameShape(QFrame.Shape.HLine)
+    sep.setStyleSheet("color:#30363d;")
+    outer.addWidget(sep)
 
-    # Custom days
-    custom_frm = tk.Frame(body, bg=DARK)
-    custom_frm.pack(fill="x", pady=(0,8))
-    lbl(custom_frm, "  Hoặc nhập số ngày tùy ý:", WHITE, 10).pack(side="left")
-    custom_days = tk.Entry(custom_frm, width=8, bg=CARD, fg=CYAN,
-                           insertbackground=CYAN, font=("Consolas", 11),
-                           relief="flat", highlightthickness=1,
-                           highlightbackground=BORDER, highlightcolor=CYAN)
-    custom_days.pack(side="left", padx=6)
+    lbl_key_title = QLabel("License Key:")
+    lbl_key_title.setStyleSheet("font-weight:bold;color:#00f2ff;font-size:13px;")
+    outer.addWidget(lbl_key_title)
 
-    # Result
-    sep = tk.Frame(body, bg=BORDER, height=1)
-    sep.pack(fill="x", pady=10)
+    key_edit = QLineEdit()
+    key_edit.setReadOnly(True)
+    key_edit.setPlaceholderText("Nhấn SINH KEY bên dưới...")
+    key_edit.setMinimumHeight(44)
+    key_edit.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    key_edit.setStyleSheet(
+        "font-family:Consolas;font-size:18px;font-weight:bold;"
+        "color:#00ff88;background:#0a1a0a;letter-spacing:3px;"
+        "border:1px solid #00ff88;border-radius:5px;"
+    )
+    outer.addWidget(key_edit)
 
-    lbl(body, "License Key sinh ra:", CYAN, 11, True).pack(anchor="w", pady=(0,4))
-    result_frm = tk.Frame(body, bg=CARD, bd=1, relief="flat",
-                          highlightthickness=1, highlightbackground=BORDER)
-    result_frm.pack(fill="x")
-    result_var = tk.StringVar(value="—")
-    result_lbl = tk.Label(result_frm, textvariable=result_var, bg=CARD, fg=GREEN,
-                          font=("Consolas", 16, "bold"), pady=12)
-    result_lbl.pack()
+    info_lbl = QLabel("")
+    info_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    info_lbl.setStyleSheet("color:#888;font-size:11px;")
+    outer.addWidget(info_lbl)
 
-    info_var = tk.StringVar(value="")
-    tk.Label(body, textvariable=info_var, bg=DARK, fg="#aaaaaa",
-             font=("Arial", 10)).pack(pady=4)
+    status_lbl = QLabel("")
+    status_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    status_lbl.setStyleSheet("font-size:12px;font-weight:bold;")
+    outer.addWidget(status_lbl)
 
-    status_var = tk.StringVar(value="")
-    status_lbl = tk.Label(body, textvariable=status_var, bg=DARK, fg=WHITE,
-                          font=("Arial", 11))
-    status_lbl.pack(pady=4)
+    # ── Buttons ──────────────────────────────────────────────────────
+    btn_row = QHBoxLayout()
 
-    # ── Actions ──
+    btn_gen = QPushButton("⚡  SINH KEY")
+    btn_gen.setMinimumHeight(44)
+    btn_gen.setStyleSheet(
+        "background:#1a73e8;color:white;font-size:15px;border-radius:5px;"
+    )
+
+    btn_copy = QPushButton("📋  Copy Key")
+    btn_copy.setMinimumHeight(44)
+    btn_copy.setStyleSheet(
+        "background:#2d7a2d;color:white;font-size:14px;border-radius:5px;"
+    )
+
+    btn_verify = QPushButton("🔍  Xác Minh")
+    btn_verify.setMinimumHeight(44)
+    btn_verify.setStyleSheet(
+        "background:#5a3a7a;color:white;font-size:14px;border-radius:5px;"
+    )
+
+    btn_row.addWidget(btn_gen, 3)
+    btn_row.addWidget(btn_copy, 2)
+    btn_row.addWidget(btn_verify, 2)
+    outer.addLayout(btn_row)
+
+    # ── Logic ────────────────────────────────────────────────────────
     def do_generate():
-        hwid_raw = ent_hwid.get().strip()
+        hwid_raw = hwid_edit.text().strip()
         if not hwid_raw:
-            messagebox.showwarning("Thiếu HWID", "Vui lòng nhập HWID của máy khách!")
+            QMessageBox.warning(win, "Thiếu HWID", "Vui lòng nhập HWID của máy khách!")
             return
         try:
-            # Custom days override
-            cd = custom_days.get().strip()
-            days = int(cd) if cd else days_var.get()
+            cd = custom_edit.text().strip()
+            if cd:
+                days = int(cd)
+            else:
+                checked = days_group.checkedButton()
+                days = days_group.id(checked) if checked else 365
+        except ValueError:
+            QMessageBox.warning(win, "Lỗi", "Số ngày không hợp lệ!")
+            return
+        try:
             result = generate_key(hwid_raw, days)
         except Exception as e:
-            messagebox.showerror("Lỗi", str(e))
+            QMessageBox.critical(win, "Lỗi sinh key", str(e))
             return
 
-        result_var.set(result["key"])
-        info_var.set(
-            f"HWID: {result['hwid']}   |   "
-            f"Hết hạn: {result['expiry_date']}   |   "
-            f"Số ngày: {result['days']}"
+        key_edit.setText(result["key"])
+        info_lbl.setText(
+            f"HWID: {result['hwid']}   |   Hết hạn: {result['expiry_date']}   |   Số ngày: {result['days']}"
         )
-        status_var.set("")
-        result_lbl.configure(fg=GREEN)
+        status_lbl.setText("")
+        key_edit.setStyleSheet(
+            "font-family:Consolas;font-size:18px;font-weight:bold;"
+            "color:#00ff88;background:#0a1a0a;letter-spacing:3px;"
+            "border:1px solid #00ff88;border-radius:5px;"
+        )
 
     def do_copy():
-        key = result_var.get()
-        if key == "—":
+        key = key_edit.text().strip()
+        if not key:
             return
-        root.clipboard_clear()
-        root.clipboard_append(key)
-        status_var.set("✅ Đã copy key vào clipboard!")
+        QApplication.clipboard().setText(key)
+        status_lbl.setText("✅  Đã copy key vào clipboard!")
+        status_lbl.setStyleSheet("color:#00ff88;font-size:12px;font-weight:bold;")
 
     def do_verify():
-        hwid_raw = ent_hwid.get().strip()
-        key_val  = result_var.get()
-        if key_val == "—" or not hwid_raw:
+        hwid_raw = hwid_edit.text().strip()
+        key      = key_edit.text().strip()
+        if not hwid_raw or not key:
+            QMessageBox.warning(win, "Thiếu thông tin", "Cần có HWID và Key để xác minh!")
             return
-        ok = verify_key(key_val, hwid_raw)
+        ok = verify_key(key, hwid_raw)
         if ok:
-            status_var.set("✅ Key xác minh HỢP LỆ cho HWID này")
-            status_lbl.configure(fg=GREEN)
+            status_lbl.setText("✅  Key HỢP LỆ cho HWID này")
+            status_lbl.setStyleSheet("color:#00ff88;font-size:12px;font-weight:bold;")
         else:
-            status_var.set("❌ Key KHÔNG hợp lệ — kiểm tra lại HWID")
-            status_lbl.configure(fg=RED)
+            status_lbl.setText("❌  Key KHÔNG hợp lệ — kiểm tra lại HWID")
+            status_lbl.setStyleSheet("color:#ff4444;font-size:12px;font-weight:bold;")
 
-    btn_row = tk.Frame(body, bg=DARK)
-    btn_row.pack(pady=10)
-    btn(btn_row, "⚡ SINH KEY", do_generate, "#1a73e8").pack(side="left", padx=6)
-    btn(btn_row, "📋 Copy Key", do_copy,     "#2d7a2d").pack(side="left", padx=6)
-    btn(btn_row, "🔍 Xác Minh", do_verify,   "#5a3a7a").pack(side="left", padx=6)
+    btn_gen.clicked.connect(do_generate)
+    btn_copy.clicked.connect(do_copy)
+    btn_verify.clicked.connect(do_verify)
 
-    root.mainloop()
+    win.show()
+    sys.exit(app.exec())
 
 
 # ─── Entry point ──────────────────────────────────────────────────────────────
