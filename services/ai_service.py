@@ -127,13 +127,18 @@ class AIService:
 
     # ── Whisper transcription ─────────────────────────────────────────────────
 
-    def transcribe_and_get_segments(self, audio_path: str, srt_path: str) -> list:
+    def transcribe_and_get_segments(self, audio_path: str, srt_path: str,
+                                    language: str = None) -> list:
         if self.model is None:
             sys_log.error("❌ Whisper model chưa được nạp — gọi reload_model() trước")
             return []
         sys_log.info("  ↳ [Whisper] Bóc tách kịch bản gốc...")
         try:
-            segments_iter, info = self.model.transcribe(audio_path, beam_size=5)
+            transcribe_kwargs = {"beam_size": 5}
+            if language:
+                transcribe_kwargs["language"] = language
+                sys_log.info(f"  ↳ [Whisper] Language hint: {language}")
+            segments_iter, info = self.model.transcribe(audio_path, **transcribe_kwargs)
             sys_log.info(f"  ↳ Ngôn ngữ: {info.language} ({info.language_probability:.0%})")
             results = []
             with open(srt_path, "w", encoding="utf-8") as f:

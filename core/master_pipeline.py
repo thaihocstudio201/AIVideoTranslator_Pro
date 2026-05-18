@@ -76,25 +76,15 @@ def _mk_cflags() -> int:
 
 
 
-def _whisper_worker_fn(audio_path: str, srt_path: str,
-                       model_size: str, device: str,
-                       result_queue) -> None:
-    """
-    Isolated subprocess worker: load Whisper → transcribe → put result → exit.
-    Chạy trong process riêng để CUDA destructor crash (segfault) không kill
-    main process.  Kết quả (segments list) trả về qua Queue.
-    """
-    try:
-        import sys as _sys, os as _os
-        _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-        from services.ai_service import AIService
-        _ai = AIService()
-        _ai.reload_model(model_size=model_size, device=device)
-        segs = _ai.transcribe_and_get_segments(audio_path, srt_path)
-        result_queue.put(("ok", segs or []))
-    except Exception as _e:
-        import traceback as _tb
-        result_queue.put(("error", f"{type(_e).__name__}: {_e}\n{_tb.format_exc()}"))
+# Source language name → Whisper language code
+_LANG_TO_WHISPER: dict = {
+    "Chinese": "zh", "Japanese": "ja", "Korean": "ko",
+    "English": "en", "Thai": "th", "Vietnamese": "vi",
+    "Spanish": "es", "French": "fr", "German": "de",
+    "Russian": "ru", "Arabic": "ar", "Portuguese": "pt",
+    "Italian": "it", "Hindi": "hi", "Turkish": "tr",
+}
+
 
 
 class _PipelineStopRequest(BaseException):
@@ -208,6 +198,58 @@ class VideoPipelineEngine:
             return True
         except subprocess.TimeoutExpired:
             sys_log.error(f"{error_msg}: timeout ({timeout}s) — FFmpeg không phản hồi")
+            return False
+
+    def _run_ffmpeg_progress(self, cmd: list, label: str, timeout: int = 3600) -> bool:
+        """
+        Chạy FFmpeg và log tiến trình theo thời gian thực (từ stderr).
+        Dùng cho các bước dài như tách audio, giúp người dùng thấy tiến độ.
+        """
+        try:
+            proc = subprocess.Popen(
+                cmd,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.PIPE,
+                startupinfo=_mk_si(), creationflags=_mk_cflags(),
+            )
+            stderr_lines: list = []
+            last_log_t = [time.time()]
+
+            def _drain():
+                for raw in proc.stderr:
+                    line = raw.decode("utf-8", errors="replace").rstrip()
+                    stderr_lines.append(line)
+                    now = time.time()
+                    if now - last_log_t[0] >= 5:
+                        # Log dòng chứa "time=" (tiến độ FFmpeg) hoặc dòng lỗi
+                        progress = next(
+                            (ln for ln in reversed(stderr_lines) if "time=" in ln), None
+                        )
+                        if progress:
+                            sys_log.info(f"  [{label}] {progress.strip()}")
+                        last_log_t[0] = now
+
+            drain_t = threading.Thread(target=_drain, daemon=True)
+            drain_t.start()
+            try:
+                proc.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.wait()
+                drain_t.join(3)
+                sys_log.error(f"{label}: timeout ({timeout}s)")
+                return False
+
+            drain_t.join(5)
+
+            if proc.returncode != 0:
+                tail = "\n".join(stderr_lines[-10:])
+                sys_log.error(f"{label}: FFmpeg lỗi (code={proc.returncode})\n{tail}")
+                return False
+            return True
+
+        except Exception as exc:
+            sys_log.error(f"{label}: {exc}")
             return False
 
     def _get_voice_param(self) -> Optional[str]:
@@ -1666,43 +1708,81 @@ class VideoPipelineEngine:
 
     def _transcribe_isolated(self, audio_path: str, srt_path: str,
                               model_size: str, device: str,
-                              timeout: int = 600) -> list:
+                              timeout: int = 600,
+                              source_lang: str = "") -> list:
         """
-        Chạy Whisper trong subprocess riêng biệt.
-        Nếu subprocess crash (CUDA segfault), main process không bị ảnh hưởng —
-        chỉ trả về list rỗng và pipeline tiếp tục.
+        Chạy Whisper trong subprocess hoàn toàn độc lập (subprocess.Popen).
+        Dùng file JSON để trao đổi kết quả — tránh multiprocessing.Queue deadlock.
+        Nếu subprocess crash (CUDA segfault), main process không bị ảnh hưởng.
         """
-        import multiprocessing as _mp
-        ctx = _mp.get_context("spawn")
-        q   = ctx.Queue()
-        p   = ctx.Process(target=_whisper_worker_fn,
-                          args=(audio_path, srt_path, model_size, device, q),
-                          daemon=True)
-        p.start()
-        sys_log.info(f"  ↳ [Whisper subprocess] PID={p.pid}")
-        p.join(timeout=timeout)
+        worker_script = os.path.join(os.path.dirname(__file__), "whisper_worker.py")
+        result_json   = audio_path + ".whisper_result.json"
 
-        if p.is_alive():
-            p.terminate()
-            p.join(5)
-            sys_log.error(f"  ❌ Whisper timeout ({timeout}s) — bỏ qua đoạn này")
-            return []
+        whisper_lang = _LANG_TO_WHISPER.get(source_lang, "") if source_lang else ""
+        cmd = [sys.executable, worker_script,
+               audio_path, srt_path, model_size, device, result_json]
+        if whisper_lang:
+            cmd.append(whisper_lang)
 
-        if p.exitcode not in (0, None):
-            sys_log.error(
-                f"  ❌ Whisper subprocess thoát với code={p.exitcode} "
-                f"({'signal' if p.exitcode < 0 else 'error'}) — bỏ qua đoạn này"
-            )
-            return []
-
+        sys_log.info(
+            f"  ↳ [Whisper] Khởi động subprocess: model={model_size} device={device}"
+            + (f" lang={whisper_lang}" if whisper_lang else "")
+        )
         try:
-            status, data = q.get_nowait()
-            if status == "ok":
-                return data
-            sys_log.error(f"  ❌ Whisper lỗi trong subprocess: {str(data)[:400]}")
-        except Exception as _e:
-            sys_log.error(f"  ❌ Không đọc được kết quả Whisper: {_e}")
-        return []
+            proc = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                startupinfo=_mk_si(), creationflags=_mk_cflags(),
+            )
+
+            def _drain_stderr(pipe):
+                for raw in pipe:
+                    line = raw.decode("utf-8", errors="replace").rstrip()
+                    if line:
+                        sys_log.info(f"  [Whisper] {line}")
+
+            drain_t = threading.Thread(target=_drain_stderr, args=(proc.stderr,), daemon=True)
+            drain_t.start()
+
+            try:
+                proc.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.wait()
+                drain_t.join(3)
+                sys_log.error(f"  ❌ Whisper timeout ({timeout}s) — bỏ qua đoạn này")
+                return []
+
+            drain_t.join(5)
+
+            if proc.returncode not in (0, 1):
+                sys_log.error(f"  ❌ Whisper subprocess exitcode={proc.returncode} — bỏ qua")
+                return []
+
+            if not os.path.exists(result_json):
+                sys_log.error("  ❌ Không tìm thấy file kết quả Whisper")
+                return []
+
+            with open(result_json, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+
+            if data.get("status") == "ok":
+                segs = data.get("segments", [])
+                sys_log.info(f"  ✅ [Whisper] {len(segs)} đoạn thoại")
+                return segs
+
+            sys_log.error(f"  ❌ Whisper lỗi: {str(data.get('error', ''))[:400]}")
+            return []
+
+        except Exception as exc:
+            sys_log.error(f"  ❌ Không khởi động được Whisper subprocess: {exc}")
+            return []
+        finally:
+            try:
+                os.remove(result_json)
+            except OSError:
+                pass
 
     def _translate_filename(self, raw_name: str) -> str:
         """
@@ -1838,20 +1918,19 @@ class VideoPipelineEngine:
         all_segs: list = []
         os.makedirs(work_dir, exist_ok=True)
 
-        # Mỗi block mẫu chạy trong subprocess riêng — CUDA destructor crash
-        # chỉ giết subprocess, không ảnh hưởng main process
+        ctx_source_lang = self.settings.get('source_lang', 'Chinese')
         for bi in sample_idx:
             audio_tmp = os.path.join(work_dir, f"ctx_a{bi}.wav")
             srt_tmp   = os.path.join(work_dir, f"ctx_{bi}.srt")
-            ok = self._run_cmd_list(
+            ok = self._run_ffmpeg_progress(
                 ['ffmpeg', '-i', blocks[bi], '-vn', '-acodec', 'pcm_s16le',
                  '-ar', '44100', '-ac', '2', '-t', '120', '-y', audio_tmp],
-                f"Context audio block {bi}"
+                f"Context audio block {bi}", timeout=120
             )
             if not ok or not os.path.exists(audio_tmp):
                 continue
             segs = self._transcribe_isolated(audio_tmp, srt_tmp, whisper_sz, whisper_dev,
-                                              timeout=180)
+                                              timeout=180, source_lang=ctx_source_lang)
             if segs:
                 offset = len(all_segs)
                 for j, s in enumerate(segs):
@@ -1881,7 +1960,8 @@ class VideoPipelineEngine:
 
         # Trạm 1a: Tách audio
         audio_goc = os.path.join(blk_temp, "goc.wav")
-        if not self._run_cmd_list(
+        sys_log.info(f"  ↳ [Block {blk_idx}] Tách audio từ video...")
+        if not self._run_ffmpeg_progress(
             ['ffmpeg', '-i', blk_path, '-vn', '-acodec', 'pcm_s16le',
              '-ar', '44100', '-ac', '2', '-y', audio_goc],
             f"Tách audio block {blk_idx}"
@@ -1900,7 +1980,8 @@ class VideoPipelineEngine:
         whisper_model = self.settings.get("whisper_model", "base")
         srt_orig = os.path.join(blk_temp, "sub_orig.srt")
         segments = self._transcribe_isolated(audio_goc, srt_orig,
-                                              whisper_model, whisper_dev)
+                                              whisper_model, whisper_dev,
+                                              source_lang=source_lang)
 
         if not segments:
             sys_log.warning(f"  ⚠️ Block {blk_idx}: không có lời thoại — bỏ qua dịch/TTS")
@@ -2173,10 +2254,11 @@ class VideoPipelineEngine:
         if not ckpt.is_stage_done("audio_extracted") or not os.path.exists(audio_goc_path):
             if ckpt.is_stage_done("audio_extracted") and not os.path.exists(audio_goc_path):
                 sys_log.warning("  ⚠️ Audio gốc không còn tồn tại → tách lại từ video gốc")
-            ok = self._run_cmd_list(
+            sys_log.info(f"  ↳ Tách audio từ video: {base_name}")
+            ok = self._run_ffmpeg_progress(
                 ['ffmpeg', '-i', vid_path, '-vn', '-acodec', 'pcm_s16le',
                  '-ar', '44100', '-ac', '2', '-y', audio_goc_path],
-                "Lỗi tách audio gốc"
+                "Tách audio"
             )
             if not ok or not os.path.exists(audio_goc_path):
                 sys_log.error(f"❌ Không tách được audio: {base_name}")
@@ -2189,12 +2271,14 @@ class VideoPipelineEngine:
         self._check_control()   # checkpoint sau tách audio
 
         # Bước 2: Whisper — chạy trong subprocess riêng để tránh CUDA destructor crash
+        source_lang_sv = self.settings.get('source_lang', 'Chinese')
         srt_orig = ckpt.get_temp_file("srt_orig") or os.path.join(temp_dir, "sub_orig.srt")
         if not ckpt.is_stage_done("transcribed") or not ckpt.segments:
             whisper_dev   = "cuda" if torch.cuda.is_available() else "cpu"
             whisper_model = self.settings.get("whisper_model", "base")
             segments = self._transcribe_isolated(audio_goc_path, srt_orig,
-                                                  whisper_model, whisper_dev)
+                                                  whisper_model, whisper_dev,
+                                                  source_lang=source_lang_sv)
             if not segments:
                 sys_log.warning("  [!] Không phát hiện lời thoại.")
                 return
