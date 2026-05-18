@@ -1,2 +1,15 @@
 /Thiết kế.txt
 /venv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Config & license (local only)
+config/license.json
+config/.last_update_check
+
+# Logs
+*.log
