@@ -7,7 +7,7 @@ import os
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGroupBox,
     QPushButton, QLabel, QLineEdit, QProgressBar,
-    QTextEdit, QMessageBox, QFrame
+    QTextEdit, QMessageBox, QFrame, QInputDialog
 )
 from PySide6.QtCore import Qt, QThread, Signal, QTimer
 from PySide6.QtGui import QFont, QColor
@@ -94,6 +94,21 @@ class LicenseTab(QWidget):
 
         outer.addWidget(self._build_license_group())
         outer.addWidget(self._build_update_group())
+
+        # Panel admin (ẩn mặc định, mở bằng mật khẩu)
+        self._admin_panel = self._build_admin_group()
+        self._admin_panel.setVisible(False)
+        outer.addWidget(self._admin_panel)
+
+        # Nút mở admin (nhỏ, kín đáo)
+        btn_admin = QPushButton("⚙️ Admin")
+        btn_admin.setFixedWidth(80)
+        btn_admin.setStyleSheet(
+            "background:transparent;color:#444;font-size:10px;"
+            "border:none;text-align:right;"
+        )
+        btn_admin.clicked.connect(self._toggle_admin_panel)
+        outer.addWidget(btn_admin, alignment=Qt.AlignmentFlag.AlignRight)
         outer.addStretch()
 
     def _build_license_group(self) -> QGroupBox:
@@ -359,6 +374,185 @@ class LicenseTab(QWidget):
             QMessageBox.information(self, "OK", "Đã hủy kích hoạt.")
             self._refresh_license_display()
             self.license_changed.emit()
+
+    # ── Admin Panel ────────────────────────────────────────────────
+
+    # Mật khẩu admin (SHA-256 của chuỗi thực — đổi tùy ý)
+    # Mặc định: "admin2026"
+    _ADMIN_PASS_HASH = "6051fc84a7a0d74c225fb18a496b09952da5642e60723ecae543298edd7d82d6"
+
+    def _toggle_admin_panel(self):
+        if self._admin_panel.isVisible():
+            self._admin_panel.setVisible(False)
+            return
+        # Yêu cầu nhập mật khẩu
+        pwd, ok = QInputDialog.getText(
+            self, "Admin Access", "Nhập mật khẩu admin:",
+            QLineEdit.EchoMode.Password
+        )
+        if not ok or not pwd:
+            return
+        import hashlib
+        pwd_hash = hashlib.sha256(pwd.encode()).hexdigest()
+        if pwd_hash != self._ADMIN_PASS_HASH:
+            QMessageBox.warning(self, "Sai mật khẩu", "Mật khẩu admin không đúng!")
+            return
+        self._admin_panel.setVisible(True)
+
+    def _build_admin_group(self) -> QGroupBox:
+        g = QGroupBox("🛠️ ADMIN — SINH LICENSE KEY")
+        g.setStyleSheet(
+            "QGroupBox{font-weight:bold;font-size:13px;color:#ffa500;"
+            "border:1px solid #ffa500;border-radius:6px;margin-top:8px;"
+            "background:#1a0d00;}"
+            "QGroupBox::title{subcontrol-origin:margin;left:12px;}"
+        )
+        lo = QVBoxLayout(g)
+        lo.setSpacing(8)
+
+        # HWID input
+        hwid_row = QHBoxLayout()
+        hwid_row.addWidget(QLabel("HWID máy khách:"))
+        self.admin_hwid = QLineEdit()
+        self.admin_hwid.setPlaceholderText("Nhập HWID của khách — VD: ABCD1234EFGH5678IJKL")
+        self.admin_hwid.setStyleSheet(
+            "font-family:monospace;font-size:12px;letter-spacing:1px;"
+        )
+        hwid_row.addWidget(self.admin_hwid, 1)
+        btn_paste_own = QPushButton("📋 HWID máy này")
+        btn_paste_own.setFixedWidth(120)
+        btn_paste_own.setStyleSheet("background:#555;color:white;border-radius:4px;")
+        btn_paste_own.clicked.connect(self._admin_paste_own_hwid)
+        hwid_row.addWidget(btn_paste_own)
+        lo.addLayout(hwid_row)
+
+        # Days selector
+        days_row = QHBoxLayout()
+        days_row.addWidget(QLabel("Số ngày:"))
+        self.admin_days = QLineEdit("365")
+        self.admin_days.setFixedWidth(80)
+        self.admin_days.setPlaceholderText("365")
+        self.admin_days.setStyleSheet("font-family:monospace;font-size:12px;")
+        days_row.addWidget(self.admin_days)
+
+        for label, val in [("30 ngày", "30"), ("90 ngày", "90"),
+                           ("1 năm", "365"), ("2 năm", "730"), ("Vĩnh viễn", "0")]:
+            b = QPushButton(label)
+            b.setFixedHeight(28)
+            b.setStyleSheet("background:#333;color:#ccc;border-radius:4px;font-size:11px;")
+            b.clicked.connect(lambda _, v=val: self.admin_days.setText(v))
+            days_row.addWidget(b)
+        days_row.addStretch()
+        lo.addLayout(days_row)
+
+        # Result
+        result_row = QHBoxLayout()
+        result_row.addWidget(QLabel("Key sinh ra:"))
+        self.admin_key_out = QLineEdit()
+        self.admin_key_out.setReadOnly(True)
+        self.admin_key_out.setPlaceholderText("Nhấn SINH KEY để tạo...")
+        self.admin_key_out.setStyleSheet(
+            "font-family:monospace;font-size:15px;font-weight:bold;"
+            "color:#00ff88;background:#0a1a0a;letter-spacing:2px;"
+        )
+        result_row.addWidget(self.admin_key_out, 1)
+        lo.addLayout(result_row)
+
+        self.admin_info_lbl = QLabel("")
+        self.admin_info_lbl.setStyleSheet("color:#888;font-size:11px;")
+        lo.addWidget(self.admin_info_lbl)
+
+        # Buttons
+        btn_row = QHBoxLayout()
+        btn_gen = QPushButton("⚡ SINH KEY")
+        btn_gen.setMinimumHeight(40)
+        btn_gen.setStyleSheet(
+            "background:#b36a00;color:white;font-size:14px;font-weight:bold;border-radius:5px;"
+        )
+        btn_gen.clicked.connect(self._admin_generate)
+        btn_row.addWidget(btn_gen, 2)
+
+        btn_copy_key = QPushButton("📋 Copy Key")
+        btn_copy_key.setMinimumHeight(40)
+        btn_copy_key.setStyleSheet(
+            "background:#2d5a2d;color:white;font-size:13px;font-weight:bold;border-radius:5px;"
+        )
+        btn_copy_key.clicked.connect(self._admin_copy_key)
+        btn_row.addWidget(btn_copy_key, 1)
+
+        btn_verify = QPushButton("🔍 Xác Minh")
+        btn_verify.setMinimumHeight(40)
+        btn_verify.setStyleSheet(
+            "background:#333;color:white;font-size:13px;font-weight:bold;border-radius:5px;"
+        )
+        btn_verify.clicked.connect(self._admin_verify)
+        btn_row.addWidget(btn_verify, 1)
+        lo.addLayout(btn_row)
+
+        return g
+
+    def _admin_paste_own_hwid(self):
+        try:
+            from security.hwid_generator import HardwareAuthenticator
+            hwid = HardwareAuthenticator.generate_hwid()
+            self.admin_hwid.setText(hwid)
+        except Exception as e:
+            QMessageBox.warning(self, "Lỗi", str(e))
+
+    def _admin_generate(self):
+        hwid_raw = self.admin_hwid.text().strip()
+        if not hwid_raw:
+            QMessageBox.warning(self, "Thiếu HWID", "Vui lòng nhập HWID!")
+            return
+        try:
+            days_str = self.admin_days.text().strip()
+            days     = int(days_str) if days_str else 365
+        except ValueError:
+            QMessageBox.warning(self, "Lỗi", "Số ngày không hợp lệ!")
+            return
+
+        try:
+            import sys as _sys, os as _os
+            _root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+            if _root not in _sys.path:
+                _sys.path.insert(0, _root)
+            from tools.gen_license import generate_key
+            result = generate_key(hwid_raw, days)
+        except Exception as e:
+            QMessageBox.critical(self, "Lỗi sinh key", str(e))
+            return
+
+        self.admin_key_out.setText(result["key"])
+        self.admin_info_lbl.setText(
+            f"HWID: {result['hwid']}   |   Hết hạn: {result['expiry_date']}   |   Số ngày: {result['days']}"
+        )
+        sys_log.info(f"[Admin] Sinh key cho HWID={result['hwid']} days={result['days']}")
+
+    def _admin_copy_key(self):
+        key = self.admin_key_out.text().strip()
+        if not key:
+            return
+        from PySide6.QtWidgets import QApplication
+        QApplication.clipboard().setText(key)
+        QMessageBox.information(self, "Đã copy", f"Key đã copy:\n{key}")
+
+    def _admin_verify(self):
+        hwid_raw = self.admin_hwid.text().strip()
+        key      = self.admin_key_out.text().strip()
+        if not hwid_raw or not key:
+            QMessageBox.warning(self, "Thiếu thông tin", "Cần có HWID và Key để xác minh!")
+            return
+        try:
+            from tools.gen_license import verify_key
+            ok = verify_key(key, hwid_raw)
+        except Exception as e:
+            QMessageBox.warning(self, "Lỗi", str(e))
+            return
+        if ok:
+            QMessageBox.information(self, "✅ Hợp lệ", f"Key HỢP LỆ cho HWID này!")
+        else:
+            QMessageBox.warning(self, "❌ Không hợp lệ",
+                                "Key KHÔNG hợp lệ cho HWID này.\nKiểm tra lại HWID.")
 
     # ── Update Actions ─────────────────────────────────────────────
 
