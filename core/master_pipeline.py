@@ -74,6 +74,29 @@ def _mk_cflags() -> int:
     return subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0
 
 
+
+
+def _whisper_worker_fn(audio_path: str, srt_path: str,
+                       model_size: str, device: str,
+                       result_queue) -> None:
+    """
+    Isolated subprocess worker: load Whisper → transcribe → put result → exit.
+    Chạy trong process riêng để CUDA destructor crash (segfault) không kill
+    main process.  Kết quả (segments list) trả về qua Queue.
+    """
+    try:
+        import sys as _sys, os as _os
+        _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+        from services.ai_service import AIService
+        _ai = AIService()
+        _ai.reload_model(model_size=model_size, device=device)
+        segs = _ai.transcribe_and_get_segments(audio_path, srt_path)
+        result_queue.put(("ok", segs or []))
+    except Exception as _e:
+        import traceback as _tb
+        result_queue.put(("error", f"{type(_e).__name__}: {_e}\n{_tb.format_exc()}"))
+
+
 class _PipelineStopRequest(BaseException):
     """Raised khi người dùng nhấn Stop — thoát khỏi pipeline sạch."""
 
@@ -1549,6 +1572,46 @@ class VideoPipelineEngine:
 
     # ── BLOCK PIPELINE (video > 30 phút) ──────────────────────
 
+    def _transcribe_isolated(self, audio_path: str, srt_path: str,
+                              model_size: str, device: str,
+                              timeout: int = 600) -> list:
+        """
+        Chạy Whisper trong subprocess riêng biệt.
+        Nếu subprocess crash (CUDA segfault), main process không bị ảnh hưởng —
+        chỉ trả về list rỗng và pipeline tiếp tục.
+        """
+        import multiprocessing as _mp
+        ctx = _mp.get_context("spawn")
+        q   = ctx.Queue()
+        p   = ctx.Process(target=_whisper_worker_fn,
+                          args=(audio_path, srt_path, model_size, device, q),
+                          daemon=True)
+        p.start()
+        sys_log.info(f"  ↳ [Whisper subprocess] PID={p.pid}")
+        p.join(timeout=timeout)
+
+        if p.is_alive():
+            p.terminate()
+            p.join(5)
+            sys_log.error(f"  ❌ Whisper timeout ({timeout}s) — bỏ qua đoạn này")
+            return []
+
+        if p.exitcode not in (0, None):
+            sys_log.error(
+                f"  ❌ Whisper subprocess thoát với code={p.exitcode} "
+                f"({'signal' if p.exitcode < 0 else 'error'}) — bỏ qua đoạn này"
+            )
+            return []
+
+        try:
+            status, data = q.get_nowait()
+            if status == "ok":
+                return data
+            sys_log.error(f"  ❌ Whisper lỗi trong subprocess: {str(data)[:400]}")
+        except Exception as _e:
+            sys_log.error(f"  ❌ Không đọc được kết quả Whisper: {_e}")
+        return []
+
     def _translate_filename(self, raw_name: str) -> str:
         """
         Dịch tên file sang ngôn ngữ đích nếu tên chứa ký tự ngoài Latin
@@ -1678,31 +1741,28 @@ class VideoPipelineEngine:
         all_segs: list = []
         os.makedirs(work_dir, exist_ok=True)
 
-        # Load Whisper một lần → chạy cả 3 block → unload một lần
-        # Giảm CUDA teardown/reinit từ 3× xuống 1× → tránh CUDA destructor crash
-        self.ai.reload_model(model_size=whisper_sz, device=whisper_dev)
-        try:
-            for bi in sample_idx:
-                audio_tmp = os.path.join(work_dir, f"ctx_a{bi}.wav")
-                srt_tmp   = os.path.join(work_dir, f"ctx_{bi}.srt")
-                ok = self._run_cmd_list(
-                    ['ffmpeg', '-i', blocks[bi], '-vn', '-acodec', 'pcm_s16le',
-                     '-ar', '44100', '-ac', '2', '-t', '120', '-y', audio_tmp],
-                    f"Context audio block {bi}"
-                )
-                if not ok or not os.path.exists(audio_tmp):
-                    continue
-                segs = self.ai.transcribe_and_get_segments(audio_tmp, srt_tmp)
-                if segs:
-                    offset = len(all_segs)
-                    for j, s in enumerate(segs):
-                        all_segs.append({**s, 'id': offset + j + 1})
-                try:
-                    os.remove(audio_tmp)
-                except OSError:
-                    pass
-        finally:
-            self.ai.unload_model()   # unload một lần duy nhất dù có lỗi hay không
+        # Mỗi block mẫu chạy trong subprocess riêng — CUDA destructor crash
+        # chỉ giết subprocess, không ảnh hưởng main process
+        for bi in sample_idx:
+            audio_tmp = os.path.join(work_dir, f"ctx_a{bi}.wav")
+            srt_tmp   = os.path.join(work_dir, f"ctx_{bi}.srt")
+            ok = self._run_cmd_list(
+                ['ffmpeg', '-i', blocks[bi], '-vn', '-acodec', 'pcm_s16le',
+                 '-ar', '44100', '-ac', '2', '-t', '120', '-y', audio_tmp],
+                f"Context audio block {bi}"
+            )
+            if not ok or not os.path.exists(audio_tmp):
+                continue
+            segs = self._transcribe_isolated(audio_tmp, srt_tmp, whisper_sz, whisper_dev,
+                                              timeout=180)
+            if segs:
+                offset = len(all_segs)
+                for j, s in enumerate(segs):
+                    all_segs.append({**s, 'id': offset + j + 1})
+            try:
+                os.remove(audio_tmp)
+            except OSError:
+                pass
 
         if not all_segs:
             return ""
@@ -1738,13 +1798,12 @@ class VideoPipelineEngine:
             music_path, vocals_path = self._separate_with_demucs(audio_goc, blk_temp)
         self._check_control()   # checkpoint sau Demucs
 
-        # Trạm 1c: Whisper → giải phóng VRAM ngay
+        # Trạm 1c: Whisper — subprocess riêng để tránh CUDA destructor crash
         whisper_dev   = "cuda" if torch.cuda.is_available() else "cpu"
         whisper_model = self.settings.get("whisper_model", "base")
-        self.ai.reload_model(model_size=whisper_model, device=whisper_dev)
         srt_orig = os.path.join(blk_temp, "sub_orig.srt")
-        segments = self.ai.transcribe_and_get_segments(audio_goc, srt_orig)
-        self.ai.unload_model()
+        segments = self._transcribe_isolated(audio_goc, srt_orig,
+                                              whisper_model, whisper_dev)
 
         if not segments:
             sys_log.warning(f"  ⚠️ Block {blk_idx}: không có lời thoại — bỏ qua dịch/TTS")
@@ -2032,14 +2091,13 @@ class VideoPipelineEngine:
 
         self._check_control()   # checkpoint sau tách audio
 
-        # Bước 2: Whisper (load → run → unload VRAM)
+        # Bước 2: Whisper — chạy trong subprocess riêng để tránh CUDA destructor crash
         srt_orig = ckpt.get_temp_file("srt_orig") or os.path.join(temp_dir, "sub_orig.srt")
         if not ckpt.is_stage_done("transcribed") or not ckpt.segments:
             whisper_dev   = "cuda" if torch.cuda.is_available() else "cpu"
             whisper_model = self.settings.get("whisper_model", "base")
-            self.ai.reload_model(model_size=whisper_model, device=whisper_dev)
-            segments = self.ai.transcribe_and_get_segments(audio_goc_path, srt_orig)
-            self.ai.unload_model()
+            segments = self._transcribe_isolated(audio_goc_path, srt_orig,
+                                                  whisper_model, whisper_dev)
             if not segments:
                 sys_log.warning("  [!] Không phát hiện lời thoại.")
                 return
