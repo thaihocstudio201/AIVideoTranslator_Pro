@@ -111,6 +111,12 @@ class LicenseTab(QWidget):
         outer.addWidget(btn_admin, alignment=Qt.AlignmentFlag.AlignRight)
         outer.addStretch()
 
+        # Auto-refresh license display every 60 seconds
+        self._refresh_timer = QTimer(self)
+        self._refresh_timer.setInterval(60_000)
+        self._refresh_timer.timeout.connect(self._refresh_license_display)
+        self._refresh_timer.start()
+
     def _build_license_group(self) -> QGroupBox:
         g = QGroupBox("🔐 BẢN QUYỀN & KÍCH HOẠT")
         g.setStyleSheet("QGroupBox{font-weight:bold;font-size:14px;color:#00f2ff;"
@@ -191,6 +197,15 @@ class LicenseTab(QWidget):
         btn_deact.clicked.connect(self._on_deactivate)
         btn_row.addWidget(btn_deact, 1)
         lo.addLayout(btn_row)
+
+        # Reactivate button — opens LicenseDialog
+        btn_reactivate = QPushButton("🔄 Đổi License / Kích hoạt lại")
+        btn_reactivate.setMinimumHeight(36)
+        btn_reactivate.setStyleSheet(
+            "background:#2a2a3a;color:#00f2ff;font-size:12px;font-weight:bold;"
+            "border:1px solid #00f2ff;border-radius:5px;")
+        btn_reactivate.clicked.connect(self._on_reactivate)
+        lo.addWidget(btn_reactivate)
 
         return g
 
@@ -374,6 +389,21 @@ class LicenseTab(QWidget):
             QMessageBox.information(self, "OK", "Đã hủy kích hoạt.")
             self._refresh_license_display()
             self.license_changed.emit()
+
+    def _on_reactivate(self):
+        """Open LicenseDialog to change or reactivate license."""
+        try:
+            from ui.license_dialog import LicenseDialog
+            from PySide6.QtWidgets import QDialog
+            dlg = LicenseDialog(self)
+            # Allow opening even if currently licensed (for changing key)
+            dlg._licensed = False
+            result = dlg.exec()
+            if result == QDialog.DialogCode.Accepted:
+                self._refresh_license_display()
+                self.license_changed.emit()
+        except Exception as e:
+            QMessageBox.warning(self, "Lỗi", str(e))
 
     # ── Admin Panel ────────────────────────────────────────────────
 

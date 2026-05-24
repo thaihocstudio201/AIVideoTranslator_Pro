@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QMessageBox, QColorDialog, QLabel, QFileDialog, QSplitter, QPushButton
 )
 from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QColor
 
 from ui.preview_panel import PreviewPanel
 from ui.tabs.dubbing_tab import DubbingTab
@@ -405,15 +406,12 @@ class MainWindow(QMainWindow):
                 if not licensed:
                     btn.setEnabled(False)
 
-        # ── Tab 1 & 2: dim tab title khi chưa kích hoạt ───────────
-        locked_style  = "color:#666666;"
-        normal_style  = ""
+        # ── Tab 1 & 2: dim tab title when not activated ────────────
+        tab_color = QColor("#ffffff") if licensed else QColor("#aaaaaa")
+        bar = self.root_tabs.tabBar()
         for tab_idx in (0, 1):
-            bar = self.root_tabs.tabBar()
-            bar.setTabTextColor(
-                tab_idx,
-                __import__('PySide6.QtGui', fromlist=['QColor']).QColor("#aaaaaa" if not licensed else "#ffffff")
-            )
+            bar.setTabTextColor(tab_idx, tab_color)
+            bar.setTabEnabled(tab_idx, licensed)
 
         sys_log.info(f"🔐 License gate: {'OPEN' if licensed else 'LOCKED'}")
 
