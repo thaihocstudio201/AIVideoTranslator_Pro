@@ -83,7 +83,9 @@ def main():
     app.setApplicationName("AI Video Translator Pro")
     app.setApplicationVersion("2.0.0")
 
-    _check_license_startup(app)
+    from ui.license_dialog import show_license_dialog_if_needed
+    if not show_license_dialog_if_needed():
+        sys.exit(0)
 
     window = MainWindow()
     window.show()
