@@ -276,13 +276,22 @@ class PreviewCanvas(QWidget):
         p = QPainter(self)
         p.setRenderHint(QPainter.RenderHint.Antialiasing)
         if self._thumb:
+            p.fillRect(self.rect(), QColor("#000000"))
             if self._zoom > 1.001:
                 tw, th = self._thumb.width(), self._thumb.height()
                 cw, ch = int(tw / self._zoom), int(th / self._zoom)
                 sx, sy = (tw - cw) // 2, (th - ch) // 2
-                p.drawPixmap(self.rect(), self._thumb, QRect(sx, sy, cw, ch))
+                src = self._thumb.copy(QRect(sx, sy, cw, ch))
             else:
-                p.drawPixmap(self.rect(), self._thumb)
+                src = self._thumb
+            scaled = src.scaled(
+                self.size(),
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation,
+            )
+            ox = (self.width()  - scaled.width())  // 2
+            oy = (self.height() - scaled.height()) // 2
+            p.drawPixmap(ox, oy, scaled)
         else:
             p.fillRect(self.rect(), QColor("#1a1a2e"))
             p.setPen(QColor("#444"))
@@ -576,7 +585,13 @@ class PreviewPanel(QWidget):
         ar_lbl = QLabel("AR:")
         ar_lbl.setStyleSheet("color:#888; font-size:11px;")
         mode_row.addWidget(ar_lbl)
-        for ar_label, (aw, ah) in [("16:9", (16, 9)), ("9:16", (9, 16))]:
+        btn_orig = QPushButton("Gốc")
+        btn_orig.setFixedHeight(26)
+        btn_orig.setFixedWidth(38)
+        btn_orig.setToolTip("Tỉ lệ gốc của video")
+        btn_orig.clicked.connect(self._set_aspect_orig)
+        mode_row.addWidget(btn_orig)
+        for ar_label, (aw, ah) in [("16:9",(16,9)),("9:16",(9,16)),("4:3",(4,3)),("1:1",(1,1)),("21:9",(21,9))]:
             btn = QPushButton(ar_label)
             btn.setFixedHeight(26)
             btn.setFixedWidth(46)
@@ -652,6 +667,11 @@ class PreviewPanel(QWidget):
     def _set_aspect(self, w: int, h: int):
         self.canvas.set_aspect(w, h)
         self._stack.updateGeometry()
+
+    def _set_aspect_orig(self):
+        w, h = self.canvas._video_w, self.canvas._video_h
+        if w > 0 and h > 0:
+            self._set_aspect(w, h)
 
     def _on_zoom_changed(self, val: int):
         self._zoom_val_lbl.setText(f"{val}%")

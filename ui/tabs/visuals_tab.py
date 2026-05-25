@@ -117,6 +117,39 @@ class VisualsTab(QWidget):
         return self.main.preview_panel.canvas
 
     def init_ui(self):
+        self.setStyleSheet("""
+            QWidget { background:#0b0e14; color:#c9d1d9; }
+            QGroupBox {
+                color:#00f2ff; font-weight:bold;
+                border:1px solid #30363d; border-radius:6px;
+                margin-top:8px; padding-top:6px;
+            }
+            QGroupBox::title { subcontrol-origin:margin; left:10px; padding:0 4px; }
+            QCheckBox { color:#c9d1d9; spacing:5px; }
+            QCheckBox::indicator { width:14px; height:14px; border:1px solid #30363d; border-radius:3px; background:#161b22; }
+            QCheckBox::indicator:checked { background:#00f2ff; border:1px solid #00f2ff; }
+            QLabel { color:#c9d1d9; }
+            QLineEdit { background:#161b22; color:#c9d1d9; border:1px solid #30363d; border-radius:4px; padding:4px 6px; }
+            QLineEdit:focus { border:1px solid #00f2ff; }
+            QSpinBox, QDoubleSpinBox { background:#161b22; color:#c9d1d9; border:1px solid #30363d; border-radius:4px; padding:3px; }
+            QComboBox { background:#161b22; color:#c9d1d9; border:1px solid #30363d; border-radius:4px; padding:3px 6px; }
+            QComboBox::drop-down { border:none; }
+            QComboBox QAbstractItemView { background:#161b22; color:#c9d1d9; selection-background-color:#1a73e8; }
+            QSlider::groove:horizontal { background:#161b22; height:4px; border-radius:2px; }
+            QSlider::handle:horizontal { background:#00f2ff; width:14px; height:14px; border-radius:7px; margin:-5px 0; }
+            QSlider::sub-page:horizontal { background:#1a73e8; border-radius:2px; }
+            QTabWidget::pane { border:1px solid #30363d; background:#0b0e14; }
+            QTabBar::tab { background:#161b22; color:#8b949e; padding:6px 12px; border:1px solid #30363d; border-bottom:none; }
+            QTabBar::tab:selected { background:#0b0e14; color:#00f2ff; font-weight:bold; }
+            QTabBar::tab:hover { color:#c9d1d9; }
+            QPushButton { background:#21262d; color:#c9d1d9; border:1px solid #30363d; border-radius:4px; padding:5px 10px; }
+            QPushButton:hover { background:#30363d; color:#e6edf3; }
+            QPushButton:pressed { background:#1a73e8; }
+            QScrollArea { background:#0b0e14; border:none; }
+            QScrollBar:vertical { background:#0d1117; width:8px; }
+            QScrollBar::handle:vertical { background:#30363d; border-radius:4px; }
+        """)
+
         outer = QVBoxLayout(self)
         outer.setContentsMargins(5, 5, 5, 5)
 
@@ -130,7 +163,10 @@ class VisualsTab(QWidget):
         bar = QHBoxLayout()
         btn_save = QPushButton("💾 LƯU TOÀN BỘ CẤU HÌNH VISUALS")
         btn_save.setMinimumHeight(44)
-        btn_save.setStyleSheet("background:#00ff88;color:black;font-size:13px;font-weight:bold;")
+        btn_save.setStyleSheet(
+            "background:#1a73e8; color:white; font-size:13px; font-weight:bold;"
+            "border:none; border-radius:5px;"
+        )
         btn_save.clicked.connect(self.save_settings)
         btn_reset = QPushButton("🔄 Mặc định")
         btn_reset.setMinimumHeight(44)
@@ -478,6 +514,7 @@ class VisualsTab(QWidget):
         h_ar.addWidget(QLabel("Tỉ lệ khung hình:"))
         self.cb_aspect = QComboBox()
         self.cb_aspect.addItems(["Gốc","16:9","9:16 (Reels/TikTok)","4:3","1:1 (Vuông)","21:9 (Cinematic)"])
+        self.cb_aspect.currentTextChanged.connect(self._on_aspect_changed)
         h_ar.addWidget(self.cb_aspect)
         l_bdr.addLayout(h_ar)
         lo.addWidget(g_bdr)
@@ -560,6 +597,26 @@ class VisualsTab(QWidget):
 
         lo.addStretch(); scroll.setWidget(inner)
         return scroll
+
+    # ── Aspect ratio preview sync ─────────────────────────────
+    _AR_MAP = {
+        "16:9":              (16, 9),
+        "9:16 (Reels/TikTok)": (9, 16),
+        "4:3":               (4, 3),
+        "1:1 (Vuông)":       (1, 1),
+        "21:9 (Cinematic)":  (21, 9),
+    }
+
+    def _on_aspect_changed(self, text: str):
+        ar = self._AR_MAP.get(text)
+        if ar:
+            self.canvas.set_aspect(*ar)
+        else:
+            # "Gốc" — restore native video dimensions
+            w, h = self.canvas._video_w, self.canvas._video_h
+            if w > 0 and h > 0:
+                self.canvas.set_aspect(w, h)
+        self.main.preview_panel._stack.updateGeometry()
 
     # ── Color pickers ─────────────────────────────────────────
     def _pick_sub_color(self):
